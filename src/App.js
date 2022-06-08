@@ -107,7 +107,7 @@ export default function App() {
 		<li onClick={() => setCurrentCategory(category)}
         key={idx}>
       <button 
-        className={"text-white cursor-pointer rounded-full py-2 px-4 mb-1 " + category.tailwindBG + (category.name == currentCategory.name ? " border-2 border-black" : "")}
+        className={"text-white cursor-pointer rounded-full py-2 px-4 lg:py-3 lg:px-6 lg:text-2xl mb-1 " + category.tailwindBG + (category.name == currentCategory.name ? " border-2 border-black" : "")}
       >
         {category.name}
       </button>
@@ -119,35 +119,39 @@ export default function App() {
 			.items.map((item, idx) => 
       <li className="h-min" key={idx}>
         <button 
-          onClick={() => selectItem(item)}
-          className={"cursor-pointer rounded-full py-2 px-4 text-white " + currentCategory.tailwindBG + (selectedItems.includes(item) ? " border-2 border-black" : "")}>
+          onClick={() => selectItem(item, currentCategory.tailwindBG)}
+          className={"cursor-pointer rounded-full py-2 px-4 text-white lg:py-3 lg:px-6 lg:text-2xl " + currentCategory.tailwindBG + (selectedItems.includes(item) ? " border-2 border-black" : "")}>
           {item}
         </button>
       </li>)
 
-  const selectedElements = selectedItems.map((item, idx) => (
-    <li className="" key={idx}>
-      {item}
-    </li>
-  ))
 
-  useEffect(() =>{
-    setPossibleCocktails(cocktails.filter(cocktail => {
-      if (selectedItems.every(item => cocktail.ingredients.includes(item))) {
-        return cocktail
-      }
-    }))
-  }, [selectedItems])
+useEffect(() => {
+	setPossibleCocktails(cocktails.filter(cocktail => {
+		if (selectedItems.every(item => cocktail.ingredients.includes(item))) {
+			return cocktail
+		}
+	}))
+}, [selectedItems])
 
-  function selectItem(itemName) {
-    /* if item is already in list, deselect it */
-    if (selectedItems.includes(itemName)) {
-      let withoutDeselected = selectedItems.filter(item => item !== itemName)
+function selectItem(itemName, bgColor) {
+	/* if item is already in list, deselect it */
+    if (selectedItems.includes([itemName, bgColor])) {
+      let withoutDeselected = selectedItems.filter(item => item[0] !== itemName)
       setSelectedItems(withoutDeselected)
     } else {
-      setSelectedItems(prevItems => [...prevItems, itemName])
+			setSelectedItems(prevItems => [...prevItems, [itemName, bgColor]])
     }
   }
+	
+	const selectedElements = selectedItems.map((item, idx) => {
+		console.log(item[0])
+		return (
+			<li className={"cursor-pointer rounded-full py-2 px-4 text-white lg:py-3 lg:px-6 lg:text-2xl " + item[1]} key={idx}>
+				{item[0]}
+			</li>
+		)
+	})
 
 	const cocktailElements = possibleCocktails.map((cocktail, idx) => {
     return (
@@ -161,7 +165,7 @@ export default function App() {
 
 	return (
 		<main className="App w-screen min-w-screen flex flex-col items-center">
-			<div className="flex-1 mx-auto p-8 max-w-5xl">
+			<div className="flex-1 mx-auto p-2 max-w-5xl">
 				<h1 className="font-cursive text-5xl">
 					cocktails <i className="fa-solid fa-whiskey-glass"></i>
 				</h1>
@@ -170,7 +174,7 @@ export default function App() {
 				</h2>
 
 				{/* categories and items */}
-				<div className="flex w-full"> 
+				<div className="flex justify-center min-w-5/6 border-4"> 
 					<ul className="flex flex-col items-start">
 						{categoryItems}
 					</ul>
@@ -183,8 +187,8 @@ export default function App() {
 							<h2 className="font-cursive text-3xl pb-3">
 								2. you've selected...
 							</h2>
-							<ul>
-								{selectedItems}
+							<ul className="flex flex-wrap items-start gap-2 justify-start items-start h-min">
+								{selectedElements}
 							</ul>
 							<h2 className="font-cursive text-3xl pb-3">
 								3. you can make...
