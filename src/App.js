@@ -1,17 +1,22 @@
 import './App.css';
-
+import Cocktail from './components/Cocktail';
 import { useState, useEffect } from "react"
 
 export default function App() {
 	const cocktails = [
 		{
 			name: 'Negroni',
-			ingredients: ['gin', 'sweet vermouth', 'Campari'],
+			ingredients: ['gin', 'sweet vermouth', 'campari'],
       photoString: 'bg-negroni'
 		},
 		{
+			name: 'Carajillo',
+			ingredients: ['espresso', 'licor 43'],
+      photoString: 'bg-carajillo'
+		},
+		{
 			name: 'Boulevardier',
-			ingredients: ['whiskey', 'sweet vermouth', 'Campari'],
+			ingredients: ['whiskey', 'sweet vermouth', 'campari'],
 			photoString: 'bg-boulevardier'
 		},
 		{
@@ -58,13 +63,18 @@ export default function App() {
 			name: 'Southside',
 			ingredients: ['gin', 'lemon juice', 'mint', 'simple syrup'],
 			photoString: 'bg-southside'
+		},
+		{
+			name: 'Espresso Martini',
+			ingredients: ['vodka', 'coffee liqueur', 'espresso'],
+			photoString: 'bg-espresso-martini'
 		}
 	]
 	
 	const categories = [
 		{
 			name: 'spirits',
-			items: ['gin', 'tequila', 'vodka', 'whiskey'],
+			items: ['gin', 'mezcal', 'rum', 'tequila', 'vodka', 'whiskey'],
 			tailwindBG: 'bg-amber-800',
 			tailwindBorder: 'border-amber-800',
 			hoverBorder: 'hover:border-amber-800',
@@ -82,7 +92,7 @@ export default function App() {
 		},
 		{
 			name: 'liqueurs',
-			items: ['triple sec', 'Campari', 'green chartreuse', 'maraschino liqueur'],
+			items: ['aperol', 'campari', 'coffee liqueur' , 'green chartreuse', 'licor 43', 'maraschino liqueur', 'triple sec'],
 			tailwindBG: 'bg-red-700',
 			tailwindBorder: 'border-red-700',
 			hoverBorder: 'hover:border-red-700',
@@ -119,7 +129,7 @@ export default function App() {
 		},
 		{
 			name: 'miscellaneous',
-			items: ['sugar cube'],
+			items: [ 'espresso', 'sugar cube'],
 			tailwindBG: 'bg-emerald-800',
 			tailwindBorder: 'border-emerald-800',
 			hoverBorder: 'hover:border-emerald-800',
@@ -175,20 +185,17 @@ export default function App() {
 	}
 
 	const cocktailElements = possibleCocktails.map((cocktail, idx) => {
-		let missingIngredients = cocktail.ingredients.map(ingredient => {
+		let missing = cocktail.ingredients.map(ingredient => {
 			return selectedItems.some(item => item.includes(ingredient)) ? "" : ingredient
-		}).filter(item => !!item)
+		})
+		.filter(item => !!item)
     return (
-			<li className={"w-full flex flex-col items-start rounded-2xl border-4 " + (missingIngredients.length == 0 ? "border-8 border-green-400" : "")}
-			key={idx}>
-				<div className={"rounded-t-lg bg-cover bg-no-repeat bg-center h-60 w-full " + cocktail.photoString}></div>
-				<h3 className="px-2 pt-1 text-2xl font-bold">{cocktail.name}</h3>
-				<p className="px-2 text-left">{cocktail.ingredients.join(", ")}</p>
-				{missingIngredients.length > 0 && <h4 className="px-2 text-left">
-					<span className="font-bold">you're missing:</span> {missingIngredients.join(", ")}
-				</h4>}
-				<p></p>
-			</li>
+			<Cocktail name={cocktail.name} 
+								ingredients={cocktail.ingredients} 
+								missing={missing}
+								photoString={cocktail.photoString}
+								selectedItems={selectedItems} 
+								key={idx} />
 		)
   })
 
@@ -216,7 +223,7 @@ export default function App() {
 					<ul className="flex flex-col items-start">
 						{categoryElements}
 					</ul>
-					<ul className="flex flex-wrap items-start gap-2 justify-start items-start h-min">
+					<ul className="flex flex-wrap items-start gap-1 justify-start items-start h-min">
 						{itemElements}
 					</ul>
 				</div>

@@ -7,13 +7,14 @@ module.exports = {
       backgroundImage: {
         'americano': "url('./cocktail-photos/americano.jpg')",
         'boulevardier': "url('./cocktail-photos/boulevardier.jpg')",
-        'negroni': "url('./cocktail-photos/negroni.jpg')",
-        'moscow-mule': "url('./cocktail-photos/moscow-mule.jpg')",
+        'carajillo': "url('./cocktail-photos/carajillo.jpg')",
+        'espresso-martini': "url('./cocktail-photos/espresso-martini.jpg')",
+        'gin-and-tonic': "url('./cocktail-photos/gin-and-tonic.jpg')",
         'last-word': "url('./cocktail-photos/last-word.jpg')",
         'margarita': "url('./cocktail-photos/margarita.jpg')",
-        'boulevardier': "url('./cocktail-photos/boulevardier.jpg')",
         'martini': "url('./cocktail-photos/martini.jpg')",
-        'gin-and-tonic': "url('./cocktail-photos/gin-and-tonic.jpg')",
+        'moscow-mule': "url('./cocktail-photos/moscow-mule.jpg')",
+        'negroni': "url('./cocktail-photos/negroni.jpg')",
         'old-fashioned': "url('./cocktail-photos/old-fashioned.jpg')",
         'southside': "url('./cocktail-photos/southside.jpg')"
       },
