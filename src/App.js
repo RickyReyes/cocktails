@@ -60,9 +60,7 @@ export default function App() {
 			photoString: 'bg-southside'
 		}
 	]
-
-	console.log(cocktails);
-
+	
 	const categories = [
 		{
 			name: 'spirits',
