@@ -41,7 +41,7 @@ export default function App() {
 		},
 		{
 			name: 'Manhattan',
-			ingredients: ['whiskey, sweet vermouth, Angostura bitters'],
+			ingredients: ['whiskey', 'sweet vermouth', 'Angostura bitters'],
 			photoString: 'bg-manhattan'
 		},
 		{
@@ -70,7 +70,6 @@ export default function App() {
 			photoString: 'bg-espresso-martini'
 		}
 	]
-	
 	const categories = [
 		{
 			name: 'spirits',
@@ -158,7 +157,7 @@ export default function App() {
 							<button 
 								onClick={(e) => handleSelectItem(item, currentCategory.tailwindBG)}
 								className={"cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl hover:bg-white " + 
-								currentCategory.tailwindBG + " " + currentCategory.hoverTextColor + " border-white border-2 " + currentCategory.hoverBorder}>
+								currentCategory.tailwindBG + " " + currentCategory.hoverTextColor + " border-white border-2 " + currentCategory.hoverBorder + (selectedItems.includes(item[0]) ? currentCategory.hoverTextColor : "")}>
 								{item}
 							</button>
 						</li>
@@ -200,16 +199,28 @@ export default function App() {
   })
 
 	useEffect(() => {
-		setPossibleCocktails(cocktails.filter(cocktail => {
-			if (selectedItems.some(item => cocktail.ingredients.includes(item[0]))) {
-				return cocktail
-			}
-		}))
+		setPossibleCocktails(
+			cocktails.filter(cocktail => {
+				let numOfIngredients = cocktail.ingredients.length
+				let numOfAvailable = 0
+				selectedItems.forEach(item => {
+					if (cocktail.ingredients.includes(item[0])) {
+						numOfAvailable += 1
+					}
+				})
+
+				console.log(cocktail.name + ": " + numOfIngredients)
+				console.log("available: " + numOfAvailable)
+				if (selectedItems.some(item => cocktail.ingredients.includes(item[0]))) {
+					return cocktail
+				}
+			})
+		)
 	}, [selectedItems])
 	
 
 	return (
-		<main className="App w-screen min-w-screen flex flex-col items-center">
+		<main className="App min-w-screen flex flex-col items-center">
 			<div className="flex-1 mx-auto p-2 max-w-5xl">
 				<h1 className="font-cursive text-5xl">
 					cocktails <i className="fa-solid fa-whiskey-glass"></i>
