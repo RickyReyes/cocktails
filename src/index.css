@@ -15,3 +15,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.missing-ingredient {
+  display: inline;
+}
+
+.missing-ingredient::after {
+  content: ", ";
+  font-weight: normal;
+}
+.missing-ingredient:last-child::after {
+  content: ""
+}
+
+.selected-item {
+  position: relative;
+}
+
+.selected-item::after {
+  position: absolute;
+  content: '⁠—';
+  padding-bottom: 2px;
+  top: -5px;
+  right: -5px;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  border-radius: 50%;
+}
+@media (min-width: 1024px) {
+  .selected-item::after {
+    height: 30px;
+    width: 30px;
+    padding-bottom: 4px;
+  }
+}

@@ -5,14 +5,9 @@ import { useState, useEffect } from "react"
 export default function App() {
 	const cocktails = [
 		{
-			name: 'Negroni',
-			ingredients: ['gin', 'sweet vermouth', 'campari'],
-      photoString: 'bg-negroni'
-		},
-		{
-			name: 'Carajillo',
-			ingredients: ['espresso', 'licor 43'],
-      photoString: 'bg-carajillo'
+			name: 'Americano',
+			ingredients: ['sweet vermouth', 'campari', 'club soda'],
+			photoString: 'bg-americano'
 		},
 		{
 			name: 'Boulevardier',
@@ -20,39 +15,19 @@ export default function App() {
 			photoString: 'bg-boulevardier'
 		},
 		{
-			name: 'Margarita',
-			ingredients: ['tequila', 'triple sec', 'lime juice'],
-			photoString: 'bg-margarita'
+			name: 'Carajillo',
+			ingredients: ['espresso', 'licor 43'],
+			photoString: 'bg-carajillo'
 		},
 		{
-			name: 'Americano',
-			ingredients: ['sweet vermouth', 'Campari', 'soda'],
-			photoString: 'bg-americano'
+			name: 'Daiquiri',
+			ingredients: ['rum', 'lime juice', 'simple syrup']
+			// photoString: 'bg-carajillo'
 		},
 		{
-			name: 'Old Fashioned',
-			ingredients: ['whiskey', 'sugar cube', 'Angostura bitters'],
-			photoString: 'bg-old-fashioned'
-		},
-		{
-			name: 'Moscow Mule',
-			ingredients: ['vodka', 'ginger beer', 'lime juice'],
-			photoString: 'bg-moscow-mule'
-		},
-		{
-			name: 'Manhattan',
-			ingredients: ['whiskey', 'sweet vermouth', 'Angostura bitters'],
-			photoString: 'bg-manhattan'
-		},
-		{
-			name: 'Last Word',
-			ingredients: ['gin', 'green chartreuse', 'maraschino liqueur', 'lime juice'],
-			photoString: 'bg-last-word'
-		},
-		{
-			name: 'Martini',
-			ingredients: ['gin', 'dry vermouth'],
-			photoString: 'bg-martini'
+			name: 'Espresso Martini',
+			ingredients: ['vodka', 'coffee liqueur', 'espresso'],
+			photoString: 'bg-espresso-martini'
 		},
 		{
 			name: 'Gin & Tonic',
@@ -60,20 +35,65 @@ export default function App() {
 			photoString: 'bg-gin-and-tonic'
 		},
 		{
+			name: 'Last Word',
+			ingredients: ['gin', 'green chartreuse', 'maraschino liqueur', 'lime juice'],
+			photoString: 'bg-last-word'
+		},
+		{
+			name: 'Manhattan',
+			ingredients: ['whiskey', 'sweet vermouth', 'Angostura bitters'],
+			photoString: 'bg-manhattan'
+		},
+		{
+			name: 'Margarita',
+			ingredients: ['tequila', 'triple sec', 'lime juice'],
+			photoString: 'bg-margarita'
+		},
+		{
+			name: 'Martini',
+			ingredients: ['gin', 'dry vermouth'],
+			photoString: 'bg-martini'
+		},
+		{
+			name: 'Moscow Mule',
+			ingredients: ['vodka', 'ginger beer', 'lime juice'],
+			photoString: 'bg-moscow-mule'
+		},
+		{
+			name: 'Negroni',
+			ingredients: ['gin', 'sweet vermouth', 'campari'],
+      photoString: 'bg-negroni'
+		},
+		{
+			name: 'Old Fashioned',
+			ingredients: ['whiskey', 'sugar cube', 'Angostura bitters'],
+			photoString: 'bg-old-fashioned'
+		},
+		{
+			name: 'Paloma',
+			ingredients: ['tequila', 'lime juice', 'grapefruit juice', 'simple syrup', 'club soda'],
+			// photoString: 'bg-old-fashioned'
+		},
+		{
+			name: 'Sazerac',
+			ingredients: ['absinthe', 'whiskey', 'Angostura bitters', "Peychaud's bitters", 'simple syrup'],
+			// photoString: 'bg-old-fashioned'
+		},
+		{
+			name: 'Sidecar',
+			ingredients: ['brandy', 'triple sec', 'lemon juice']
+			// photoString: 'bg-old-fashioned'
+		},
+		{
 			name: 'Southside',
 			ingredients: ['gin', 'lemon juice', 'mint', 'simple syrup'],
 			photoString: 'bg-southside'
 		},
-		{
-			name: 'Espresso Martini',
-			ingredients: ['vodka', 'coffee liqueur', 'espresso'],
-			photoString: 'bg-espresso-martini'
-		}
 	]
 	const categories = [
 		{
 			name: 'spirits',
-			items: ['gin', 'mezcal', 'rum', 'tequila', 'vodka', 'whiskey'],
+			items: ['absinthe', 'brandy', 'gin', 'mezcal', 'pisco', 'rum', 'tequila', 'vodka', 'whiskey'],
 			tailwindBG: 'bg-amber-800',
 			tailwindBorder: 'border-amber-800',
 			hoverBorder: 'hover:border-amber-800',
@@ -110,7 +130,7 @@ export default function App() {
 		},
 		{
 			name: 'bubbles',
-			items: ['soda', 'tonic', 'ginger beer', 'cola'],
+			items: ['club soda', 'tonic', 'ginger beer', 'cola'],
 			tailwindBG: 'bg-blue-800',
 			tailwindBorder: 'border-blue-800',
 			hoverBorder: 'hover:border-blue-800',
@@ -166,7 +186,7 @@ export default function App() {
 	const selectedElements = selectedItems.map((item, idx) => {
 		return (
 			<li onClick={() => handleSelectItem(item[0], item[1])}
-			className={"cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-3 lg:px-6 lg:text-2xl " + item[1]} key={idx}>
+			className={"selected-item cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-3 lg:px-6 lg:text-2xl " + item[1]} key={idx}>
 				{item[0]}
 			</li>
 		)
@@ -208,7 +228,6 @@ export default function App() {
 						numOfAvailable += 1
 					}
 				})
-
 				console.log(cocktail.name + ": " + numOfIngredients)
 				console.log("available: " + numOfAvailable)
 				if (selectedItems.some(item => cocktail.ingredients.includes(item[0]))) {
@@ -220,8 +239,8 @@ export default function App() {
 	
 
 	return (
-		<main className="App min-w-screen flex flex-col items-center">
-			<div className="flex-1 mx-auto p-2 max-w-5xl">
+		<main className="App min-w-screen flex flex-col items-center px-3">
+			<div className="flex-1 flex flex-col max-w-5xl">
 				<h1 className="font-cursive text-5xl">
 					cocktails <i className="fa-solid fa-whiskey-glass"></i>
 				</h1>
@@ -230,7 +249,7 @@ export default function App() {
 				</h2>
 
 				{/* categories and items */}
-				<div className="flex justify-left w-full"> 
+				<div className="flex justify-center items-start w-full"> 
 					<ul className="flex flex-col items-start">
 						{categoryElements}
 					</ul>
