@@ -6,12 +6,17 @@ export default function App() {
 	const cocktails = [
 		{
 			name: 'Americano',
-			ingredients: ['sweet vermouth', 'campari', 'club soda'],
+			ingredients: ['sweet vermouth', 'campari', 'club soda', 'orange twist'],
 			photoString: 'bg-americano'
 		},
 		{
+			name: 'Aperol Spritz',
+			ingredients: ['aperol', 'prosecco', 'club soda', 'orange slice'],
+			photoString: 'bg-aperol-spritz'
+		},
+		{
 			name: 'Boulevardier',
-			ingredients: ['whiskey', 'sweet vermouth', 'campari'],
+			ingredients: ['whiskey', 'sweet vermouth', 'campari', 'orange twist'],
 			photoString: 'bg-boulevardier'
 		},
 		{
@@ -21,8 +26,8 @@ export default function App() {
 		},
 		{
 			name: 'Daiquiri',
-			ingredients: ['rum', 'lime juice', 'simple syrup']
-			// photoString: 'bg-carajillo'
+			ingredients: ['rum', 'lime juice', 'simple syrup'],
+			photoString: 'bg-daiquiri'
 		},
 		{
 			name: 'Espresso Martini',
@@ -41,18 +46,23 @@ export default function App() {
 		},
 		{
 			name: 'Manhattan',
-			ingredients: ['whiskey', 'sweet vermouth', 'Angostura bitters'],
+			ingredients: ['whiskey', 'sweet vermouth', 'Angostura bitters', 'luxardo cherry'],
 			photoString: 'bg-manhattan'
 		},
 		{
 			name: 'Margarita',
-			ingredients: ['tequila', 'triple sec', 'lime juice'],
+			ingredients: ['tequila', 'triple sec', 'lime juice', 'salt rim'],
 			photoString: 'bg-margarita'
 		},
 		{
 			name: 'Martini',
-			ingredients: ['gin', 'dry vermouth'],
+			ingredients: ['gin', 'dry vermouth', 'lemon twist'],
 			photoString: 'bg-martini'
+		},
+		{
+			name: 'Mezcal Margarita',
+			ingredients: ['mezcal', 'triple sec', 'lime juice', 'salt rim'],
+			photoString: 'bg-mezcal-margarita'
 		},
 		{
 			name: 'Moscow Mule',
@@ -61,34 +71,44 @@ export default function App() {
 		},
 		{
 			name: 'Negroni',
-			ingredients: ['gin', 'sweet vermouth', 'campari'],
+			ingredients: ['gin', 'sweet vermouth', 'campari', 'orange twist'],
       photoString: 'bg-negroni'
 		},
 		{
 			name: 'Old Fashioned',
-			ingredients: ['whiskey', 'sugar cube', 'Angostura bitters'],
+			ingredients: ['whiskey', 'sugar cube', 'Angostura bitters', 'orange twist'],
 			photoString: 'bg-old-fashioned'
+		},
+		{
+			name: 'Oaxaca Old Fashioned',
+			ingredients: ['mezcal', 'tequila', 'agave nectar', 'mole bitters'],
+			photoString: 'bg-oaxaca-old-fashioned'
 		},
 		{
 			name: 'Paloma',
 			ingredients: ['tequila', 'lime juice', 'grapefruit juice', 'simple syrup', 'club soda'],
-			// photoString: 'bg-old-fashioned'
+			photoString: 'bg-paloma'
 		},
 		{
 			name: 'Sazerac',
-			ingredients: ['absinthe', 'whiskey', 'Angostura bitters', "Peychaud's bitters", 'simple syrup'],
-			// photoString: 'bg-old-fashioned'
+			ingredients: ['absinthe', 'whiskey', 'Angostura bitters', "Peychaud's bitters", 'simple syrup', 'lemon twist'],
+			photoString: 'bg-sazerac'
 		},
 		{
 			name: 'Sidecar',
-			ingredients: ['brandy', 'triple sec', 'lemon juice']
-			// photoString: 'bg-old-fashioned'
+			ingredients: ['brandy', 'triple sec', 'lemon juice', 'sugar rim'],
+			photoString: 'bg-sidecar'
 		},
 		{
 			name: 'Southside',
 			ingredients: ['gin', 'lemon juice', 'mint', 'simple syrup'],
 			photoString: 'bg-southside'
 		},
+		{
+			name: 'Whiskey Sour',
+			ingredients: ['whiskey', 'lemon juice', 'simple syrup', 'egg white'],
+			photoString: 'bg-whiskey-sour'
+		}
 	]
 	const categories = [
 		{
@@ -102,7 +122,7 @@ export default function App() {
 		},
 		{
 			name: 'vermouth',
-			items: ['sweet vermouth', 'dry vermouth'],
+			items: ['dry vermouth', 'sweet vermouth'],
 			tailwindBG: 'bg-orange-600',
 			tailwindBorder: 'border-orange-600',
 			hoverBorder: 'hover:border-orange-600',
@@ -130,7 +150,16 @@ export default function App() {
 		},
 		{
 			name: 'bubbles',
-			items: ['club soda', 'tonic', 'ginger beer', 'cola'],
+			items: ['club soda', 'cola', 'ginger beer', 'prosecco', 'tonic'],
+			tailwindBG: 'bg-cyan-600',
+			tailwindBorder: 'border-cyan-600',
+			hoverBorder: 'hover:border-cyan-600',
+			hoverTextColor: 'hover:text-cyan-600',
+			tailwindTextColor: 'text-cyan-600'
+		},
+		{
+			name: 'syrups',
+			items: ['simple syrup', 'agave syrup', 'honey syrup'],
 			tailwindBG: 'bg-blue-800',
 			tailwindBorder: 'border-blue-800',
 			hoverBorder: 'hover:border-blue-800',
@@ -139,7 +168,7 @@ export default function App() {
 		},
 		{
 			name: 'bitters',
-			items: ['Angostura bitters', "Peychaud's"],
+			items: ['Angostura bitters', "mole bitters", "Peychaud's bitters"],
 			tailwindBG: 'bg-red-400',
 			tailwindBorder: 'border-red-400',
 			hoverBorder: 'hover:border-red-400',
@@ -147,8 +176,17 @@ export default function App() {
 			tailwindTextColor: 'text-red-400'
 		},
 		{
+			name: 'garnishes',
+			items: ['lemon twist', 'luxardo cherry', 'orange slice', 'orange twist', 'salt rim', 'sugar rim'],
+			tailwindBG: 'bg-yellow-500',
+			tailwindBorder: 'border-yellow-500',
+			hoverBorder: 'hover:border-yellow-500',
+			hoverTextColor: 'hover:text-yellow-500',
+			tailwindTextColor: 'text-yellow-500'
+		},
+		{
 			name: 'miscellaneous',
-			items: [ 'espresso', 'sugar cube'],
+			items: [ 'espresso', 'sugar cube', 'egg white'],
 			tailwindBG: 'bg-emerald-800',
 			tailwindBorder: 'border-emerald-800',
 			hoverBorder: 'hover:border-emerald-800',
@@ -177,22 +215,24 @@ export default function App() {
 							<button 
 								onClick={(e) => handleSelectItem(item, currentCategory.tailwindBG)}
 								className={"cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl hover:bg-white " + 
-								currentCategory.tailwindBG + " " + currentCategory.hoverTextColor + " border-white border-2 " + currentCategory.hoverBorder + (selectedItems.includes(item[0]) ? currentCategory.hoverTextColor : "")}>
+								currentCategory.tailwindBG + " " + currentCategory.hoverTextColor + " border-white border-2 " + currentCategory.hoverBorder + " " + currentCategory.hoverTextColor}>
 								{item}
 							</button>
 						</li>
 		})
 
 	const selectedElements = selectedItems.map((item, idx) => {
+		const [name, bgColor] = item;
 		return (
-			<li onClick={() => handleSelectItem(item[0], item[1])}
-			className={"selected-item cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-3 lg:px-6 lg:text-2xl " + item[1]} key={idx}>
+			<li onClick={() => handleSelectItem(name, bgColor)}
+			className={"selected-item cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-3 lg:px-6 lg:text-2xl " + bgColor} key={idx}>
 				{item[0]}
 			</li>
 		)
 	})
 
 	function handleSelectItem(itemName, bgColor) {
+		/* remove if already selected */
 		for (let i = 0; i < selectedItems.length; i++) {
 			if (selectedItems[i][0] == itemName) {
 				let filteredItems = selectedItems.filter(item => item[0] !== itemName)
@@ -200,8 +240,44 @@ export default function App() {
 				return;
 			}
 		}
+		/* add to list otherwise */
 		setSelectedItems(prevItems => [...prevItems, [itemName, bgColor]])
 	}
+
+	useEffect(() => {
+		setPossibleCocktails(
+			cocktails.filter(cocktail => {
+				if (selectedItems.some(item => cocktail.ingredients.includes(item[0]))) {
+					return cocktail
+				}
+			})
+			// sort possible cocktails based on ratio of available ingredients to total ingredients
+			.sort((a, b) => {
+					let [numOfIngredientsA, numOfIngredientsB] = [a.ingredients.length, b.ingredients.length]
+					let numOfAvailableA = 0
+					let numOfAvailableB = 0
+					selectedItems.forEach(item => {
+						if (a.ingredients.includes(item[0])) {
+							numOfAvailableA += 1
+						}
+					})
+					selectedItems.forEach(item => {
+						if (b.ingredients.includes(item[0])) {
+							numOfAvailableB += 1
+						}
+					})
+					let ratioA = numOfAvailableA/numOfIngredientsA
+					let ratioB = numOfAvailableB/numOfIngredientsB
+					if (ratioA < ratioB) {
+						return 1;
+					}
+					if (ratioB < ratioA) {
+						return -1;
+					}
+					return 0;
+			})
+		)
+	}, [selectedItems])
 
 	const cocktailElements = possibleCocktails.map((cocktail, idx) => {
 		let missing = cocktail.ingredients.map(ingredient => {
@@ -218,28 +294,8 @@ export default function App() {
 		)
   })
 
-	useEffect(() => {
-		setPossibleCocktails(
-			cocktails.filter(cocktail => {
-				let numOfIngredients = cocktail.ingredients.length
-				let numOfAvailable = 0
-				selectedItems.forEach(item => {
-					if (cocktail.ingredients.includes(item[0])) {
-						numOfAvailable += 1
-					}
-				})
-				console.log(cocktail.name + ": " + numOfIngredients)
-				console.log("available: " + numOfAvailable)
-				if (selectedItems.some(item => cocktail.ingredients.includes(item[0]))) {
-					return cocktail
-				}
-			})
-		)
-	}, [selectedItems])
-	
-
 	return (
-		<main className="App min-w-screen flex flex-col items-center px-3">
+		<main className="App min-w-screen flex flex-col items-center p-3">
 			<div className="flex-1 flex flex-col max-w-5xl">
 				<h1 className="font-cursive text-5xl">
 					cocktails <i className="fa-solid fa-whiskey-glass"></i>
