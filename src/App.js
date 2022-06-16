@@ -186,7 +186,7 @@ export default function App() {
 		},
 		{
 			name: 'miscellaneous',
-			items: [ 'espresso', 'sugar cube', 'egg white'],
+			items: ['egg white', 'espresso', 'sugar cube'],
 			tailwindBG: 'bg-emerald-800',
 			tailwindBorder: 'border-emerald-800',
 			hoverBorder: 'hover:border-emerald-800',
@@ -211,43 +211,45 @@ export default function App() {
 	const itemElements = categories
 		.filter(category => category.name === currentCategory.name)[0]
 		.items.map((item, idx) => {
+			let {tailwindBG, hoverTextColor, hoverBorder, tailwindTextColor, tailwindBorder} = currentCategory
+			console.log(tailwindTextColor, tailwindBorder)
 			return <li className="h-min" key={idx}>
 							<button 
-								onClick={(e) => handleSelectItem(item, currentCategory.tailwindBG)}
-								className={"cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl hover:bg-white " + 
-								currentCategory.tailwindBG + " " + currentCategory.hoverTextColor + " border-white border-2 " + currentCategory.hoverBorder + " " + currentCategory.hoverTextColor}>
+								onClick={() => handleSelectItem(item)}
+								className={selectedItems.includes(item) ? `selected-item selected-category-item cursor-pointer font-bold rounded-full py-2 px-4 lg:py-2 lg:px-4 lg:text-xl bg-white border-2 ${tailwindBorder} ${tailwindTextColor}` : "cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl hover:bg-white border-white border-2 " + tailwindBG + " " + hoverTextColor + "  " + hoverBorder + " " + hoverTextColor}>
 								{item}
 							</button>
 						</li>
 		})
 
 	const selectedElements = selectedItems.map((item, idx) => {
-		const [name, bgColor] = item;
+		let bgColor = categories.filter(category => category.items.includes(item))[0].tailwindBG
 		return (
-			<li onClick={() => handleSelectItem(name, bgColor)}
+			<li onClick={() => handleSelectItem(item)}
 			className={"selected-item cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-3 lg:px-6 lg:text-2xl " + bgColor} key={idx}>
-				{item[0]}
+				{item}
 			</li>
 		)
 	})
 
-	function handleSelectItem(itemName, bgColor) {
+	function handleSelectItem(itemName) {
 		/* remove if already selected */
 		for (let i = 0; i < selectedItems.length; i++) {
-			if (selectedItems[i][0] == itemName) {
-				let filteredItems = selectedItems.filter(item => item[0] !== itemName)
+			if (selectedItems[i] == itemName) {
+				let filteredItems = selectedItems.filter(item => item !== itemName)
 				setSelectedItems(filteredItems)
 				return;
 			}
 		}
 		/* add to list otherwise */
-		setSelectedItems(prevItems => [...prevItems, [itemName, bgColor]])
+
+		setSelectedItems(prevItems => [...prevItems, itemName])
 	}
 
 	useEffect(() => {
 		setPossibleCocktails(
 			cocktails.filter(cocktail => {
-				if (selectedItems.some(item => cocktail.ingredients.includes(item[0]))) {
+				if (selectedItems.some(item => cocktail.ingredients.includes(item))) {
 					return cocktail
 				}
 			})
@@ -295,7 +297,7 @@ export default function App() {
   })
 
 	return (
-		<main className="App min-w-screen flex flex-col items-center p-3">
+		<main className="App min-w-screen flex flex-col items-center justify-center p-3 lg:p-8">
 			<div className="flex-1 flex flex-col max-w-5xl">
 				<h1 className="font-cursive text-5xl">
 					cocktails <i className="fa-solid fa-whiskey-glass"></i>
@@ -325,7 +327,7 @@ export default function App() {
 							<h2 className="font-cursive text-3xl pb-3">
 								3. you can make...
 							</h2>
-							<ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-4 content-center">
+							<ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 content-center">
 								{cocktailElements}
 							</ul>
 						</div>}
