@@ -212,7 +212,6 @@ export default function App() {
 		.filter(category => category.name === currentCategory.name)[0]
 		.items.map((item, idx) => {
 			let {tailwindBG, hoverTextColor, hoverBorder, tailwindTextColor, tailwindBorder} = currentCategory
-			console.log(tailwindTextColor, tailwindBorder)
 			return <li className="h-min" key={idx}>
 							<button 
 								onClick={() => handleSelectItem(item)}
@@ -259,12 +258,12 @@ export default function App() {
 					let numOfAvailableA = 0
 					let numOfAvailableB = 0
 					selectedItems.forEach(item => {
-						if (a.ingredients.includes(item[0])) {
+						if (a.ingredients.includes(item)) {
 							numOfAvailableA += 1
 						}
 					})
 					selectedItems.forEach(item => {
-						if (b.ingredients.includes(item[0])) {
+						if (b.ingredients.includes(item)) {
 							numOfAvailableB += 1
 						}
 					})
