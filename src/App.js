@@ -30,6 +30,11 @@ export default function App() {
 			photoString: 'bg-daiquiri'
 		},
 		{
+			name: 'Dirty Martini',
+			ingredients: ['vodka', 'dry vermouth', 'olive juice', 'olive'],
+			photoString: 'bg-dirty-martini'
+		},
+		{
 			name: 'Espresso Martini',
 			ingredients: ['vodka', 'coffee liqueur', 'espresso'],
 			photoString: 'bg-espresso-martini'
@@ -101,7 +106,7 @@ export default function App() {
 		},
 		{
 			name: 'Southside',
-			ingredients: ['gin', 'lemon juice', 'mint', 'simple syrup'],
+			ingredients: ['gin', 'lime juice', 'mint', 'simple syrup'],
 			photoString: 'bg-southside'
 		},
 		{
@@ -177,7 +182,7 @@ export default function App() {
 		},
 		{
 			name: 'garnishes',
-			items: ['lemon twist', 'luxardo cherry', 'orange slice', 'orange twist', 'salt rim', 'sugar rim'],
+			items: ['lemon twist', 'luxardo cherry', 'olive', 'orange slice', 'orange twist', 'salt rim', 'sugar rim'],
 			tailwindBG: 'bg-yellow-500',
 			tailwindBorder: 'border-yellow-500',
 			hoverBorder: 'hover:border-yellow-500',
@@ -186,7 +191,7 @@ export default function App() {
 		},
 		{
 			name: 'miscellaneous',
-			items: ['egg white', 'espresso', 'sugar cube'],
+			items: ['egg white', 'espresso', 'olive juice', 'sugar cube'],
 			tailwindBG: 'bg-emerald-800',
 			tailwindBorder: 'border-emerald-800',
 			hoverBorder: 'hover:border-emerald-800',

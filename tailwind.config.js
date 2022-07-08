@@ -10,6 +10,7 @@ module.exports = {
         'boulevardier': "url('./cocktail-photos/boulevardier.jpg')",
         'carajillo': "url('./cocktail-photos/carajillo.jpg')",
         'daiquiri': "url('./cocktail-photos/daiquiri.jpg')",
+        'dirty-martini': "url('./cocktail-photos/dirty-martini.jpg')",
         'espresso-martini': "url('./cocktail-photos/espresso-martini.jpg')",
         'gin-and-tonic': "url('./cocktail-photos/gin-and-tonic.jpg')",
         'last-word': "url('./cocktail-photos/last-word.jpg')",
