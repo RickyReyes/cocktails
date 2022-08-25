@@ -24,7 +24,11 @@ export default function Cocktail({
 				</h3>
 				<ul className="px-2 pb-2 text-left leading-5">
 					{ingredients.map((ingredient) => (
-						<li>{ingredient}</li>
+						<li>
+							{Array.isArray(ingredient)
+								? ingredient.join(" or ")
+								: ingredient}
+						</li>
 					))}
 				</ul>
 			</li>

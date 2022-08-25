@@ -14,12 +14,14 @@ module.exports = {
 				"espresso-martini":
 					"url('./cocktail-photos/espresso-martini.jpg')",
 				"gin-and-tonic": "url('./cocktail-photos/gin-and-tonic.jpg')",
+				"irish-coffee": "url('./cocktail-photos/irish-coffee.jpg')",
 				"last-word": "url('./cocktail-photos/last-word.jpg')",
 				manhattan: "url('./cocktail-photos/manhattan.jpg')",
 				margarita: "url('./cocktail-photos/margarita.jpg')",
 				martini: "url('./cocktail-photos/martini.jpg')",
 				"mezcal-margarita":
 					"url('./cocktail-photos/mezcal-margarita.jpg')",
+				"mint-julep": "url('./cocktail-photos/mint-julep.jpg')",
 				"moscow-mule": "url('./cocktail-photos/moscow-mule.jpg')",
 				mojito: "url('./cocktail-photos/mojito.jpg')",
 				negroni: "url('./cocktail-photos/negroni.jpg')",

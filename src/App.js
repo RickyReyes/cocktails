@@ -26,7 +26,7 @@ export default function App() {
 		{
 			name: "Boulevardier",
 			ingredients: [
-				"whiskey",
+				["bourbon", "rye whiskey"],
 				"sweet vermouth",
 				"campari",
 				"orange twist",
@@ -39,10 +39,21 @@ export default function App() {
 			photoString: "bg-carajillo",
 		},
 		{
+			name: "Corpse Reviver #2",
+			ingredients: [
+				"gin",
+				"lillet blanc",
+				"lemon juice",
+				"orange liqueur",
+				"absinthe",
+			],
+			photoString: "bg-coming-soon",
+		},
+		{
 			name: "Cosmopolitan",
 			ingredients: [
 				"vodka",
-				"triple sec",
+				"orange liqueur",
 				"lime juice",
 				"cranberry juice",
 			],
@@ -74,9 +85,25 @@ export default function App() {
 			photoString: "bg-coming-soon",
 		},
 		{
+			name: "Gimlet",
+			ingredients: [["gin", "vodka"], "lime juice", "simple syrup"],
+			photoString: "bg-coming-soon",
+		},
+		{
 			name: "Gin & Tonic",
 			ingredients: ["gin", "tonic"],
 			photoString: "bg-gin-and-tonic",
+		},
+		{
+			name: "Gin Fizz",
+			ingredients: [
+				"gin",
+				"lemom juice",
+				"simple syrup",
+				"egg white",
+				"club soda",
+			],
+			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Hemingway Daiquiri",
@@ -87,6 +114,16 @@ export default function App() {
 				"grapefruit juice",
 			],
 			photoString: "bg-coming-soon",
+		},
+		{
+			name: "Irish Coffee",
+			ingredients: [
+				"irish whiskey",
+				"hot coffee",
+				"simple syrup",
+				"whipped cream",
+			],
+			photoString: "bg-irish-coffee",
 		},
 		{
 			name: "Last Word",
@@ -101,7 +138,7 @@ export default function App() {
 		{
 			name: "Manhattan",
 			ingredients: [
-				"whiskey",
+				["bourbon", "rye"],
 				"sweet vermouth",
 				"Angostura bitters",
 				"cherry",
@@ -110,8 +147,23 @@ export default function App() {
 		},
 		{
 			name: "Margarita",
-			ingredients: ["tequila", "triple sec", "lime juice", "salt rim"],
+			ingredients: [
+				"tequila",
+				"orange liqueur",
+				"lime juice",
+				"salt rim",
+			],
 			photoString: "bg-margarita",
+		},
+		{
+			name: "Martinez",
+			ingredients: [
+				"gin",
+				"sweet vermouth",
+				"maraschino liqueur",
+				"Angostura bitters",
+			],
+			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Martini",
@@ -124,8 +176,13 @@ export default function App() {
 		},
 		{
 			name: "Mezcal Margarita",
-			ingredients: ["mezcal", "triple sec", "lime juice", "salt rim"],
+			ingredients: ["mezcal", "orange liqueur", "lime juice", "salt rim"],
 			photoString: "bg-mezcal-margarita",
+		},
+		{
+			name: "Mint Julep",
+			ingredients: ["bourbon", "mint"],
+			photoString: "bg-mint-julep",
 		},
 		{
 			name: "Moscow Mule",
@@ -138,8 +195,8 @@ export default function App() {
 				"white rum",
 				"lime juice",
 				"simple syrup",
-				"soda water",
 				"mint",
+				"soda water",
 			],
 			photoString: "bg-mojito",
 		},
@@ -151,7 +208,7 @@ export default function App() {
 		{
 			name: "Old Fashioned",
 			ingredients: [
-				"whiskey",
+				["bourbon", "rye whiskey"],
 				"sugar cube",
 				"Angostura bitters",
 				"orange twist",
@@ -175,9 +232,14 @@ export default function App() {
 			photoString: "bg-paloma",
 		},
 		{
+			name: "Pisco Sour",
+			ingredients: ["pisco", "lemon juice", "simple syrup"],
+			photoString: "bg-coming-soon",
+		},
+		{
 			name: "Sazerac",
 			ingredients: [
-				"whiskey",
+				"rye whiskey",
 				"sugar cube",
 				"Angostura bitters",
 				"Peychaud's bitters",
@@ -188,7 +250,12 @@ export default function App() {
 		},
 		{
 			name: "Sidecar",
-			ingredients: ["brandy", "triple sec", "lemon juice", "sugar rim"],
+			ingredients: [
+				"brandy",
+				"orange liqueur",
+				"lemon juice",
+				"sugar rim",
+			],
 			photoString: "bg-sidecar",
 		},
 		{
@@ -197,9 +264,14 @@ export default function App() {
 			photoString: "bg-southside",
 		},
 		{
+			name: "Tom Collins",
+			ingredients: ["gin", "lemon juice", "simple syrup", "club soda"],
+			photoString: "bg-coming-soon",
+		},
+		{
 			name: "Whiskey Sour",
 			ingredients: [
-				"whiskey",
+				"bourbon",
 				"lemon juice",
 				"simple syrup",
 				"egg white",
@@ -212,14 +284,16 @@ export default function App() {
 			name: "spirits",
 			items: [
 				"absinthe",
+				"bourbon",
 				"brandy",
 				"dark rum",
 				"gin",
+				"irish whiskey",
 				"mezcal",
 				"pisco",
+				"rye whiskey",
 				"tequila",
 				"vodka",
-				"whiskey",
 				"white rum",
 			],
 			tailwindBG: "bg-amber-800",
@@ -245,8 +319,9 @@ export default function App() {
 				"coffee liqueur",
 				"green chartreuse",
 				"licor 43",
+				"lillet blanc",
 				"maraschino liqueur",
-				"triple sec",
+				"orange liqueur",
 			],
 			tailwindBG: "bg-red-700",
 			tailwindBorder: "border-red-700",
@@ -325,9 +400,11 @@ export default function App() {
 			items: [
 				"egg white",
 				"espresso",
+				"hot coffee",
 				"mint",
 				"olive juice",
 				"sugar cube",
+				"whipped cream",
 			],
 			tailwindBG: "bg-emerald-800",
 			tailwindBorder: "border-emerald-800",
