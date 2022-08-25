@@ -7,6 +7,7 @@ module.exports = {
 				"aperol-spritz": "url('./cocktail-photos/aperol-spritz.jpg')",
 				boulevardier: "url('./cocktail-photos/boulevardier.jpg')",
 				carajillo: "url('./cocktail-photos/carajillo.jpg')",
+				"coming-soon": "url('./cocktail-photos/coming-soon.jpg')",
 				cosmopolitan: "url('./cocktail-photos/cosmopolitan.jpg')",
 				daiquiri: "url('./cocktail-photos/daiquiri.jpg')",
 				"dirty-martini": "url('./cocktail-photos/dirty-martini.jpg')",

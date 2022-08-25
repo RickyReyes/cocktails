@@ -69,9 +69,24 @@ export default function App() {
 			photoString: "bg-espresso-martini",
 		},
 		{
+			name: "French 75",
+			ingredients: ["gin", "lemon", "simple syrup", "champagne"],
+			photoString: "bg-coming-soon",
+		},
+		{
 			name: "Gin & Tonic",
 			ingredients: ["gin", "tonic"],
 			photoString: "bg-gin-and-tonic",
+		},
+		{
+			name: "Hemingway Daiquiri",
+			ingredients: [
+				"white rum",
+				"maraschino liqueur",
+				"lime juice",
+				"grapefruit juice",
+			],
+			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Last Word",
@@ -256,7 +271,14 @@ export default function App() {
 		},
 		{
 			name: "bubbles",
-			items: ["club soda", "cola", "ginger beer", "prosecco", "tonic"],
+			items: [
+				"champagne",
+				"club soda",
+				"cola",
+				"ginger beer",
+				"prosecco",
+				"tonic",
+			],
 			tailwindBG: "bg-cyan-600",
 			tailwindBorder: "border-cyan-600",
 			hoverBorder: "hover:border-cyan-600",
@@ -495,14 +517,14 @@ export default function App() {
 		<Router>
 			<main className="App min-w-screen flex flex-col items-center justify-center p-3 lg:pt-8">
 				<div className="flex-1 flex flex-col max-w-5xl">
-					<div className="max-w-5xl gap-12 relative flex items-center">
+					<div className="w-full px-4 max-w-5xl gap-12 relative flex items-center">
 						<h1 className="font-cursive text-5xl inline mx-auto">
 							cocktails{" "}
 							<i className="fa-solid fa-whiskey-glass"></i>
 						</h1>
-						<small className="inline absolute right-2 font-cursive underline text-xl cursor-pointer">
+						<small className="inline absolute right-4 font-cursive underline text-xl cursor-pointer">
 							<Link to="/all">
-								<i className="fa-solid fa-border-all block md:hidden text-3xl"></i>
+								<i className="fa-solid fa-border-all block md:hidden text-3xl text-blue-600"></i>
 								<small className="hidden md:block">
 									All cocktails
 								</small>
