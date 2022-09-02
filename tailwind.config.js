@@ -2,6 +2,9 @@ module.exports = {
 	content: ["./src/**/*.{js,jsx,ts,tsx}"],
 	theme: {
 		extend: {
+			spacing: {
+				112: "28rem",
+			},
 			backgroundImage: {
 				americano: "url('./cocktail-photos/americano.jpg')",
 				"aperol-spritz": "url('./cocktail-photos/aperol-spritz.jpg')",

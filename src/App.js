@@ -1,10 +1,18 @@
 import "./App.css";
-import Main from "./components/Main";
 import Cocktail from "./components/Cocktail";
-import All from "./components/All";
+
+import All from "./routes/All";
+import Main from "./routes/Main";
+import CocktailPage from "./routes/CocktailPage";
 import { useState, useEffect } from "react";
 
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+	useLocation,
+} from "react-router-dom";
 
 export default function App() {
 	const cocktails = [
@@ -16,11 +24,13 @@ export default function App() {
 				"club soda",
 				"orange twist",
 			],
+			tags: ["bitter", "bubbly", "classic", "low ABV"],
 			photoString: "bg-americano",
 		},
 		{
 			name: "Aperol Spritz",
 			ingredients: ["aperol", "prosecco", "club soda", "orange slice"],
+			tags: ["refreshing", "bubbly", "low ABV"],
 			photoString: "bg-aperol-spritz",
 		},
 		{
@@ -31,12 +41,26 @@ export default function App() {
 				"campari",
 				"orange twist",
 			],
+			tags: ["bitter", "boozy"],
 			photoString: "bg-boulevardier",
+		},
+		{
+			name: "Caipirinha",
+			ingredients: ["cachaça", "lime", "sugar cube"],
+			tags: ["refreshing"],
+			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Carajillo",
 			ingredients: ["espresso", "licor 43"],
+			tags: ["low ABV"],
 			photoString: "bg-carajillo",
+		},
+		{
+			name: "Champagne Cocktail",
+			ingredients: ["champagne", "sugar cube", "Angostura bitters"],
+			tags: ["bubbly", "classic"],
+			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Corpse Reviver #2",
@@ -47,6 +71,7 @@ export default function App() {
 				"orange liqueur",
 				"absinthe",
 			],
+			tags: ["tart"],
 			photoString: "bg-coming-soon",
 		},
 		{
@@ -57,16 +82,24 @@ export default function App() {
 				"lime juice",
 				"cranberry juice",
 			],
+			tags: ["tart"],
 			photoString: "bg-cosmopolitan",
 		},
 		{
 			name: "Daiquiri",
 			ingredients: ["white rum", "lime juice", "simple syrup"],
+			tags: ["tart", "classic"],
 			photoString: "bg-daiquiri",
 		},
 		{
+			name: "Dark and Stormy",
+			ingredients: ["dark rum", "ginger beer", "lime juice"],
+			photoString: "bg-coming-soon",
+		},
+		{
 			name: "Dirty Martini",
-			ingredients: [["gin", "vodka"], "olive juice", "olive"],
+			ingredients: [["gin", "vodka"], "olive brine", "olive"],
+			tags: ["boozy", "savory"],
 			photoString: "bg-dirty-martini",
 		},
 		{
@@ -77,28 +110,32 @@ export default function App() {
 				"espresso",
 				"simple syrup",
 			],
+			tags: ["modern classic"],
 			photoString: "bg-espresso-martini",
 		},
 		{
 			name: "French 75",
 			ingredients: ["gin", "lemon", "simple syrup", "champagne"],
+			tags: ["citrusy", "bubbly", "classic"],
 			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Gimlet",
 			ingredients: [["gin", "vodka"], "lime juice", "simple syrup"],
+			tags: ["tart", "refreshing", "classic"],
 			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Gin & Tonic",
 			ingredients: ["gin", "tonic"],
+			tags: ["bubbly", "refreshing", "classic"],
 			photoString: "bg-gin-and-tonic",
 		},
 		{
 			name: "Gin Fizz",
 			ingredients: [
 				"gin",
-				"lemom juice",
+				"lemon juice",
 				"simple syrup",
 				"egg white",
 				"club soda",
@@ -136,6 +173,18 @@ export default function App() {
 			photoString: "bg-last-word",
 		},
 		{
+			name: "Mai Tai",
+			ingredients: [
+				"white rum",
+				"dark rum",
+				"orange liqueur",
+				"lime juice",
+				"orgeat",
+			],
+			tags: ["sweet"],
+			photoString: "bg-coming-soon",
+		},
+		{
 			name: "Manhattan",
 			ingredients: [
 				["bourbon", "rye"],
@@ -170,6 +219,7 @@ export default function App() {
 			ingredients: [
 				["gin", "vodka"],
 				"dry vermouth",
+				"orange bitters",
 				["lemon twist", "olive"],
 			],
 			photoString: "bg-martini",
@@ -222,14 +272,13 @@ export default function App() {
 		},
 		{
 			name: "Paloma",
-			ingredients: [
-				"tequila",
-				"lime juice",
-				"grapefruit juice",
-				"simple syrup",
-				"club soda",
-			],
+			ingredients: ["tequila", "grapefruit soda", "lime juice"],
 			photoString: "bg-paloma",
+		},
+		{
+			name: "Paper Plane",
+			ingredients: ["bourbon", "aperol", "amaro nonino", "lemon juice"],
+			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Pisco Sour",
@@ -267,6 +316,7 @@ export default function App() {
 			name: "Tom Collins",
 			ingredients: ["gin", "lemon juice", "simple syrup", "club soda"],
 			photoString: "bg-coming-soon",
+			tags: ["bubbly", "refreshing"],
 		},
 		{
 			name: "Whiskey Sour",
@@ -286,6 +336,7 @@ export default function App() {
 				"absinthe",
 				"bourbon",
 				"brandy",
+				"cachaça",
 				"dark rum",
 				"gin",
 				"irish whiskey",
@@ -296,26 +347,39 @@ export default function App() {
 				"vodka",
 				"white rum",
 			],
-			tailwindBG: "bg-amber-800",
-			tailwindBorder: "border-amber-800",
-			hoverBorder: "hover:border-amber-800",
-			hoverTextColor: "hover:text-amber-800",
-			tailwindTextColor: "text-amber-800",
+			tailwindBG: "bg-orange-500",
+			tailwindBorder: "border-orange-500",
+			hoverBorder: "hover:border-orange-500",
+			hoverTextColor: "hover:text-orange-500",
+			tailwindTextColor: "text-orange-500",
 		},
 		{
 			name: "vermouth",
 			items: ["dry vermouth", "sweet vermouth"],
-			tailwindBG: "bg-orange-600",
-			tailwindBorder: "border-orange-600",
-			hoverBorder: "hover:border-orange-600",
-			hoverTextColor: "hover:text-orange-600",
-			tailwindTextColor: "text-orange-600",
+			tailwindBG: "bg-red-700",
+			tailwindBorder: "border-red-700",
+			hoverBorder: "hover:border-red-700",
+			hoverTextColor: "hover:text-red-700",
+			tailwindTextColor: "text-red-700",
+		},
+		{
+			name: "amari",
+			items: [
+				"amaro montenegro",
+				"amaro nonino",
+				"amaro ramazzotti",
+				"aperol",
+				"campari",
+			],
+			tailwindBG: "bg-pink-500",
+			tailwindBorder: "border-pink-500",
+			hoverBorder: "hover:border-pink-500",
+			hoverTextColor: "hover:text-pink-500",
+			tailwindTextColor: "text-pink-500",
 		},
 		{
 			name: "liqueurs",
 			items: [
-				"aperol",
-				"campari",
 				"coffee liqueur",
 				"green chartreuse",
 				"licor 43",
@@ -323,11 +387,11 @@ export default function App() {
 				"maraschino liqueur",
 				"orange liqueur",
 			],
-			tailwindBG: "bg-red-700",
-			tailwindBorder: "border-red-700",
-			hoverBorder: "hover:border-red-700",
-			hoverTextColor: "hover:text-red-700",
-			tailwindTextColor: "text-red-700",
+			tailwindBG: "bg-purple-500",
+			tailwindBorder: "border-purple-500",
+			hoverBorder: "hover:border-purple-500",
+			hoverTextColor: "hover:text-purple-500",
+			tailwindTextColor: "text-purple-500",
 		},
 		{
 			name: "juices",
@@ -351,6 +415,7 @@ export default function App() {
 				"club soda",
 				"cola",
 				"ginger beer",
+				"grapefruit soda",
 				"prosecco",
 				"tonic",
 			],
@@ -362,7 +427,7 @@ export default function App() {
 		},
 		{
 			name: "syrups",
-			items: ["simple syrup", "agave syrup", "honey syrup"],
+			items: ["orgeat", "simple syrup", "agave syrup", "honey syrup"],
 			tailwindBG: "bg-blue-800",
 			tailwindBorder: "border-blue-800",
 			hoverBorder: "hover:border-blue-800",
@@ -371,7 +436,7 @@ export default function App() {
 		},
 		{
 			name: "bitters",
-			items: ["Angostura bitters", "mole bitters", "Peychaud's bitters"],
+			items: ["angostura bitters", "mole bitters", "peychaud's bitters"],
 			tailwindBG: "bg-red-400",
 			tailwindBorder: "border-red-400",
 			hoverBorder: "hover:border-red-400",
@@ -379,31 +444,22 @@ export default function App() {
 			tailwindTextColor: "text-red-400",
 		},
 		{
-			name: "garnishes",
+			name: "produce",
 			items: [
-				"lemon twist",
 				"cherry",
-				"olive",
-				"orange slice",
-				"orange twist",
-				"salt rim",
-				"sugar rim",
-			],
-			tailwindBG: "bg-yellow-500",
-			tailwindBorder: "border-yellow-500",
-			hoverBorder: "hover:border-yellow-500",
-			hoverTextColor: "hover:text-yellow-500",
-			tailwindTextColor: "text-yellow-500",
-		},
-		{
-			name: "miscellaneous",
-			items: [
 				"egg white",
 				"espresso",
 				"hot coffee",
+				"lemon twist",
+				"lime",
 				"mint",
-				"olive juice",
+				"olive",
+				"olive brine",
+				"orange slice",
+				"orange twist",
+				"salt rim",
 				"sugar cube",
+				"sugar rim",
 				"whipped cream",
 			],
 			tailwindBG: "bg-emerald-800",
@@ -417,6 +473,7 @@ export default function App() {
 	const [currentCategory, setCurrentCategory] = useState(categories[0]);
 	const [selectedItems, setSelectedItems] = useState([]);
 	const [possibleCocktails, setPossibleCocktails] = useState([]);
+	const [selectedTags, setSelectedTags] = useState([]);
 
 	function handleSelectItem(itemName) {
 		/* remove if already selected */
@@ -430,7 +487,6 @@ export default function App() {
 			}
 		}
 		/* add to list otherwise */
-
 		setSelectedItems((prevItems) => [...prevItems, itemName]);
 	}
 
@@ -443,8 +499,10 @@ export default function App() {
 						selectedItems.some(
 							(item) =>
 								cocktail.ingredients.includes(item) ||
-								cocktail.ingredients.some((itemArr) =>
-									itemArr.includes(item)
+								cocktail.ingredients.some(
+									(itemArr) =>
+										Array.isArray(itemArr) &&
+										itemArr.includes(item)
 								)
 						)
 					) {
@@ -530,8 +588,8 @@ export default function App() {
 						onClick={() => handleSelectItem(item)}
 						className={
 							selectedItems.includes(item)
-								? `selected-item selected-category-item cursor-pointer font-bold rounded-full py-2 px-4 lg:py-2 lg:px-4 lg:text-xl bg-white border-2 ${tailwindBorder} ${tailwindTextColor}`
-								: "cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl hover:bg-white border-white border-2 " +
+								? ` leading-4 selected-item selected-category-item cursor-pointer font-bold rounded-full py-2 px-4 lg:py-2 lg:px-4 lg:text-xl bg-white border-2 ${tailwindBorder} ${tailwindTextColor}`
+								: " leading-4 cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl hover:bg-white border-white border-2 " +
 								  tailwindBG +
 								  " " +
 								  hoverTextColor +
@@ -580,54 +638,69 @@ export default function App() {
 			.filter((item) => !!item);
 		return (
 			<Cocktail
+				selectedTags={selectedTags}
+				setSelectedTags={setSelectedTags}
 				name={cocktail.name}
-				ingredients={cocktail.ingredients}
-				missing={missing}
 				photoString={cocktail.photoString}
+				ingredients={cocktail.ingredients}
+				tags={cocktail.tags}
+				missing={missing}
 				selectedItems={selectedItems}
 				key={idx}
 			/>
 		);
 	});
 
+	const location = useLocation();
+	const onAllPage = location.pathname.includes("all");
+
 	return (
-		<Router>
-			<main className="App min-w-screen flex flex-col items-center justify-center p-3 lg:pt-8">
-				<div className="flex-1 flex flex-col max-w-5xl">
-					<div className="w-full px-4 max-w-5xl gap-12 relative flex items-center">
-						<h1 className="font-cursive text-5xl inline mx-auto">
-							cocktails{" "}
-							<i className="fa-solid fa-whiskey-glass"></i>
-						</h1>
-						<small className="inline absolute right-4 font-cursive underline text-xl cursor-pointer">
-							<Link to="/all">
-								<i className="fa-solid fa-border-all block md:hidden text-3xl text-blue-600"></i>
-								<small className="hidden md:block">
-									All cocktails
-								</small>
-							</Link>
-						</small>
-					</div>
-					<Routes>
-						<Route
-							path="/"
-							element={
-								<Main
-									itemElements={itemElements}
-									categoryElements={categoryElements}
-									selectedItems={selectedItems}
-									selectedElements={selectedElements}
-									cocktailCards={cocktailCards}
-								/>
-							}
-						></Route>
-						<Route
-							path="/all"
-							element={<All cocktails={cocktails} />}
-						></Route>
-					</Routes>
+		<main className="App min-w-screen flex relative flex-col items-center justify-center pt-12 px-2 lg:pt-8">
+			<div className="flex-1 flex flex-col max-w-6xl">
+				<div className="w-full px-4 gap-12 flex items-center">
+					<h1 className="font-cursive text-4xl md:text-5xl inline mx-auto md:pb-4">
+						create-cocktail-app{" "}
+						<i className="fa-solid fa-whiskey-glass"></i>
+					</h1>
+					<small
+						className={`${
+							onAllPage ? "hidden" : ""
+						} inline absolute right-4 top-1 underline text-md lg:text-2xl cursor-pointer`}
+					>
+						<Link to="/all">ALL</Link>
+					</small>
 				</div>
-			</main>
-		</Router>
+				<Routes>
+					<Route
+						path="/"
+						element={
+							<Main
+								categories={categories}
+								itemElements={itemElements}
+								categoryElements={categoryElements}
+								selectedItems={selectedItems}
+								selectedElements={selectedElements}
+								selectedTags={selectedTags}
+								cocktailCards={cocktailCards}
+								handleSelectItem={handleSelectItem}
+							/>
+						}
+					></Route>
+					<Route
+						path="/all"
+						element={
+							<All onAllPage={onAllPage} cocktails={cocktails} />
+						}
+					></Route>
+					{cocktails.map((cocktail) => (
+						<Route
+							key={Math.random()}
+							path={"/" + cocktail.name}
+							element={<CocktailPage cocktail={cocktail} />}
+						/>
+					))}
+				</Routes>
+			</div>
+		</main>
 	);
 }

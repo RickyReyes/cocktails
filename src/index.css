@@ -50,6 +50,9 @@
 	color: white;
 }
 
+.selected-view {
+}
+
 @media (min-width: 1024px) {
 	.selected-item::after {
 		height: 30px;

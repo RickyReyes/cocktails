@@ -1,17 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Cocktail({
 	name,
-	missing,
 	ingredients,
 	photoString,
-	defaultStyling,
+	missing,
+	tags,
+	onAllPage,
+	selectedTags,
+	setSelectedTags,
 }) {
-	if (defaultStyling === true) {
+	/* default styling means we are on the <All /> page */
+
+	function handleSelectTag(tag) {
+		if (selectedTags.includes(tag)) {
+			return;
+		}
+		setSelectedTags((prevTags) => [...prevTags, tag]);
+	}
+
+	if (onAllPage) {
 		return (
 			<li
-				key={name}
-				className="w-full flex flex-col items-start rounded-2xl border-4"
+				key={Math.random()}
+				className="w-full flex flex-col items-start rounded-xl border-4"
 			>
 				<div
 					className={
@@ -19,12 +32,27 @@ export default function Cocktail({
 						photoString
 					}
 				></div>
-				<h3 className="px-2 pt-3 pb-1 text-2xl text-left font-bold leading-6">
-					{name}
+				<ul className="flex gap-1 pl-2 pt-2 uppercase flex-wrap text-xs">
+					{tags
+						.sort((a, b) => a.localeCompare(b))
+						.map((tag) => (
+							<li
+								key={Math.random()}
+								onClick={() => handleSelectTag(tag)}
+								className="rounded-full border border-black px-2 py-0 hover:text-white hover:bg-black cursor-pointer"
+							>
+								{tag}
+							</li>
+						))}
+				</ul>
+				<h3 className="px-2 py-1 text-2xl text-left font-bold leading-6 underline">
+					<Link to={"/" + name.toLowerCase().split(" ").join("-")}>
+						{name}
+					</Link>
 				</h3>
 				<ul className="px-2 pb-2 text-left leading-5">
 					{ingredients.map((ingredient) => (
-						<li>
+						<li key={Math.random()}>
 							{Array.isArray(ingredient)
 								? ingredient.join(" or ")
 								: ingredient}
@@ -39,8 +67,8 @@ export default function Cocktail({
 		<li
 			key={name}
 			className={
-				"w-full flex flex-col items-start rounded-2xl border-4 " +
-				(missing.length === 0 ? "border-8 border-green-400" : "")
+				"w-full flex flex-col items-start rounded-xl border-4 " +
+				(missing.length === 0 ? "border-4 border-green-400" : "")
 			}
 		>
 			<div
@@ -50,15 +78,29 @@ export default function Cocktail({
 				}
 			></div>
 
-			<h3 className="px-2 pt-3 text-2xl text-left font-bold leading-2">
+			<ul className="flex gap-1 pl-2 pt-2 uppercase flex-wrap text-xs">
+				{tags &&
+					tags
+						.sort((a, b) => a.localeCompare(b))
+						.map((tag) => (
+							<li
+								key={Math.random()}
+								onClick={() => handleSelectTag(tag)}
+								className="rounded-full border border-black px-2 py-0 hover:text-white hover:bg-black cursor-pointer"
+							>
+								{tag}
+							</li>
+						))}
+			</ul>
+			<h3 className="px-2 pt-2 pb-1 text-2xl md:text-3xl text-left font-bold leading-6 underline">
 				{name}
 			</h3>
 
 			<ul className="px-2 text-left leading-5">
-				{ingredients.map((ingredient, idx) => {
+				{ingredients.map((ingredient) => {
 					return (
 						<li
-							key={idx}
+							key={Math.random()}
 							className={
 								"ingredient " +
 								(!missing.includes(ingredient)
@@ -75,17 +117,17 @@ export default function Cocktail({
 			</ul>
 
 			{missing.length > 0 && (
-				<h4 className="px-2 pt-1 pb-2 text-left leading-5">
-					{/* <span className="font-bold">you're missing:</span>{" "}
-					{missing.join(", ")} */}
-					<span className="font-bold">you're missing:</span>{" "}
-					{missing
-						.map((item) =>
-							Array.isArray(item) ? item.join(" or ") : item
-						)
-						.join(", ")}
+				<h4 className="px-2 pt-1 text-left">
+					<span className="font-bold underline">you're missing:</span>{" "}
 				</h4>
 			)}
+			<p className="pb-2 text-left px-2 leading-5">
+				{missing
+					.map((item) =>
+						Array.isArray(item) ? item.join(" or ") : item
+					)
+					.join(", ")}
+			</p>
 		</li>
 	);
 }
