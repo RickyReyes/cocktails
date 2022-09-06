@@ -9,10 +9,10 @@ const All = ({ cocktails, onAllPage }) => {
 	const navigate = useNavigate();
 	return (
 		<div>
-			<div className="flex items-center relative w-full px-4">
+			<div className="flex items-center w-full px-4">
 				<i
 					onClick={() => navigate(-1)}
-					className="text-black fa-solid fa-circle-left text-3xl absolute cursor-pointer"
+					className="text-black fa-solid fa-circle-left text-3xl absolute top-4 left-4 cursor-pointer"
 				></i>
 				<h1 className="font-cursive text-3xl py-3 mx-auto">
 					all cocktails

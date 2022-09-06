@@ -24,12 +24,18 @@ export default function App() {
 				"club soda",
 				"orange twist",
 			],
+			amounts: ["1.5 oz", "1.5 oz", "top with", ""],
 			tags: ["bitter", "bubbly", "classic", "low ABV"],
 			photoString: "bg-americano",
+			facts: [
+				"The Americano is the precursor to the Negroni.",
+				`It is the first drink ordered by James Bond in the first novel in Ian Fleming's series, Casino Royale. In From Russia With Love, Bond drinks "two excellent Americanos" in Rome during his flight to Istanbul.`,
+			],
 		},
 		{
 			name: "Aperol Spritz",
 			ingredients: ["aperol", "prosecco", "club soda", "orange slice"],
+			amounts: ["2 oz", "3 oz", "top with", ""],
 			tags: ["refreshing", "bubbly", "low ABV"],
 			photoString: "bg-aperol-spritz",
 		},
@@ -41,19 +47,21 @@ export default function App() {
 				"campari",
 				"orange twist",
 			],
-			tags: ["bitter", "boozy"],
+			amounts: ["1 oz", "1 oz", "1 oz", ""],
+			tags: ["bitter", "spirit-forward"],
 			photoString: "bg-boulevardier",
 		},
 		{
 			name: "Caipirinha",
-			ingredients: ["cachaça", "lime", "sugar cube"],
+			ingredients: ["cachaça", "lime wedges", "sugar"],
 			tags: ["refreshing"],
 			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Carajillo",
 			ingredients: ["espresso", "licor 43"],
-			tags: ["low ABV"],
+			amounts: ["1.5 oz", "1.5 oz"],
+			tags: ["low ABV", "simple"],
 			photoString: "bg-carajillo",
 		},
 		{
@@ -94,13 +102,25 @@ export default function App() {
 		{
 			name: "Dark and Stormy",
 			ingredients: ["dark rum", "ginger beer", "lime juice"],
+			tags: ["citrusy", "bubbly"],
 			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Dirty Martini",
 			ingredients: [["gin", "vodka"], "olive brine", "olive"],
-			tags: ["boozy", "savory"],
+			tags: ["spirit-forward", "savory"],
 			photoString: "bg-dirty-martini",
+		},
+		{
+			name: "Eastside",
+			ingredients: [
+				"gin",
+				"lime juice",
+				"cucumber",
+				"mint leaves",
+				"simple syrup",
+			],
+			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Espresso Martini",
@@ -128,7 +148,7 @@ export default function App() {
 		{
 			name: "Gin & Tonic",
 			ingredients: ["gin", "tonic"],
-			tags: ["bubbly", "refreshing", "classic"],
+			tags: ["bubbly", "refreshing", "classic", "simple"],
 			photoString: "bg-gin-and-tonic",
 		},
 		{
@@ -140,6 +160,15 @@ export default function App() {
 				"egg white",
 				"club soda",
 			],
+			amounts: ["2 oz", "0.75 oz", "1 oz", "1", "top with"],
+			tags: ["classic", "bubbly", "sour"],
+			photoString: "bg-coming-soon",
+		},
+		{
+			name: "Greyhound",
+			ingredients: ["vodka", "grapefruit juice"],
+			amounts: ["2 oz", "top with"],
+			tags: ["simple", "refreshing"],
 			photoString: "bg-coming-soon",
 		},
 		{
@@ -170,6 +199,8 @@ export default function App() {
 				"maraschino liqueur",
 				"lime juice",
 			],
+			amounts: ["0.75 oz", "0.75 oz", "0.75 oz", "0.75 oz"],
+			tags: ["tart", "favorite"],
 			photoString: "bg-last-word",
 		},
 		{
@@ -181,7 +212,7 @@ export default function App() {
 				"lime juice",
 				"orgeat",
 			],
-			tags: ["sweet"],
+			tags: ["classic", "sweet"],
 			photoString: "bg-coming-soon",
 		},
 		{
@@ -192,6 +223,8 @@ export default function App() {
 				"Angostura bitters",
 				"cherry",
 			],
+			amounts: ["2 oz", "1 oz", "2 dashes", ""],
+			tags: ["classic", "spirit-forward"],
 			photoString: "bg-manhattan",
 		},
 		{
@@ -199,9 +232,12 @@ export default function App() {
 			ingredients: [
 				"tequila",
 				"orange liqueur",
+				"agave syrup",
 				"lime juice",
 				"salt rim",
 			],
+			amounts: ["2 oz", "0.5 oz", "0.5 oz", "0.75 oz", ""],
+			tags: ["tart", "classic", "favorite"],
 			photoString: "bg-margarita",
 		},
 		{
@@ -212,6 +248,8 @@ export default function App() {
 				"maraschino liqueur",
 				"Angostura bitters",
 			],
+			amounts: ["1.5 oz", "1.5 oz", "0.25 oz", "2 dashes"],
+			tags: ["classic", "spirit-forward"],
 			photoString: "bg-coming-soon",
 		},
 		{
@@ -222,21 +260,33 @@ export default function App() {
 				"orange bitters",
 				["lemon twist", "olive"],
 			],
+			amounts: ["3 oz", "0 oz", "0 dashes", ""],
+
+			tags: ["classic", "spirit-forward"],
 			photoString: "bg-martini",
 		},
 		{
 			name: "Mezcal Margarita",
 			ingredients: ["mezcal", "orange liqueur", "lime juice", "salt rim"],
+			amounts: ["2 oz", "0.5 oz", "0.5 oz", "0.75 oz", ""],
+			tags: ["tart", "classic", "favorite"],
 			photoString: "bg-mezcal-margarita",
 		},
 		{
 			name: "Mint Julep",
-			ingredients: ["bourbon", "mint"],
+			ingredients: ["bourbon", "mint leaves", "simple syrup"],
+			amounts: ["2 oz", "8-10", "0.25 oz"],
+			tags: ["classic", "simple", "refreshing"],
 			photoString: "bg-mint-julep",
+			facts: [
+				"The mint julep has been promoted by Churchill Downs in association with the Kentucky Derby since 1938. As of 2009, about 120,000 juleps were served at Churchill Downs over the two-day period of the Kentucky Oaks and the Kentucky Derby, virtually all of them in specially made Kentucky Derby collectible glasses.",
+			],
 		},
 		{
 			name: "Moscow Mule",
-			ingredients: ["vodka", "ginger beer", "lime juice"],
+			ingredients: ["vodka", "lime juice", "ginger beer"],
+			amounts: ["2 oz", "0.75 oz", "top with"],
+			tags: ["bubbly", "refreshing"],
 			photoString: "bg-moscow-mule",
 		},
 		{
@@ -245,15 +295,22 @@ export default function App() {
 				"white rum",
 				"lime juice",
 				"simple syrup",
-				"mint",
+				"mint leaves",
 				"soda water",
 			],
+			amounts: ["2 oz", "0.75 oz", "1 oz", "8-10", "top with"],
+			tags: ["classic", "refreshing", "bubbly"],
 			photoString: "bg-mojito",
 		},
 		{
 			name: "Negroni",
 			ingredients: ["gin", "sweet vermouth", "campari", "orange twist"],
+			amounts: ["1 oz", "1 oz", "1 oz", ""],
+			tags: ["spirit-forward", "aperitif", "favorite"],
 			photoString: "bg-negroni",
+			facts: [
+				"In 1919, Pascal Olivier Count de Negroni concocted it by asking the bartender, Fosco Scarselli, to strengthen his favorite cocktail, the Americano, by adding gin rather than the normal soda water.",
+			],
 		},
 		{
 			name: "Old Fashioned",
@@ -263,7 +320,12 @@ export default function App() {
 				"Angostura bitters",
 				"orange twist",
 			],
+			amounts: ["2 oz", "1", "3 dashes", "orange twist"],
+			tags: ["simple", "classic"],
 			photoString: "bg-old-fashioned",
+			facts: [
+				`The first documented definition of the word "cocktail" was in response to a reader's letter asking to define the word in the 6 May 1806, issue of The Balance and Columbian Repository in Hudson, New York. In the 13 May 1806, issue, the paper's editor wrote that it was a potent concoction of spirits, bitters, water, and sugar; it was also referred to at the time as a bittered sling and is essentially the recipe for an old fashioned.`,
+			],
 		},
 		{
 			name: "Oaxaca Old Fashioned",
@@ -286,15 +348,20 @@ export default function App() {
 			photoString: "bg-coming-soon",
 		},
 		{
+			name: "Salty Dog",
+			ingredients: ["vodka", "grapefruit juice", "salt rim"],
+			photoString: "bg-coming-soon",
+		},
+		{
 			name: "Sazerac",
 			ingredients: [
 				"rye whiskey",
 				"sugar cube",
-				"Angostura bitters",
 				"Peychaud's bitters",
 				"absinthe",
 				"lemon twist",
 			],
+			amounts: ["2 oz", "1", "4 dashes", "Rinse with or spray", ""],
 			photoString: "bg-sazerac",
 		},
 		{
@@ -309,7 +376,7 @@ export default function App() {
 		},
 		{
 			name: "Southside",
-			ingredients: ["gin", "lime juice", "mint", "simple syrup"],
+			ingredients: ["gin", "lime juice", "mint leaves", "simple syrup"],
 			photoString: "bg-southside",
 		},
 		{
@@ -451,13 +518,14 @@ export default function App() {
 				"espresso",
 				"hot coffee",
 				"lemon twist",
-				"lime",
-				"mint",
+				"lime wedges",
+				"mint leaves",
 				"olive",
 				"olive brine",
 				"orange slice",
 				"orange twist",
 				"salt rim",
+				"sugar",
 				"sugar cube",
 				"sugar rim",
 				"whipped cream",
@@ -655,7 +723,7 @@ export default function App() {
 	const onAllPage = location.pathname.includes("all");
 
 	return (
-		<main className="App min-w-screen flex relative flex-col items-center justify-center pt-12 px-2 lg:pt-8">
+		<main className="App min-w-screen flex relative flex-col items-center justify-center py-8 lg:py-16 px-4">
 			<div className="flex-1 flex flex-col max-w-6xl">
 				<div className="w-full px-4 gap-12 flex items-center">
 					<h1 className="font-cursive text-4xl md:text-5xl inline mx-auto md:pb-4">
@@ -665,7 +733,7 @@ export default function App() {
 					<small
 						className={`${
 							onAllPage ? "hidden" : ""
-						} inline absolute right-4 top-1 underline text-md lg:text-2xl cursor-pointer`}
+						} inline absolute right-4 top-4 underline text-md lg:text-2xl cursor-pointer`}
 					>
 						<Link to="/all">ALL</Link>
 					</small>
@@ -695,7 +763,10 @@ export default function App() {
 					{cocktails.map((cocktail) => (
 						<Route
 							key={Math.random()}
-							path={"/" + cocktail.name}
+							path={
+								"/" +
+								cocktail.name.toLowerCase().split(" ").join("-")
+							}
 							element={<CocktailPage cocktail={cocktail} />}
 						/>
 					))}
