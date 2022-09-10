@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import Cocktail from "../components/Cocktail";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ViewPill from "../components/ViewPill";
 
 const All = ({ cocktails, onAllPage }) => {
 	const [view, setView] = useState("gallery");
-
 	const navigate = useNavigate();
 	return (
 		<div>
@@ -25,12 +24,19 @@ const All = ({ cocktails, onAllPage }) => {
 			w-full m-4 text-left"
 				>
 					{cocktails.map((cocktail) => (
-						<li
-							key={Math.random()}
-							className="text-3xl underline cursor-pointer"
+						<Link
+							to={
+								"/" +
+								cocktail.name.toLowerCase().split(" ").join("-")
+							}
 						>
-							{cocktail.name}
-						</li>
+							<li
+								key={Math.random()}
+								className="text-3xl underline cursor-pointer"
+							>
+								{cocktail.name}
+							</li>
+						</Link>
 					))}
 				</ul>
 			) : (

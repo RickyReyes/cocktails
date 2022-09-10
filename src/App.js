@@ -148,7 +148,7 @@ export default function App() {
 		{
 			name: "Gin & Tonic",
 			ingredients: ["gin", "tonic"],
-			tags: ["bubbly", "refreshing", "classic", "simple"],
+			tags: ["bubbly", "refreshing", "classic", "simple", "favorite"],
 			photoString: "bg-gin-and-tonic",
 		},
 		{
@@ -161,7 +161,7 @@ export default function App() {
 				"club soda",
 			],
 			amounts: ["2 oz", "0.75 oz", "1 oz", "1", "top with"],
-			tags: ["classic", "bubbly", "sour"],
+			tags: ["classic", "bubbly"],
 			photoString: "bg-coming-soon",
 		},
 		{
@@ -306,7 +306,7 @@ export default function App() {
 			name: "Negroni",
 			ingredients: ["gin", "sweet vermouth", "campari", "orange twist"],
 			amounts: ["1 oz", "1 oz", "1 oz", ""],
-			tags: ["spirit-forward", "aperitif", "favorite"],
+			tags: ["spirit-forward", "aperitif", "classic", "favorite"],
 			photoString: "bg-negroni",
 			facts: [
 				"In 1919, Pascal Olivier Count de Negroni concocted it by asking the bartender, Fosco Scarselli, to strengthen his favorite cocktail, the Americano, by adding gin rather than the normal soda water.",
@@ -321,7 +321,7 @@ export default function App() {
 				"orange twist",
 			],
 			amounts: ["2 oz", "1", "3 dashes", "orange twist"],
-			tags: ["simple", "classic"],
+			tags: ["simple", "spirit-forward", "classic"],
 			photoString: "bg-old-fashioned",
 			facts: [
 				`The first documented definition of the word "cocktail" was in response to a reader's letter asking to define the word in the 6 May 1806, issue of The Balance and Columbian Repository in Hudson, New York. In the 13 May 1806, issue, the paper's editor wrote that it was a potent concoction of spirits, bitters, water, and sugar; it was also referred to at the time as a bittered sling and is essentially the recipe for an old fashioned.`,
@@ -330,27 +330,37 @@ export default function App() {
 		{
 			name: "Oaxaca Old Fashioned",
 			ingredients: ["mezcal", "sugar cube", "mole bitters"],
+			amounts: ["1 oz", "1", "3-4 dashes of"],
 			photoString: "bg-oaxaca-old-fashioned",
+			tags: ["spirit-forward", "simple"],
 		},
 		{
 			name: "Paloma",
-			ingredients: ["tequila", "grapefruit soda", "lime juice"],
+			ingredients: ["tequila", "lime juice", "grapefruit soda"],
+			amounts: ["2 oz", "0.75 oz", "top with"],
 			photoString: "bg-paloma",
+			tags: ["simple", "refreshing", "citrusy"],
 		},
 		{
 			name: "Paper Plane",
 			ingredients: ["bourbon", "aperol", "amaro nonino", "lemon juice"],
+			amounts: ["0.75 oz", "0.75 oz", "0.75 oz", "0.75 oz"],
 			photoString: "bg-coming-soon",
+			tags: ["tart", "modern classic"],
 		},
 		{
 			name: "Pisco Sour",
 			ingredients: ["pisco", "lemon juice", "simple syrup"],
+			amounts: ["2 oz", "0.75 oz", "1 oz"],
 			photoString: "bg-coming-soon",
+			tags: ["sour"],
 		},
 		{
 			name: "Salty Dog",
 			ingredients: ["vodka", "grapefruit juice", "salt rim"],
+			amounts: ["2 oz", "3 oz", ""],
 			photoString: "bg-coming-soon",
+			tags: ["savory", "refreshing", "simple"],
 		},
 		{
 			name: "Sazerac",
@@ -363,6 +373,7 @@ export default function App() {
 			],
 			amounts: ["2 oz", "1", "4 dashes", "Rinse with or spray", ""],
 			photoString: "bg-sazerac",
+			tags: ["spirit-forward"],
 		},
 		{
 			name: "Sidecar",
@@ -372,18 +383,23 @@ export default function App() {
 				"lemon juice",
 				"sugar rim",
 			],
+			amounts: ["2 oz", "1 oz", "0.75 oz", ""],
 			photoString: "bg-sidecar",
+			tags: ["classic", "sour"],
 		},
 		{
 			name: "Southside",
-			ingredients: ["gin", "lime juice", "mint leaves", "simple syrup"],
+			ingredients: ["gin", "lime juice", "simple syrup", "mint leaves"],
+			amounts: ["2 oz", "0.75 oz", "1 oz", "10-12"],
 			photoString: "bg-southside",
+			tags: ["refreshing", "tart"],
 		},
 		{
 			name: "Tom Collins",
 			ingredients: ["gin", "lemon juice", "simple syrup", "club soda"],
+			amounts: ["2 oz", "0.75 oz", "1 oz", "top with"],
 			photoString: "bg-coming-soon",
-			tags: ["bubbly", "refreshing"],
+			tags: ["bubbly", "refreshing", "classic"],
 		},
 		{
 			name: "Whiskey Sour",
@@ -392,8 +408,11 @@ export default function App() {
 				"lemon juice",
 				"simple syrup",
 				"egg white",
+				"Angostura bitters",
 			],
+			amounts: ["2 oz", "0.75 oz", "1 oz", "1", "garnish with"],
 			photoString: "bg-whiskey-sour",
+			tags: ["classic", "sour"],
 		},
 	];
 	const categories = [
@@ -494,7 +513,7 @@ export default function App() {
 		},
 		{
 			name: "syrups",
-			items: ["orgeat", "simple syrup", "agave syrup", "honey syrup"],
+			items: ["agave syrup", "honey syrup", "orgeat", "simple syrup"],
 			tailwindBG: "bg-blue-800",
 			tailwindBorder: "border-blue-800",
 			hoverBorder: "hover:border-blue-800",
@@ -536,6 +555,23 @@ export default function App() {
 			hoverTextColor: "hover:text-emerald-800",
 			tailwindTextColor: "text-emerald-800",
 		},
+	];
+	const allTags = [
+		"aperitif",
+		"bitter",
+		"bubbly",
+		"classic",
+		"citrusy",
+		"favorite",
+		"low ABV",
+		"modern classic",
+		"refreshing",
+		"savory",
+		"simple",
+		"sour",
+		"spirit-forward",
+		"sweet",
+		"tart",
 	];
 
 	const [currentCategory, setCurrentCategory] = useState(categories[0]);
@@ -743,6 +779,7 @@ export default function App() {
 						path="/"
 						element={
 							<Main
+								allTags={allTags}
 								categories={categories}
 								itemElements={itemElements}
 								categoryElements={categoryElements}

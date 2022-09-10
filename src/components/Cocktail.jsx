@@ -92,9 +92,11 @@ export default function Cocktail({
 							</li>
 						))}
 			</ul>
-			<h3 className="px-2 pt-2 pb-1 text-2xl md:text-3xl text-left font-bold leading-6 underline">
-				{name}
-			</h3>
+			<Link to={"/" + name.toLowerCase().split(" ").join("-")}>
+				<h3 className="px-2 pt-2 pb-1 text-2xl md:text-3xl text-left font-bold leading-6 underline">
+					{name}
+				</h3>
+			</Link>
 
 			<ul className="px-2 text-left leading-5">
 				{ingredients.map((ingredient) => {

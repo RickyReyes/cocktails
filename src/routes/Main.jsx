@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import SearchComponent from "../components/SearchComponent";
 
 const Main = ({
+	allTags,
+	selectedTags,
 	categories,
 	itemElements,
 	categoryElements,
 	selectedItems,
 	selectedElements,
-	selectedTags,
 	cocktailCards,
 	handleSelectItem,
 }) => {
@@ -30,8 +31,8 @@ const Main = ({
 
 	return (
 		<>
-			<div className="flex mx-auto flex-col md:flex-row w-2xl">
-				<div className="basis-3/4">
+			<div className="flex mx-auto flex-col md:flex-row">
+				<div>
 					<h2 className="font-cursive text-3xl pb-3">
 						select your available ingredients...
 					</h2>
@@ -70,12 +71,11 @@ const Main = ({
 							<h2 className="font-cursive text-3xl py-3">
 								apply tags...
 							</h2>
-							<p>feature under construction</p>
-							<ul className="flex flex-wrap items-start gap-2 justify-start items-start h-min">
-								{selectedTags.map((tag) => (
-									<p className="rounded-full px-2 py-0 text-white bg-black cursor-pointer uppercase">
+							<ul className="flex flex-wrap gap-1 max-w-md mx-auto">
+								{allTags.map((tag) => (
+									<li className="rounded-full text-sm border border-black px-2 py-0 md:text-md md:px-3 md:py-1 hover:text-white hover:bg-black cursor-pointer uppercase">
 										{tag}
-									</p>
+									</li>
 								))}
 							</ul>
 						</div>
