@@ -62,7 +62,9 @@ export default function Cocktail({
 			</li>
 		);
 	}
-
+	console.log(
+		"YO " + name.toLowerCase().replace("#", "").split(" ").join("-")
+	);
 	return (
 		<li
 			key={name}
@@ -92,7 +94,12 @@ export default function Cocktail({
 							</li>
 						))}
 			</ul>
-			<Link to={"/" + name.toLowerCase().split(" ").join("-")}>
+			<Link
+				to={
+					"/" +
+					name.toLowerCase().replace("#", "").split(" ").join("-")
+				}
+			>
 				<h3 className="px-2 pt-2 pb-1 text-2xl md:text-3xl text-left font-bold leading-6 underline">
 					{name}
 				</h3>
