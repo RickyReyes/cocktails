@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import SearchComponent from "../components/SearchComponent";
 
 const Main = ({
@@ -73,7 +73,10 @@ const Main = ({
 							</h2>
 							<ul className="flex flex-wrap gap-1 max-w-md mx-auto">
 								{allTags.map((tag) => (
-									<li className="rounded-full text-sm border border-black px-2 py-0 md:text-md md:px-3 md:py-1 hover:text-white hover:bg-black cursor-pointer uppercase">
+									<li
+										className="rounded-full text-sm border border-black px-2 py-0 md:text-md md:px-3 md:py-1 hover:text-white hover:bg-black cursor-pointer uppercase"
+										key={tag}
+									>
 										{tag}
 									</li>
 								))}

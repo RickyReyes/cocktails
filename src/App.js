@@ -6,13 +6,7 @@ import Main from "./routes/Main";
 import CocktailPage from "./routes/CocktailPage";
 import { useState, useEffect } from "react";
 
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Link,
-	useLocation,
-} from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 
 export default function App() {
 	const cocktails = [
@@ -35,8 +29,8 @@ export default function App() {
 		{
 			name: "Aperol Spritz",
 			ingredients: ["aperol", "prosecco", "club soda", "orange slice"],
-			amounts: ["2 oz", "3 oz", "top with", ""],
-			tags: ["refreshing", "bubbly", "low ABV"],
+			amounts: ["2 oz", "3 oz", "1 oz", ""],
+			tags: ["aperitif", "refreshing", "bubbly", "low ABV"],
 			photoString: "bg-aperol-spritz",
 		},
 		{
@@ -50,12 +44,19 @@ export default function App() {
 			amounts: ["1 oz", "1 oz", "1 oz", ""],
 			tags: ["bitter", "spirit-forward"],
 			photoString: "bg-boulevardier",
+			facts: [
+				"The Boulevardier is simply a variation on the classic Negroni that is adored for its deft balance of bitter, boozy and sweet.",
+				"While the gin-based Negroni is crisp and bracing, the whiskey-based Boulevardier is rich and warming.",
+			],
 		},
 		{
 			name: "Caipirinha",
 			ingredients: ["cachaça", "lime wedges", "sugar"],
 			tags: ["refreshing"],
 			photoString: "bg-coming-soon",
+			facts: [
+				"The Caipirinha is Brazil's national drink, and cachaça is the country's national spirit.",
+			],
 		},
 		{
 			name: "Carajillo",
@@ -63,12 +64,24 @@ export default function App() {
 			amounts: ["1.5 oz", "1.5 oz"],
 			tags: ["low ABV", "simple"],
 			photoString: "bg-carajillo",
+			facts: [
+				"A classic Spanish cocktail, popular in Mexico.",
+				"According to folk etymology, its origin dates to the times when Cuba was a Spanish province. The troops combined coffee with rum to give them courage. Spanish coraje means courage, and its diminutive form is corajillo, later changing to carajillo.",
+			],
 		},
 		{
 			name: "Champagne Cocktail",
-			ingredients: ["champagne", "sugar cube", "Angostura bitters"],
+			ingredients: [
+				"champagne",
+				"sugar cube",
+				"Angostura bitters",
+				"lemon twist",
+			],
 			tags: ["bubbly", "classic"],
 			photoString: "bg-coming-soon",
+			facts: [
+				"This simple classic originally appeared in 'The Bartender’s Guide,' an 1862 tome by Jerry Thomas.",
+			],
 		},
 		{
 			name: "Corpse Reviver #2",
@@ -190,6 +203,18 @@ export default function App() {
 				"whipped cream",
 			],
 			photoString: "bg-irish-coffee",
+		},
+		{
+			name: "Jungle Bird",
+			ingredients: [
+				"dark rum",
+				"campari",
+				"pineapple juice",
+				"lime juice",
+				"simple syrup",
+			],
+			amounts: ["2 oz", "0.75 oz", "2 oz", "0.5 oz", "0.5 oz"],
+			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Last Word",
@@ -759,11 +784,11 @@ export default function App() {
 	const onAllPage = location.pathname.includes("all");
 
 	return (
-		<main className="App min-w-screen flex relative flex-col items-center justify-center py-8 lg:py-16 px-4">
+		<main className="App min-w-screen flex relative flex-col items-center justify-center py-16 lg:py-16 px-4">
 			<div className="flex-1 flex flex-col max-w-6xl">
 				<div className="w-full px-4 gap-12 flex items-center">
 					<h1 className="font-cursive text-4xl md:text-5xl inline mx-auto md:pb-4">
-						create-cocktail-app{" "}
+						Create Cocktail App{" "}
 						<i className="fa-solid fa-whiskey-glass"></i>
 					</h1>
 					<small
@@ -797,16 +822,29 @@ export default function App() {
 							<All onAllPage={onAllPage} cocktails={cocktails} />
 						}
 					></Route>
-					{cocktails.map((cocktail) => (
-						<Route
-							key={Math.random()}
-							path={
-								"/" +
-								cocktail.name.toLowerCase().split(" ").join("-")
-							}
-							element={<CocktailPage cocktail={cocktail} />}
-						/>
-					))}
+					{cocktails.map((cocktail) => {
+						console.log(
+							cocktail.name
+								.toLowerCase()
+								.replace("#", "")
+								.split(" ")
+								.join("-")
+						);
+						return (
+							<Route
+								key={Math.random()}
+								path={
+									"/" +
+									cocktail.name
+										.toLowerCase()
+										.replace("#", "")
+										.split(" ")
+										.join("-")
+								}
+								element={<CocktailPage cocktail={cocktail} />}
+							/>
+						);
+					})}
 				</Routes>
 			</div>
 		</main>

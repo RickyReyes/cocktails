@@ -25,9 +25,14 @@ const All = ({ cocktails, onAllPage }) => {
 				>
 					{cocktails.map((cocktail) => (
 						<Link
+							key={cocktail.name}
 							to={
 								"/" +
-								cocktail.name.toLowerCase().split(" ").join("-")
+								cocktail.name
+									.replace("#", "")
+									.toLowerCase()
+									.split(" ")
+									.join("-")
 							}
 						>
 							<li
@@ -43,8 +48,8 @@ const All = ({ cocktails, onAllPage }) => {
 				<ul className="sm:w-full p-4 w-screen grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 content-center">
 					{cocktails.map((cocktail) => (
 						<Cocktail
+							key={cocktail.name}
 							tags={cocktail.tags ?? []}
-							key={Math.random()}
 							name={cocktail.name}
 							missing={[]}
 							onAllPage={true}
