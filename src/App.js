@@ -822,29 +822,20 @@ export default function App() {
 							<All onAllPage={onAllPage} cocktails={cocktails} />
 						}
 					></Route>
-					{cocktails.map((cocktail) => {
-						console.log(
-							cocktail.name
-								.toLowerCase()
-								.replace("#", "")
-								.split(" ")
-								.join("-")
-						);
-						return (
-							<Route
-								key={Math.random()}
-								path={
-									"/" +
-									cocktail.name
-										.toLowerCase()
-										.replace("#", "")
-										.split(" ")
-										.join("-")
-								}
-								element={<CocktailPage cocktail={cocktail} />}
-							/>
-						);
-					})}
+					{cocktails.map((cocktail) => (
+						<Route
+							key={Math.random()}
+							path={
+								"/" +
+								cocktail.name
+									.toLowerCase()
+									.replace("#", "")
+									.split(" ")
+									.join("-")
+							}
+							element={<CocktailPage cocktail={cocktail} />}
+						/>
+					))}
 				</Routes>
 			</div>
 		</main>

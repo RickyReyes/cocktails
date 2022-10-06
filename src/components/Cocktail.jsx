@@ -62,9 +62,6 @@ export default function Cocktail({
 			</li>
 		);
 	}
-	console.log(
-		"YO " + name.toLowerCase().replace("#", "").split(" ").join("-")
-	);
 	return (
 		<li
 			key={name}
