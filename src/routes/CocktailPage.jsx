@@ -41,7 +41,7 @@ const CocktailPage = ({ cocktail }) => {
 						Did you know?
 					</h2>
 					<ul className="text-left leading-4 pt-1 list-disc list-inside max-w-lg">
-						{cocktail.facts.map((fact, idx) => (
+						{cocktail.facts.map((fact) => (
 							<li key={fact} className="leading-4 pb-1">
 								&ldquo;{fact}&rdquo;
 							</li>

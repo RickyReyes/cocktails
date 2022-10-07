@@ -9,16 +9,9 @@ export default function Cocktail({
 	tags,
 	onAllPage,
 	selectedTags,
-	setSelectedTags,
+	handleSelectTag,
 }) {
 	/* default styling means we are on the <All /> page */
-
-	function handleSelectTag(tag) {
-		if (selectedTags.includes(tag)) {
-			return;
-		}
-		setSelectedTags((prevTags) => [...prevTags, tag]);
-	}
 
 	if (onAllPage) {
 		return (
@@ -38,8 +31,7 @@ export default function Cocktail({
 						.map((tag) => (
 							<li
 								key={Math.random()}
-								onClick={() => handleSelectTag(tag)}
-								className="rounded-full border border-black px-2 py-0 hover:text-white hover:bg-black cursor-pointer"
+								className="rounded-full border border-black px-2 py-0"
 							>
 								{tag}
 							</li>
@@ -83,9 +75,13 @@ export default function Cocktail({
 						.sort((a, b) => a.localeCompare(b))
 						.map((tag) => (
 							<li
-								key={Math.random()}
 								onClick={() => handleSelectTag(tag)}
-								className="rounded-full border border-black px-2 py-0 hover:text-white hover:bg-black cursor-pointer"
+								key={Math.random()}
+								className={`rounded-full border border-black px-2 py-0 hover:text-white hover:bg-black cursor-pointer  ${
+									selectedTags.includes(tag)
+										? "bg-black text-white"
+										: ""
+								}`}
 							>
 								{tag}
 							</li>

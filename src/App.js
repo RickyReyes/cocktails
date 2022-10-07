@@ -52,6 +52,7 @@ export default function App() {
 		{
 			name: "Caipirinha",
 			ingredients: ["cachaça", "lime wedges", "sugar"],
+			amounts: ["2 oz", "8", "2 tsp"],
 			tags: ["refreshing"],
 			photoString: "bg-coming-soon",
 			facts: [
@@ -77,6 +78,7 @@ export default function App() {
 				"Angostura bitters",
 				"lemon twist",
 			],
+			amounts: ["5 oz", "1", "4 dashes"],
 			tags: ["bubbly", "classic"],
 			photoString: "bg-coming-soon",
 			facts: [
@@ -92,6 +94,7 @@ export default function App() {
 				"orange liqueur",
 				"absinthe",
 			],
+			amounts: ["0.75 oz", "0.75 oz", "0.75 oz", "0.75 oz", "Rinse with"],
 			tags: ["tart"],
 			photoString: "bg-coming-soon",
 		},
@@ -103,24 +106,32 @@ export default function App() {
 				"lime juice",
 				"cranberry juice",
 			],
-			tags: ["tart"],
+			amounts: ["2 oz", "1 oz", "0.75 oz", "0.25 oz"],
+			tags: ["tart", "classic"],
 			photoString: "bg-cosmopolitan",
 		},
 		{
 			name: "Daiquiri",
-			ingredients: ["white rum", "lime juice", "simple syrup"],
+			ingredients: [
+				["white rum", "dark rum"],
+				"lime juice",
+				"simple syrup",
+			],
+			amounts: ["2 oz", "0.75 oz", "1 oz"],
 			tags: ["tart", "classic"],
 			photoString: "bg-daiquiri",
 		},
 		{
 			name: "Dark and Stormy",
 			ingredients: ["dark rum", "ginger beer", "lime juice"],
+			amounts: ["2 oz", "3 oz", "0.5 oz"],
 			tags: ["citrusy", "bubbly"],
 			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Dirty Martini",
-			ingredients: [["gin", "vodka"], "olive brine", "olive"],
+			ingredients: [["gin", "vodka"], "olive brine"],
+			amounts: ["2.5 oz", "0.5 oz"],
 			tags: ["spirit-forward", "savory"],
 			photoString: "bg-dirty-martini",
 		},
@@ -133,6 +144,8 @@ export default function App() {
 				"mint leaves",
 				"simple syrup",
 			],
+			amounts: ["2 oz", "0.75 oz", "4-5 wheels", "8-12", "1 oz"],
+			tags: ["favorite", "refreshing"],
 			photoString: "bg-coming-soon",
 		},
 		{
@@ -141,26 +154,30 @@ export default function App() {
 				"vodka",
 				"coffee liqueur",
 				"espresso",
-				"simple syrup",
+				"vanilla syrup",
 			],
-			tags: ["modern classic"],
+			amounts: ["2 oz", "0.5 oz", "1.5 oz", "0.5 oz"],
+			tags: ["modern classic", "favorite"],
 			photoString: "bg-espresso-martini",
 		},
 		{
 			name: "French 75",
 			ingredients: ["gin", "lemon", "simple syrup", "champagne"],
+			amounts: ["1 oz", "0.5 oz", "0.5 oz", "top with 3 oz"],
 			tags: ["citrusy", "bubbly", "classic"],
 			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Gimlet",
 			ingredients: [["gin", "vodka"], "lime juice", "simple syrup"],
+			amounts: ["2 oz", "0.75 oz", "1 oz"],
 			tags: ["tart", "refreshing", "classic"],
 			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Gin & Tonic",
 			ingredients: ["gin", "tonic"],
+			amounts: ["2 oz", "3 oz"],
 			tags: ["bubbly", "refreshing", "classic", "simple", "favorite"],
 			photoString: "bg-gin-and-tonic",
 		},
@@ -192,16 +209,20 @@ export default function App() {
 				"lime juice",
 				"grapefruit juice",
 			],
+			amounts: ["2 oz", "0.5 oz", "0.75 oz", "0.5 oz"],
+			tags: ["classic"],
 			photoString: "bg-coming-soon",
 		},
 		{
 			name: "Irish Coffee",
 			ingredients: [
 				"irish whiskey",
-				"hot coffee",
 				"simple syrup",
+				"hot coffee",
 				"whipped cream",
 			],
+			amounts: ["2 oz", "1 oz", "4 oz", "top with"],
+			tags: ["classic", "coffee", "hot"],
 			photoString: "bg-irish-coffee",
 		},
 		{
@@ -214,6 +235,7 @@ export default function App() {
 				"simple syrup",
 			],
 			amounts: ["2 oz", "0.75 oz", "2 oz", "0.5 oz", "0.5 oz"],
+			tags: ["tiki", "refreshing", "fruity"],
 			photoString: "bg-coming-soon",
 		},
 		{
@@ -237,7 +259,14 @@ export default function App() {
 				"lime juice",
 				"orgeat",
 			],
-			tags: ["classic", "sweet"],
+			amounts: [
+				"white rum",
+				"dark rum",
+				"orange liqueur",
+				"lime juice",
+				"orgeat",
+			],
+			tags: ["tiki", "classic", "refreshing"],
 			photoString: "bg-coming-soon",
 		},
 		{
@@ -440,6 +469,12 @@ export default function App() {
 			tags: ["classic", "sour"],
 		},
 	];
+
+	cocktails.forEach((cocktail) => {
+		if (!cocktail.amounts) {
+			console.log(cocktail);
+		}
+	});
 	const categories = [
 		{
 			name: "spirits",
@@ -538,7 +573,13 @@ export default function App() {
 		},
 		{
 			name: "syrups",
-			items: ["agave syrup", "honey syrup", "orgeat", "simple syrup"],
+			items: [
+				"agave syrup",
+				"honey syrup",
+				"orgeat",
+				"simple syrup",
+				"vanilla syrup",
+			],
 			tailwindBG: "bg-blue-800",
 			tailwindBorder: "border-blue-800",
 			hoverBorder: "hover:border-blue-800",
@@ -588,6 +629,8 @@ export default function App() {
 		"classic",
 		"citrusy",
 		"favorite",
+		"fruity",
+		"hot",
 		"low ABV",
 		"modern classic",
 		"refreshing",
@@ -597,6 +640,7 @@ export default function App() {
 		"spirit-forward",
 		"sweet",
 		"tart",
+		"tiki",
 	];
 
 	const [currentCategory, setCurrentCategory] = useState(categories[0]);
@@ -617,6 +661,17 @@ export default function App() {
 		}
 		/* add to list otherwise */
 		setSelectedItems((prevItems) => [...prevItems, itemName]);
+	}
+
+	function handleSelectTag(tag) {
+		console.log(tag);
+		if (selectedTags.includes(tag)) {
+			setSelectedTags((prevTags) =>
+				prevTags.filter((prevTag) => {
+					return prevTag !== tag;
+				})
+			);
+		} else setSelectedTags((prevTags) => [...prevTags, tag]);
 	}
 
 	/* render cocktails based on selectedItems */
@@ -678,6 +733,17 @@ export default function App() {
 				})
 		);
 	}, [selectedItems]);
+
+	/* filter cocktails based on selected tags */
+	useEffect(() => {
+		setPossibleCocktails(
+			cocktails.filter((cocktail) => {
+				if (selectedTags.some((item) => cocktail.tags.includes(item))) {
+					return cocktail;
+				}
+			})
+		);
+	}, [selectedTags]);
 
 	const categoryElements = categories.map((category, idx) => {
 		return (
@@ -769,6 +835,7 @@ export default function App() {
 			<Cocktail
 				selectedTags={selectedTags}
 				setSelectedTags={setSelectedTags}
+				handleSelectTag={handleSelectTag}
 				name={cocktail.name}
 				photoString={cocktail.photoString}
 				ingredients={cocktail.ingredients}
@@ -813,13 +880,18 @@ export default function App() {
 								selectedTags={selectedTags}
 								cocktailCards={cocktailCards}
 								handleSelectItem={handleSelectItem}
+								handleSelectTag={handleSelectTag}
 							/>
 						}
 					></Route>
 					<Route
 						path="/all"
 						element={
-							<All onAllPage={onAllPage} cocktails={cocktails} />
+							<All
+								onAllPage={onAllPage}
+								cocktails={cocktails}
+								selectedTags={selectedTags}
+							/>
 						}
 					></Route>
 					{cocktails.map((cocktail) => (
