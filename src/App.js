@@ -1,12 +1,12 @@
 import "./App.css";
+import { useState, useEffect } from "react";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+
 import Cocktail from "./components/Cocktail";
 
 import All from "./routes/All";
 import Main from "./routes/Main";
 import CocktailPage from "./routes/CocktailPage";
-import { useState, useEffect } from "react";
-
-import { Routes, Route, Link, useLocation } from "react-router-dom";
 
 export default function App() {
 	const cocktails = [
@@ -86,6 +86,16 @@ export default function App() {
 			],
 		},
 		{
+			name: "Coffee Negroni",
+			ingredients: ["gin", "sweet vermouth", "campari", "coffee liqueur"],
+			amounts: ["1 oz", "0.75 oz", "0.75 oz", "0.5 oz"],
+			tags: ["bubbly", "classic"],
+			photoString: "bg-coming-soon",
+			facts: [
+				"This simple classic originally appeared in 'The Bartender’s Guide,' an 1862 tome by Jerry Thomas.",
+			],
+		},
+		{
 			name: "Corpse Reviver #2",
 			ingredients: [
 				"gin",
@@ -145,7 +155,7 @@ export default function App() {
 				"simple syrup",
 			],
 			amounts: ["2 oz", "0.75 oz", "4-5 wheels", "8-12", "1 oz"],
-			tags: ["favorite", "refreshing"],
+			tags: ["personal favorite", "refreshing"],
 			photoString: "bg-coming-soon",
 		},
 		{
@@ -157,7 +167,7 @@ export default function App() {
 				"vanilla syrup",
 			],
 			amounts: ["2 oz", "0.5 oz", "1.5 oz", "0.5 oz"],
-			tags: ["modern classic", "favorite"],
+			tags: ["modern classic", "personal favorite"],
 			photoString: "bg-espresso-martini",
 		},
 		{
@@ -178,7 +188,13 @@ export default function App() {
 			name: "Gin & Tonic",
 			ingredients: ["gin", "tonic"],
 			amounts: ["2 oz", "3 oz"],
-			tags: ["bubbly", "refreshing", "classic", "simple", "favorite"],
+			tags: [
+				"bubbly",
+				"refreshing",
+				"classic",
+				"simple",
+				"personal favorite",
+			],
 			photoString: "bg-gin-and-tonic",
 		},
 		{
@@ -247,7 +263,7 @@ export default function App() {
 				"lime juice",
 			],
 			amounts: ["0.75 oz", "0.75 oz", "0.75 oz", "0.75 oz"],
-			tags: ["tart", "favorite"],
+			tags: ["tart", "personal favorite"],
 			photoString: "bg-last-word",
 		},
 		{
@@ -291,7 +307,7 @@ export default function App() {
 				"salt rim",
 			],
 			amounts: ["2 oz", "0.5 oz", "0.5 oz", "0.75 oz", ""],
-			tags: ["tart", "classic", "favorite"],
+			tags: ["tart", "classic", "personal favorite"],
 			photoString: "bg-margarita",
 		},
 		{
@@ -323,7 +339,7 @@ export default function App() {
 			name: "Mezcal Margarita",
 			ingredients: ["mezcal", "orange liqueur", "lime juice", "salt rim"],
 			amounts: ["2 oz", "0.5 oz", "0.5 oz", "0.75 oz", ""],
-			tags: ["tart", "classic", "favorite"],
+			tags: ["tart", "classic", "personal favorite"],
 			photoString: "bg-mezcal-margarita",
 		},
 		{
@@ -358,12 +374,27 @@ export default function App() {
 		},
 		{
 			name: "Negroni",
-			ingredients: ["gin", "sweet vermouth", "campari", "orange twist"],
+			ingredients: ["gin", "sweet vermouth", "campari"],
 			amounts: ["1 oz", "1 oz", "1 oz", ""],
-			tags: ["spirit-forward", "aperitif", "classic", "favorite"],
+			tags: [
+				"spirit-forward",
+				"aperitif",
+				"classic",
+				"personal favorite",
+			],
 			photoString: "bg-negroni",
 			facts: [
-				"In 1919, Pascal Olivier Count de Negroni concocted it by asking the bartender, Fosco Scarselli, to strengthen his favorite cocktail, the Americano, by adding gin rather than the normal soda water.",
+				"In 1919, Pascal Olivier Count de Negroni concocted it by asking the bartender, Fosco Scarselli, to strengthen his personal favorite cocktail, the Americano, by adding gin rather than the normal soda water.",
+			],
+		},
+		{
+			name: "Negroni Sbagliato",
+			ingredients: ["sweet vermouth", "campari", "prosecco"],
+			amounts: ["1 oz", "1 oz", "3 oz"],
+			tags: ["aperitif", "bubbly"],
+			photoString: "bg-coming-soon",
+			facts: [
+				"A classic negroni contains equal parts gin, vermouth, and Campari, while a sbagliato, which translates to “mistake” in Italian, swaps prosecco for gin. Supposedly, a bartender grabbed sparkling wine instead of the spirit as he was making a negroni, and the drink stuck.",
 			],
 		},
 		{
@@ -469,12 +500,6 @@ export default function App() {
 			tags: ["classic", "sour"],
 		},
 	];
-
-	cocktails.forEach((cocktail) => {
-		if (!cocktail.amounts) {
-			console.log(cocktail);
-		}
-	});
 	const categories = [
 		{
 			name: "spirits",
@@ -628,11 +653,11 @@ export default function App() {
 		"bubbly",
 		"classic",
 		"citrusy",
-		"favorite",
 		"fruity",
 		"hot",
 		"low ABV",
 		"modern classic",
+		"personal favorite",
 		"refreshing",
 		"savory",
 		"simple",
@@ -734,7 +759,7 @@ export default function App() {
 		);
 	}, [selectedItems]);
 
-	/* filter cocktails based on selected tags */
+	/* filter cocktails based on selectedTags */
 	useEffect(() => {
 		setPossibleCocktails(
 			cocktails.filter((cocktail) => {
