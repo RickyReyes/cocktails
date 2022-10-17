@@ -31,14 +31,23 @@ export default function Cocktail({
 						.map((tag) => (
 							<li
 								key={Math.random()}
-								className="rounded-full border border-black px-2 py-0"
+								className="rounded-full border border-slate-800 px-2 py-0"
 							>
 								{tag}
 							</li>
 						))}
 				</ul>
 				<h3 className="px-2 py-1 text-2xl text-left font-bold leading-6 underline">
-					<Link to={"/" + name.toLowerCase().split(" ").join("-")}>
+					<Link
+						to={
+							"/" +
+							name
+								.toLowerCase()
+								.replace("#", "")
+								.split(" ")
+								.join("-")
+						}
+					>
 						{name}
 					</Link>
 				</h3>
@@ -77,9 +86,9 @@ export default function Cocktail({
 							<li
 								onClick={() => handleSelectTag(tag)}
 								key={Math.random()}
-								className={`rounded-full border border-black px-2 py-0 hover:text-white hover:bg-black cursor-pointer  ${
+								className={`rounded-full border border-slate-800 px-2 py-0 hover:text-white hover:bg-slate-800 cursor-pointer  ${
 									selectedTags.includes(tag)
-										? "bg-black text-white"
+										? "bg-slate-800 text-white"
 										: ""
 								}`}
 							>
@@ -93,7 +102,7 @@ export default function Cocktail({
 					name.toLowerCase().replace("#", "").split(" ").join("-")
 				}
 			>
-				<h3 className="px-2 pt-2 pb-1 text-2xl md:text-3xl text-left font-bold leading-6 underline">
+				<h3 className="px-2 pt-2 pb-1 text-2xl md:text-3xl text-left font-bold leading-6 underline text-slate-800">
 					{name}
 				</h3>
 			</Link>
@@ -104,7 +113,7 @@ export default function Cocktail({
 						<li
 							key={Math.random()}
 							className={
-								"ingredient " +
+								"ingredient text-slate-800 " +
 								(!missing.includes(ingredient)
 									? "font-bold"
 									: "")
@@ -120,10 +129,12 @@ export default function Cocktail({
 
 			{missing.length > 0 && (
 				<h4 className="px-2 pt-1 text-left">
-					<span className="font-bold underline">you're missing:</span>{" "}
+					<span className="font-bold text-xl text-slate-800">
+						You're missing:
+					</span>{" "}
 				</h4>
 			)}
-			<p className="pb-2 text-left px-2 leading-5">
+			<p className="pb-2 text-left px-2 leading-5 text-slate-800">
 				{missing
 					.map((item) =>
 						Array.isArray(item) ? item.join(" or ") : item

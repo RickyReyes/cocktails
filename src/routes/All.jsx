@@ -13,9 +13,7 @@ const All = ({ cocktails, onAllPage, selectedTags }) => {
 					onClick={() => navigate(-1)}
 					className="text-black fa-solid fa-circle-left text-3xl absolute top-4 left-4 cursor-pointer"
 				></i>
-				<h1 className="font-cursive text-3xl py-3 mx-auto">
-					all cocktails
-				</h1>
+				<h1 className="text-3xl py-3 mx-auto">All Cocktails</h1>
 			</div>
 			<ViewPill view={view} setView={setView} />
 			{view === "list" ? (
@@ -23,26 +21,35 @@ const All = ({ cocktails, onAllPage, selectedTags }) => {
 					className="flex flex-col items-start
 			w-full m-4 text-left"
 				>
-					{cocktails.map((cocktail) => (
-						<Link
-							key={cocktail.name}
-							to={
-								"/" +
-								cocktail.name
-									.replace("#", "")
-									.toLowerCase()
-									.split(" ")
-									.join("-")
-							}
-						>
-							<li
-								key={Math.random()}
-								className="text-3xl underline cursor-pointer"
+					{cocktails.map((cocktail) => {
+						console.log(
+							cocktail.name
+								.replace("#", "")
+								.toLowerCase()
+								.split(" ")
+								.join("-")
+						);
+						return (
+							<Link
+								key={cocktail.name}
+								to={
+									"/" +
+									cocktail.name
+										.replace("#", "")
+										.toLowerCase()
+										.split(" ")
+										.join("-")
+								}
 							>
-								{cocktail.name}
-							</li>
-						</Link>
-					))}
+								<li
+									key={Math.random()}
+									className="text-3xl underline cursor-pointer"
+								>
+									{cocktail.name}
+								</li>
+							</Link>
+						);
+					})}
 				</ul>
 			) : (
 				<ul className="sm:w-full p-4 w-screen grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 content-center">

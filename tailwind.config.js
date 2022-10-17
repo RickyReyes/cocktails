@@ -38,7 +38,7 @@ module.exports = {
 				"whiskey-sour": "url('./cocktail-photos/whiskey-sour.jpg')",
 			},
 			fontFamily: {
-				cursive: ['"Pacifico"', "cursive"],
+				cursive: ['"Work Sans"', "font"],
 			},
 		},
 	},

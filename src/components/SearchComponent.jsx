@@ -9,11 +9,13 @@ const SearchComponent = ({
 }) => {
 	return (
 		<div className="flex flex-col align-left md:align-center">
-			<h2 className="font-cursive text-3xl pb-1">search...</h2>
+			<h2 className="text-slate-800 text-3xl pb-4 font-medium">
+				Search Ingredients.
+			</h2>
 			<input
 				type="text"
 				onChange={(e) => handleSearchInput(e)}
-				className="border border-gray-300 rounded-sm w-48 text-lg p-1 mb-4 max-w-sm mx-auto"
+				className="border border-slate-300 rounded-sm w-48 text-lg p-1 mb-4 max-w-sm mx-auto"
 			/>
 			<ul className="flex flex-wrap items-start gap-1 justify-start items-start mb-4">
 				{searchItems.map((item) => {

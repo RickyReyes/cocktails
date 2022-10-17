@@ -28,7 +28,7 @@ const CocktailPage = ({ cocktail }) => {
 					${cocktail.photoString}`}
 				></div>
 				<div>
-					<h1 className="text-5xl font-cursive pb-4">
+					<h1 className="text-5xl font-medium pb-4">
 						{cocktail.name}
 					</h1>
 					<ul className="text-left">{amountsAndIngredients}</ul>
@@ -37,9 +37,7 @@ const CocktailPage = ({ cocktail }) => {
 
 			{cocktail.facts ? (
 				<div className="flex flex-col items-center py-2">
-					<h2 className="font-bold text-xl font-cursive">
-						Did you know?
-					</h2>
+					<h2 className="font-bold text-xl ">Did you know?</h2>
 					<ul className="text-left leading-4 pt-1 list-disc list-inside max-w-lg">
 						{cocktail.facts.map((fact) => (
 							<li key={fact} className="leading-4 pb-1">
