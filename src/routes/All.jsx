@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ViewPill from "../components/ViewPill";
 
 const All = ({ cocktails, onAllPage, selectedTags }) => {
-	const [view, setView] = useState("gallery");
+	const [allView, setAllView] = useState("gallery");
 	const navigate = useNavigate();
 	return (
 		<div>
@@ -15,39 +15,31 @@ const All = ({ cocktails, onAllPage, selectedTags }) => {
 				></i>
 				<h1 className="text-3xl py-3 mx-auto">All Cocktails</h1>
 			</div>
-			<ViewPill view={view} setView={setView} />
-			{view === "list" ? (
+			<ViewPill view={allView} setView={setAllView} />
+			{allView === "list" ? (
 				<ul
-					className="flex flex-col items-start
-			w-full m-4 text-left"
+					className="flex flex-col items-center
+			w-full my-4 mx-auto text-left"
 				>
 					{cocktails.map((cocktail) => {
-						console.log(
-							cocktail.name
-								.replace("#", "")
-								.toLowerCase()
-								.split(" ")
-								.join("-")
-						);
 						return (
-							<Link
-								key={cocktail.name}
-								to={
-									"/" +
-									cocktail.name
-										.replace("#", "")
-										.toLowerCase()
-										.split(" ")
-										.join("-")
-								}
+							<li
+								key={Math.random()}
+								className="text-3xl underline cursor-pointer"
 							>
-								<li
-									key={Math.random()}
-									className="text-3xl underline cursor-pointer"
+								<Link
+									to={
+										"/" +
+										cocktail.name
+											.replace("#", "")
+											.toLowerCase()
+											.split(" ")
+											.join("-")
+									}
 								>
 									{cocktail.name}
-								</li>
-							</Link>
+								</Link>
+							</li>
 						);
 					})}
 				</ul>

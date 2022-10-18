@@ -1,6 +1,8 @@
-import React, { useState, useId } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import SearchComponent from "../components/SearchComponent";
-import Tags from "../components/Tags";
+import ViewPill from "../components/ViewPill";
 
 const Main = ({
 	allTags,
@@ -13,8 +15,14 @@ const Main = ({
 	cocktailCards,
 	handleSelectItem,
 	handleSelectTag,
+	possibleCocktails,
+	submit,
+	setSubmit,
 }) => {
 	const [searchItems, setSearchItems] = useState([]);
+
+	const [mainView, setMainView] = useState("gallery");
+
 	function handleSearchInput(e) {
 		if (e.target.value === "") {
 			setSearchItems([]);
@@ -35,6 +43,10 @@ const Main = ({
 
 	return (
 		<>
+			<h1 className="text-4xl md:text-5xl lg:text-6xl inline mx-auto pb-2 md:pb-4 font-bold text-slate-800">
+				Welcome to <br className="md:hidden" />
+				Create Cocktail App.
+			</h1>
 			<div className="flex mx-auto flex-col md:flex-row">
 				<div>
 					<h2 className=" text-3xl pb-3 font-medium text-slate-800">
@@ -51,55 +63,125 @@ const Main = ({
 						</div>
 					</div>
 				</div>
-				<SearchComponent
-					selectedItems={selectedItems}
-					handleSearchInput={handleSearchInput}
-					handleSelectItem={handleSelectItem}
-					categories={categories}
-					searchItems={searchItems}
-				/>
+				<div>
+					<SearchComponent
+						selectedItems={selectedItems}
+						handleSearchInput={handleSearchInput}
+						handleSelectItem={handleSelectItem}
+						categories={categories}
+						searchItems={searchItems}
+					/>
+					<div className="flex md:hidden lg:flex flex-col">
+						<h2 className="text-3xl py-3 text-slate-800 font-medium">
+							Filter by drink type.
+						</h2>
+						<ul className="flex flex-wrap gap-1 max-w-md mx-auto">
+							{allTags.map((tag) => (
+								<li
+									className={`rounded-full text-sm border border-slate-800 px-2 py-0 md:text-md md:px-3 md:py-1 hover:text-white hover:bg-slate-800 cursor-pointer uppercase ${
+										selectedTags.includes(tag)
+											? "bg-slate-800 text-white"
+											: ""
+									}`}
+									onClick={() => handleSelectTag(tag)}
+									key={tag}
+								>
+									{tag}
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
 			</div>
-
-			{selectedItems.length > 0 && (
-				<div className="w-full">
-					<div className="flex flex-col lg:flex-row">
-						<div className="flex-1 p-2">
-							<h2 className=" text-3xl py-3 text-slate-800 font-medium">
-								You've selected:
-							</h2>
-							<ul className="flex flex-wrap items-start gap-2 justify-start items-start h-min">
-								{selectedElements}
+			<div className="hidden md:flex lg:hidden flex-col">
+				<h2 className="text-3xl py-3 text-slate-800 font-medium">
+					Filter by drink type.
+				</h2>
+				<ul className="flex flex-wrap gap-1 max-w-md mx-auto">
+					{allTags.map((tag) => (
+						<li
+							className={`rounded-full text-sm border border-slate-800 px-2 py-0 md:text-md md:px-3 md:py-1 hover:text-white hover:bg-slate-800 cursor-pointer uppercase ${
+								selectedTags.includes(tag)
+									? "bg-slate-800 text-white"
+									: ""
+							}`}
+							onClick={() => handleSelectTag(tag)}
+							key={tag}
+						>
+							{tag}
+						</li>
+					))}
+				</ul>
+			</div>
+			<div className="w-full">
+				<div className="flex flex-col lg:flex-row">
+					<div className="flex-1 p-2">
+						<h2 className=" text-3xl py-3 text-slate-800 font-medium">
+							You've selected:
+						</h2>
+						<ul className="flex flex-wrap items-start gap-2 justify-start items-start h-min">
+							{selectedElements}
+						</ul>
+					</div>
+					<div className="flex-1 p-2 border-0 lg:border-l -mt-1">
+						<h2 className=" text-3xl py-3 text-slate-800 font-medium">
+							Filter by drink type.
+						</h2>
+						<ul className="flex flex-wrap gap-1 max-w-md mx-auto">
+							{allTags.map((tag) => (
+								<li
+									className={`rounded-full text-sm border border-slate-800 px-2 py-0 md:text-md md:px-3 md:py-1 hover:text-white hover:bg-slate-800 cursor-pointer uppercase ${
+										selectedTags.includes(tag)
+											? "bg-slate-800 text-white"
+											: ""
+									}`}
+									onClick={() => handleSelectTag(tag)}
+									key={tag}
+								>
+									{tag}
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+				{(selectedItems.length < 0 || selectedTags.length > 0) && (
+					<>
+						{" "}
+						<h2 className="text-slate-800 text-3xl pb-3 font-medium">
+							You can make:
+						</h2>
+						<ViewPill view={mainView} setView={setMainView} />
+						{mainView === "gallery" ? (
+							<ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 pt-2">
+								{cocktailCards}
 							</ul>
-						</div>
-						<div className="flex-1 p-2 border-0 lg:border-l -mt-1">
-							<h2 className=" text-3xl py-3 text-slate-800 font-medium">
-								Apply tags.
-							</h2>
-							<ul className="flex flex-wrap gap-1 max-w-md mx-auto">
-								{allTags.map((tag) => (
+						) : (
+							<ul>
+								{possibleCocktails.map((cocktail) => (
 									<li
-										className={`rounded-full text-sm border border-slate-800 px-2 py-0 md:text-md md:px-3 md:py-1 hover:text-white hover:bg-slate-800 cursor-pointer uppercase ${
-											selectedTags.includes(tag)
-												? "bg-slate-800 text-white"
-												: ""
-										}`}
-										onClick={() => handleSelectTag(tag)}
-										key={tag}
+										key={Math.random()}
+										className="text-3xl underline cursor-pointer"
 									>
-										{tag}
+										<Link
+											key={cocktail.name}
+											to={
+												"/" +
+												cocktail.name
+													.replace("#", "")
+													.toLowerCase()
+													.split(" ")
+													.join("-")
+											}
+										>
+											{cocktail.name}
+										</Link>
 									</li>
 								))}
 							</ul>
-						</div>
-					</div>
-					<h2 className="text-slate-800 text-3xl pb-3 font-medium">
-						You can make:
-					</h2>
-					<ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-						{cocktailCards}
-					</ul>
-				</div>
-			)}
+						)}
+					</>
+				)}
+			</div>
 		</>
 	);
 };
