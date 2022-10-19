@@ -48,7 +48,7 @@ export const cocktails = [
 		tags: ["Bitter", "Spirit-Forward"],
 		photoString: "bg-boulevardier",
 		facts: [
-			"The Boulevardier is simply a variation on the classic Negroni that is adored for its deft Balance of  Bitters, boozy and sweet.",
+			"The Boulevardier is simply a variation on the classic Negroni that is adored for its deft Balance of Bitters, boozy and sweet.",
 			"While the gin-based Negroni is crisp and bracing, the whiskey-based Boulevardier is rich and warming.",
 		],
 	},
@@ -78,12 +78,12 @@ export const cocktails = [
 		ingredients: [
 			"Champagne",
 			"Sugar Cube",
-			"Angostura  Bitters",
+			"Angostura Bitters",
 			"Lemon twist",
 		],
 		amounts: ["5 oz", "1", "4 dashes"],
 		tags: ["Bubbly", "Classic"],
-		photoString: "bg-coming-soon",
+		photoString: "bg-champagne-cocktail",
 		facts: [
 			"This simple classic originally appeared in 'The Bartender’s Guide,' an 1862 tome by Jerry Thomas.",
 		],
@@ -92,7 +92,7 @@ export const cocktails = [
 		name: "Coffee Negroni",
 		ingredients: ["Gin", "Sweet Vermouth", "Campari", "Coffee Liqueur"],
 		amounts: ["1 oz", "0.75 oz", "0.75 oz", "0.5 oz"],
-		tags: ["Bubbly", "Classic"],
+		tags: ["Bitter", "Classic", "Coffee"],
 		photoString: "bg-coming-soon",
 	},
 	{
@@ -195,7 +195,7 @@ export const cocktails = [
 			"Lemon Juice",
 			"Simple Syrup",
 			"Egg White",
-			"Club  Soda",
+			"Club Soda",
 		],
 		amounts: ["2 oz", "0.75 oz", "1 oz", "1", "Top with"],
 		tags: ["Classic", "Bubbly"],
@@ -314,7 +314,7 @@ export const cocktails = [
 			"Gin",
 			"Sweet Vermouth",
 			"Maraschino Liqueur",
-			"Angostura  Bitters",
+			"Angostura Bitters",
 		],
 		amounts: ["1.5 oz", "1.5 oz", "0.25 oz", "2 dashes"],
 		tags: ["Classic", "Spirit-Forward"],
@@ -325,7 +325,7 @@ export const cocktails = [
 		ingredients: [
 			["Gin", "Vodka"],
 			"Dry Vermouth",
-			"Orange  Bitters",
+			"Orange Bitters",
 			["Lemon twist", "Olive"],
 		],
 		amounts: ["3 oz", "0 oz", "0 dashes", ""],
@@ -372,7 +372,7 @@ export const cocktails = [
 	},
 	{
 		name: "Moscow Mule",
-		ingredients: ["Vodka", "Lime Juice", "Ginger Beer"],
+		ingredients: ["Vodka", "Ginger Beer", "Lime Juice"],
 		amounts: ["2 oz", "0.75 oz", "Top with"],
 		tags: ["Bubbly", "Refreshing"],
 		photoString: "bg-moscow-mule",
@@ -405,8 +405,25 @@ export const cocktails = [
 		],
 	},
 	{
+		name: "New York Sour",
+		ingredients: [
+			["Bourbon", "Rye Whiskey"],
+			"Lemon Juice",
+			"Simple Syrup",
+			"Egg White",
+			"Red Wine",
+		],
+		amounts: ["2 oz", "0.75 oz", "1 oz", "0.75 oz", "0.5 oz"],
+		tags: ["Classic", "Sour"],
+		photoString: "bg-coming-soon",
+		facts: [
+			"Reports trace the New York Sour back to the 1870s or 1880s, although it operated under other names during this time, including the Continental Sour.",
+			"It’s possible that the New York Sour was created in Chicago, but in time, the New York label grabbed on and never let go.",
+		],
+	},
+	{
 		name: "Oaxaca Old Fashioned",
-		ingredients: ["Mezcal", "Sugar Cube", "Mole  Bitters"],
+		ingredients: ["Mezcal", "Sugar Cube", "Mole Bitters"],
 		amounts: ["1 oz", "1", "3-4 dashes of"],
 		photoString: "bg-oaxaca-old-fashioned",
 		tags: ["Spirit-Forward", "Simple"],
@@ -416,20 +433,20 @@ export const cocktails = [
 		ingredients: [
 			["Bourbon", "Rye Whiskey"],
 			"Sugar Cube",
-			"Angostura  Bitters",
+			"Angostura Bitters",
 			"Orange twist",
 		],
 		amounts: ["2 oz", "1", "3 dashes", "Orange twist"],
 		tags: ["Simple", "Spirit-Forward", "Classic"],
 		photoString: "bg-old-fashioned",
 		facts: [
-			`The first documented definition of the word "Cocktail" was in response to a reader's letter asking to define the word in the 6 May 1806, issue of The Balance and Columbian Repository in Hudson, New York. In the 13 May 1806, issue, the paper's editor wrote that it was a potent concoction of spirits,  Bitters, water, and sugar; it was also referred to at the time as a  Bittersed sling and is essentially the recipe for an old fashioned.`,
+			`The first documented definition of the word "Cocktail" was in response to a reader's letter asking to define the word in the 6 May 1806, issue of The Balance and Columbian Repository in Hudson, New York. In the 13 May 1806, issue, the paper's editor wrote that it was a potent concoction of spirits, Bitters, water, and sugar; it was also referred to at the time as a Bittersed sling and is essentially the recipe for an old fashioned.`,
 		],
 	},
 
 	{
 		name: "Paloma",
-		ingredients: ["Tequila", "Lime Juice", "Grapefruit  Soda"],
+		ingredients: ["Tequila", "Lime Juice", "Grapefruit Soda"],
 		amounts: ["2 oz", "0.75 oz", "Top with"],
 		photoString: "bg-paloma",
 		tags: ["Simple", "Refreshing", "Citrusy"],
@@ -469,7 +486,7 @@ export const cocktails = [
 		ingredients: [
 			"Rye Whiskey",
 			"Sugar Cube",
-			"Peychaud's  Bitters",
+			"Peychaud's Bitters",
 			"Absinthe",
 			"Lemon twist",
 		],
@@ -493,7 +510,7 @@ export const cocktails = [
 	},
 	{
 		name: "Tom Collins",
-		ingredients: ["Gin", "Lemon Juice", "Simple Syrup", "Club  Soda"],
+		ingredients: ["Gin", "Lemon Juice", "Simple Syrup", "Club Soda"],
 		amounts: ["2 oz", "0.75 oz", "1 oz", "Top with"],
 		photoString: "bg-coming-soon",
 		tags: ["Bubbly", "Refreshing", "Classic"],
@@ -680,6 +697,15 @@ export const categories = [
 		hoverTextColor: "hover:text-emerald-800",
 		tailwindTextColor: "text-emerald-800",
 	},
+	{
+		name: "Miscellaneous",
+		items: ["Red Wine"],
+		tailwindBG: "bg-violet-900",
+		tailwindBorder: "border-violet-900",
+		hoverBorder: "hover:border-violet-900",
+		hoverTextColor: "hover:text-violet-900",
+		tailwindTextColor: "text-violet-900",
+	},
 ];
 
 export const allTags = [
@@ -693,7 +719,7 @@ export const allTags = [
 	"Fruity",
 	"Hot",
 	"Low ABV",
-	"Modern classic",
+	"Modern Classic",
 	"Personal Favorite",
 	"Refreshing",
 	"Savory",

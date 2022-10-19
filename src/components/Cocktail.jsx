@@ -11,8 +11,6 @@ export default function Cocktail({
 	selectedTags,
 	handleSelectTag,
 }) {
-	/* default styling means we are on the <All /> page */
-
 	if (onAllPage) {
 		return (
 			<li

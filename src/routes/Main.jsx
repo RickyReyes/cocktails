@@ -16,11 +16,8 @@ const Main = ({
 	handleSelectItem,
 	handleSelectTag,
 	possibleCocktails,
-	submit,
-	setSubmit,
 }) => {
 	const [searchItems, setSearchItems] = useState([]);
-
 	const [mainView, setMainView] = useState("gallery");
 
 	function handleSearchInput(e) {
@@ -43,14 +40,18 @@ const Main = ({
 
 	return (
 		<>
-			<h1 className="text-4xl md:text-5xl lg:text-6xl inline mx-auto pb-2 md:pb-4 font-bold text-slate-800">
+			<h1 className="text-4xl md:text-5xl lg:text-6xl pb-2 font-bold text-slate-800">
 				Welcome to <br className="md:hidden" />
 				Create Cocktail App.
 			</h1>
+			<h2 className="text-slate-800 md:text-xl">
+				Select ingredients and/or apply filters based on drink type,
+				then scroll down to see suggested cocktails.
+			</h2>
 			<div className="flex mx-auto flex-col md:flex-row">
 				<div>
 					<h2 className=" text-3xl pb-3 font-medium text-slate-800">
-						Select Ingredients.
+						Select ingredients.
 					</h2>
 					<div className="relative flex justify-center items-start mx-auto gap-2">
 						<ul className="flex flex-col items-start">
@@ -114,41 +115,21 @@ const Main = ({
 				</ul>
 			</div>
 			<div className="w-full">
-				<div className="flex flex-col lg:flex-row">
+				{selectedItems.length > 0 && (
 					<div className="flex-1 p-2">
-						<h2 className=" text-3xl py-3 text-slate-800 font-medium">
+						<h2 className="text-3xl py-3 text-slate-800 font-medium">
 							You've selected:
 						</h2>
 						<ul className="flex flex-wrap items-start gap-2 justify-start items-start h-min">
 							{selectedElements}
 						</ul>
 					</div>
-					<div className="flex-1 p-2 border-0 lg:border-l -mt-1">
-						<h2 className=" text-3xl py-3 text-slate-800 font-medium">
-							Filter by drink type.
-						</h2>
-						<ul className="flex flex-wrap gap-1 max-w-md mx-auto">
-							{allTags.map((tag) => (
-								<li
-									className={`rounded-full text-sm border border-slate-800 px-2 py-0 md:text-md md:px-3 md:py-1 hover:text-white hover:bg-slate-800 cursor-pointer uppercase ${
-										selectedTags.includes(tag)
-											? "bg-slate-800 text-white"
-											: ""
-									}`}
-									onClick={() => handleSelectTag(tag)}
-									key={tag}
-								>
-									{tag}
-								</li>
-							))}
-						</ul>
-					</div>
-				</div>
-				{(selectedItems.length < 0 || selectedTags.length > 0) && (
+				)}
+				{(selectedItems.length > 0 || selectedTags.length > 0) && (
 					<>
 						{" "}
-						<h2 className="text-slate-800 text-3xl pb-3 font-medium">
-							You can make:
+						<h2 className="text-slate-800 text-3xl pt-4 pb-2 font-medium">
+							Suggested cocktails:
 						</h2>
 						<ViewPill view={mainView} setView={setMainView} />
 						{mainView === "gallery" ? (

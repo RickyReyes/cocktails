@@ -18,8 +18,6 @@ export default function App() {
 	const [possibleCocktails, setPossibleCocktails] = useState([]);
 	const [selectedTags, setSelectedTags] = useState([]);
 
-	const [submit, setSubmit] = useState(false);
-
 	function handleSelectItem(itemName) {
 		/* remove if already selected */
 		for (let i = 0; i < selectedItems.length; i++) {
@@ -36,7 +34,6 @@ export default function App() {
 	}
 
 	function handleSelectTag(tag) {
-		console.log(tag);
 		if (selectedTags.includes(tag)) {
 			setSelectedTags((prevTags) =>
 				prevTags.filter((prevTag) => {
@@ -46,73 +43,48 @@ export default function App() {
 		} else setSelectedTags((prevTags) => [...prevTags, tag]);
 	}
 
-	/* render cocktails based on selectedItems */
-	useEffect(() => {
-		setPossibleCocktails(
-			cocktails
-				.filter((cocktail) => {
-					if (
-						selectedItems.some(
-							(item) =>
-								cocktail.ingredients.includes(item) ||
-								cocktail.ingredients.some(
-									(itemArr) =>
-										Array.isArray(itemArr) &&
-										itemArr.includes(item)
-								)
-						)
-					) {
-						return cocktail;
-					}
-				})
-				// sort possible cocktails based on ratio of available ingredients to total ingredients
-				.sort((a, b) => {
-					let [numOfIngredientsA, numOfIngredientsB] = [
-						a.ingredients.length,
-						b.ingredients.length,
-					];
-					let numOfAvailableA = 0;
-					let numOfAvailableB = 0;
-					selectedItems.forEach((item) => {
-						if (
-							a.ingredients.includes(item) ||
-							a.ingredients.some((itemArr) =>
-								itemArr.includes(item)
-							)
-						) {
-							numOfAvailableA += 1;
-						}
-					});
-					selectedItems.forEach((item) => {
-						if (
-							b.ingredients.includes(item) ||
-							b.ingredients.some((itemArr) =>
-								itemArr.includes(item)
-							)
-						) {
-							numOfAvailableB += 1;
-						}
-					});
-					let ratioA = numOfAvailableA / numOfIngredientsA;
-					let ratioB = numOfAvailableB / numOfIngredientsB;
-					if (ratioA < ratioB) {
-						return 1;
-					}
-					if (ratioB < ratioA) {
-						return -1;
-					}
-					return 0;
-				})
-		);
-	}, [selectedItems]);
+	/* Takes an array of Cocktails and sorts them in descending order based on highest ratio of  selected ingredients to non-selected ingredients */
+	function sortingFunction(arr) {
+		return arr.sort((a, b) => {
+			let [numOfIngredientsA, numOfIngredientsB] = [
+				a.ingredients.length,
+				b.ingredients.length,
+			];
+			let numOfAvailableA = 0;
+			let numOfAvailableB = 0;
+			selectedItems.forEach((item) => {
+				if (
+					a.ingredients.includes(item) ||
+					a.ingredients.some((itemArr) => itemArr.includes(item))
+				) {
+					numOfAvailableA += 1;
+				}
+			});
+			selectedItems.forEach((item) => {
+				if (
+					b.ingredients.includes(item) ||
+					b.ingredients.some((itemArr) => itemArr.includes(item))
+				) {
+					numOfAvailableB += 1;
+				}
+			});
+			let ratioA = numOfAvailableA / numOfIngredientsA;
+			let ratioB = numOfAvailableB / numOfIngredientsB;
+			if (ratioA < ratioB) {
+				return 1;
+			}
+			if (ratioB < ratioA) {
+				return -1;
+			}
+			return 0;
+		});
+	}
 
-	/* filter cocktails based on selectedTags */
 	useEffect(() => {
-		console.log(selectedItems.length);
-		console.log(possibleCocktails);
-		setPossibleCocktails((prevCocktails) =>
-			selectedItems.length === 0
-				? cocktails.filter((cocktail) => {
+		if (selectedItems.length === 0 && selectedTags.length > 0) {
+			setPossibleCocktails(
+				sortingFunction(
+					cocktails.filter((cocktail) => {
 						if (
 							selectedTags.some((tag) =>
 								cocktail.tags.includes(tag)
@@ -120,34 +92,77 @@ export default function App() {
 						) {
 							return cocktail;
 						}
-				  })
-				: prevCocktails.filter((cocktail) => {
+					})
+				)
+			);
+		}
+
+		if (selectedItems.length > 0 && selectedTags.length === 0) {
+			setPossibleCocktails(
+				sortingFunction(
+					cocktails.filter((cocktail) => {
 						if (
-							selectedTags.some((tag) =>
-								cocktail.tags.includes(tag)
+							selectedItems.some(
+								(item) =>
+									cocktail.ingredients.includes(item) ||
+									cocktail.ingredients.some(
+										(ingredientArr) =>
+											Array.isArray(ingredientArr) &&
+											ingredientArr.includes(item)
+									)
 							)
 						) {
 							return cocktail;
 						}
-				  })
-		);
-	}, [selectedTags]);
+					})
+				)
+			);
+		}
+
+		if (selectedItems.length > 0 && selectedTags.length > 0) {
+			setPossibleCocktails(
+				sortingFunction(
+					cocktails
+						.filter((cocktail) => {
+							if (
+								selectedTags.some((tag) =>
+									cocktail.tags.includes(tag)
+								)
+							) {
+								return cocktail;
+							}
+						})
+						.filter((cocktail) => {
+							if (
+								selectedItems.some(
+									(item) =>
+										cocktail.ingredients.includes(item) ||
+										cocktail.ingredients.some(
+											(itemArr) =>
+												Array.isArray(itemArr) &&
+												itemArr.includes(item)
+										)
+								)
+							) {
+								return cocktail;
+							}
+						})
+				)
+			);
+		}
+	}, [selectedItems, selectedTags]);
 
 	const categoryElements = categories.map((category, idx) => {
 		return (
 			<li onClick={() => setCurrentCategory(category)} key={idx}>
 				<button
-					className={
-						"Cursor-pointer rounded-full py-2 px-4 lg:py-3 lg:px-6 lg:text-xl font-bold mb-1 hover:underline " +
-						category.tailwindBG +
-						(category.name === currentCategory.name
-							? " bg-white border-2 " +
-							  category.tailwindBorder +
-							  " " +
-							  category.tailwindTextColor +
-							  ""
-							: " text-white")
-					}
+					className={`cursor-pointer rounded-full py-2 px-4 lg:py-3 lg:px-6 lg:text-xl font-bold mb-1 hover:underline text-white  border-2 ${
+						category.tailwindBG
+					} ${category.tailwindBorder} ${
+						currentCategory.name === category.name
+							? "bg-transparent " + category.tailwindTextColor
+							: ""
+					}`}
 				>
 					{category.name}
 				</button>
@@ -273,8 +288,6 @@ export default function App() {
 								handleSelectItem={handleSelectItem}
 								handleSelectTag={handleSelectTag}
 								possibleCocktails={possibleCocktails}
-								submit={submit}
-								setSubmit={setSubmit}
 							/>
 						}
 					></Route>
