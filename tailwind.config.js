@@ -29,6 +29,7 @@ module.exports = {
 				martini: "url('./cocktail-photos/martini.jpg')",
 				"mezcal-margarita":
 					"url('./cocktail-photos/mezcal-margarita.jpg')",
+				"milano-torino": "url('./cocktail-photos/milano-torino.jpg')",
 				"mint-julep": "url('./cocktail-photos/mint-julep.jpg')",
 				"moscow-mule": "url('./cocktail-photos/moscow-mule.jpg')",
 				mojito: "url('./cocktail-photos/mojito.jpg')",
