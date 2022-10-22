@@ -9,7 +9,7 @@ const SearchComponent = ({
 }) => {
 	return (
 		<div className="flex flex-col align-left md:align-center">
-			<h2 className="text-slate-800 text-3xl pb-4 font-medium">
+			<h2 className="text-slate-800 text-3xl py-2 font-medium">
 				Search ingredients.
 			</h2>
 			<input

@@ -28,14 +28,15 @@ const Main = ({
 		let newItems = [];
 		for (let category of categories) {
 			for (let item of category.items) {
+			
 				if (
-					item.toLowerCase().startsWith(e.target.value.toLowerCase())
+					item.toLowerCase().includes(e.target.value.toLowerCase())
 				) {
 					newItems.push(item);
 				}
 			}
 		}
-		setSearchItems(newItems);
+		setSearchItems(newItems.slice(0, 9));
 	}
 
 	return (
