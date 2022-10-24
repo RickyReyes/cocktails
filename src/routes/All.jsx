@@ -3,7 +3,7 @@ import Cocktail from "../components/Cocktail";
 import { Link, useNavigate } from "react-router-dom";
 import ViewPill from "../components/ViewPill";
 
-const All = ({ cocktails, onAllPage, selectedTags }) => {
+const All = ({ cocktails, selectedTags }) => {
 	const [allView, setAllView] = useState("gallery");
 	const navigate = useNavigate();
 	return (

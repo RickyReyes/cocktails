@@ -2,8 +2,6 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 
-import Cocktail from "./components/Cocktail";
-
 import All from "./routes/All";
 import Main from "./routes/Main";
 import CocktailPage from "./routes/CocktailPage";
@@ -15,8 +13,22 @@ import { allTags } from "./data";
 export default function App() {
 	const [currentCategory, setCurrentCategory] = useState(categories[0]);
 	const [selectedItems, setSelectedItems] = useState([]);
-	const [possibleCocktails, setPossibleCocktails] = useState([]);
 	const [selectedTags, setSelectedTags] = useState([]);
+	const [possibleCocktails, setPossibleCocktails] = useState([]);
+	const [quantitySelected, setQuantitySelected] = useState({
+        "Spirits" : 0,
+        "Vermouth" : 0,
+        "Amari" : 0,
+        "Liqueurs" : 0,
+        "Juices" : 0,
+        "Bubbles" : 0,
+        "Syrups" : 0,
+        "Bitters" : 0,
+        "Produce": 0,
+        "Miscellaneous": 0
+        
+    })
+
 
 	function handleSelectItem(itemName) {
 		/* remove if already selected */
@@ -31,6 +43,16 @@ export default function App() {
 		}
 		/* add to list otherwise */
 		setSelectedItems((prevItems) => [...prevItems, itemName]);
+
+		/* update quantitySelected state object */
+		const category = categories.filter(category => category.items.includes(itemName))[0];
+		const name = category.name;
+		setQuantitySelected(prev => {
+			return ({
+				...prev,
+				[name]: prev[name] + 1
+			})
+		})
 	}
 
 	function handleSelectTag(tag) {
@@ -80,6 +102,10 @@ export default function App() {
 		});
 	}
 
+	/* Update the rendered cocktails every time an item or a tag is selected. 
+	If only items selected (no tags) or only tags selected (no items), filter through all cocktails.
+	If both are selected, render only cocktails that include BOTH the selected tags and selected items.
+	*/
 	useEffect(() => {
 		if (selectedItems.length === 0 && selectedTags.length > 0) {
 			setPossibleCocktails(
@@ -152,115 +178,17 @@ export default function App() {
 		}
 	}, [selectedItems, selectedTags]);
 
-	const categoryElements = categories.map((category, idx) => {
-		return (
-			<li onClick={() => setCurrentCategory(category)} key={idx}>
-				<button
-					className={`cursor-pointer rounded-full py-2 px-4 lg:py-3 lg:px-6 lg:text-xl font-bold mb-1 hover:underline text-white  border-2 ${
-						category.tailwindBG
-					} ${category.tailwindBorder} ${
-						currentCategory.name === category.name
-							? "bg-transparent " + category.tailwindTextColor
-							: ""
-					}`}
-				>
-					{category.name}
-				</button>
-			</li>
-		);
-	});
-
-	const itemElements = categories
-		.filter((category) => category.name === currentCategory.name)[0]
-		.items.map((item, idx) => {
-			let {
-				tailwindBG,
-				hoverTextColor,
-				hoverBorder,
-				tailwindTextColor,
-				tailwindBorder,
-			} = currentCategory;
-			return (
-				<li className="H-min" key={idx}>
-					<button
-						onClick={() => handleSelectItem(item)}
-						className={
-							selectedItems.includes(item)
-								? ` leading-4 selected-item selected-category-item cursor-pointer font-bold rounded-full py-2 px-4 lg:py-2 lg:px-4 lg:text-xl bg-white border-2 ${tailwindBorder} ${tailwindTextColor}`
-								: " leading-4 cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl hover:bg-white border-white border-2 " +
-								  tailwindBG +
-								  " " +
-								  hoverTextColor +
-								  "  " +
-								  hoverBorder +
-								  " " +
-								  hoverTextColor
-						}
-					>
-						{item}
-					</button>
-				</li>
-			);
-		});
-
-	const selectedElements = selectedItems.map((item, idx) => {
-		let bgColor = categories.filter((category) =>
-			category.items.includes(item)
-		)[0].tailwindBG;
-		return (
-			<li
-				onClick={() => handleSelectItem(item)}
-				className={
-					"selected-item cursor-pointer font-bold rounded-full py-2 px-4 text-white lg:py-3 lg:px-6 lg:text-2xl " +
-					bgColor
-				}
-				key={idx}
-			>
-				{item}
-			</li>
-		);
-	});
-
-	const cocktailCards = possibleCocktails.map((cocktail, idx) => {
-		let missing = cocktail.ingredients
-			.map((ingredient) => {
-				if (
-					selectedItems.some((item) => item === ingredient) ||
-					selectedItems.some((item) => ingredient.includes(item))
-				) {
-					return "";
-				} else {
-					return ingredient;
-				}
-			})
-			.filter((item) => !!item);
-		return (
-			<Cocktail
-				selectedTags={selectedTags}
-				setSelectedTags={setSelectedTags}
-				handleSelectTag={handleSelectTag}
-				name={cocktail.name}
-				photoString={cocktail.photoString}
-				ingredients={cocktail.ingredients}
-				tags={cocktail.tags}
-				missing={missing}
-				selectedItems={selectedItems}
-				key={idx}
-			/>
-		);
-	});
-
 	const location = useLocation();
 	const onAllPage = location.pathname.includes("all");
 
 	return (
-		<main className="App min-w-screen flex relative flex-col items-center justify-center py-16 lg:py-16 px-4">
+		<div className="App min-w-screen flex relative flex-col items-center justify-center py-16 lg:py-16 px-4">
 			<div className="Flex-1 flex flex-col max-w-6xl">
 				<div className="W-full px-4 gap-4 flex flex-col items-center">
 					{!onAllPage && (
 						<small
 							className={`${
-								onAllPage ? "Hidden" : ""
+								onAllPage ? "hidden" : ""
 							} inline absolute right-4 top-4 underline text-md lg:text-2xl cursor-pointer`}
 						>
 							<Link
@@ -279,15 +207,14 @@ export default function App() {
 							<Main
 								allTags={allTags}
 								categories={categories}
-								itemElements={itemElements}
-								categoryElements={categoryElements}
 								selectedItems={selectedItems}
-								selectedElements={selectedElements}
 								selectedTags={selectedTags}
-								cocktailCards={cocktailCards}
+								setSelectedTags={setSelectedTags}
 								handleSelectItem={handleSelectItem}
 								handleSelectTag={handleSelectTag}
 								possibleCocktails={possibleCocktails}
+								currentCategory={currentCategory}
+								setCurrentCategory={setCurrentCategory}
 							/>
 						}
 					></Route>
@@ -317,6 +244,6 @@ export default function App() {
 					))}
 				</Routes>
 			</div>
-		</main>
+		</div>
 	);
 }
