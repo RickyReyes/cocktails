@@ -20,15 +20,8 @@ const Items = ({categories, currentCategory, handleSelectItem, selectedItems}) =
                             onClick={() => handleSelectItem(item)}
                             className={
                                 selectedItems.includes(item)
-                                    ? ` leading-4 selected-item selected-category-item cursor-pointer font-normal rounded-full py-2 px-4 lg:py-2 lg:px-4 lg:text-xl bg-white border-2 ${tailwindBorder} ${tailwindTextColor}`
-                                    : " leading-4 cursor-pointer font-normal rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl hover:bg-white border-white border-2 " +
-                                        tailwindBG +
-                                        " " +
-                                        hoverTextColor +
-                                        "  " +
-                                        hoverBorder +
-                                        " " +
-                                        hoverTextColor
+                                    ? ` selected-item selected-category-item leading-4  cursor-pointer font-normal rounded-full py-2 px-4 lg:py-2 lg:px-4 lg:text-xl bg-white border-2 ${tailwindBorder} ${tailwindTextColor}`
+                                    : ` leading-4 cursor-pointer font-normal rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl border-white border-2 ${tailwindBG} ${hoverBorder}`
                             }
                         >
                             {item}

@@ -3,7 +3,7 @@ module.exports = {
 	theme: {
 		extend: {
 			screens: {
-				"hover-hover": { raw: "(hover:hover)" },
+				'hover-hover': { 'raw': '(hover: hover)' },
 			},
 			spacing: {
 				112: "28rem",
