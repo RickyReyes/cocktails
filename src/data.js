@@ -604,9 +604,9 @@ export const cocktails = [
 	{
 		name: "Trinidad Sour",
 		ingredients: ["Angostura Bitters", "Rye Whiskey", "Lemon Juice", "Orgeat"],
-		amounts: ["2 oz", "0.5 oz", "0.75 oz", "1 oz"],
+		amounts: ["1.5 oz", "0.5 oz", "0.75 oz", "1 oz"],
 		garnish: "Lemon Twist",
-		glassware: "Small Coupe",
+		glassware: "Large Coupe",
 		photoString: "bg-coming-soon",
 		tags: ["Rich", "Tart"],
 	},

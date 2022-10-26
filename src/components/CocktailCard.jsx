@@ -16,7 +16,7 @@ export default function CocktailCard ({
 			key={name}
 			className={
 				"w-full flex flex-col items-start rounded-xl border-4 " +
-				(missing.length === 0 && !onAllPage ? "border-4 border-green-400" : "")
+				((missing.length === 0 && !onAllPage) ? "border-4 border-green-400" : "")
 			}
 		>
 			<div
@@ -33,7 +33,7 @@ export default function CocktailCard ({
 							<li
 								onClick={onAllPage ? null : () => handleSelectTag(tag)}
 								key={Math.random()}
-								className={`rounded-full border border-slate-800 px-2 py-0 hover:text-white hover:bg-slate-800 cursor-pointer  ${
+								className={`rounded-full border border-slate-800 px-2 py-0 cursor-pointer  ${
 									selectedTags.includes(tag)
 										? "bg-slate-800 text-white"
 										: ""
@@ -61,8 +61,7 @@ export default function CocktailCard ({
 							key={Math.random()}
 							className={
 								"ingredient text-slate-800 " +
-								(!missing.includes(ingredient) && !onAllPage
-									? "font-bold"
+								((!missing.includes(ingredient) && !onAllPage) ? "font-bold"
 									: "")
 							}
 						>
@@ -74,7 +73,7 @@ export default function CocktailCard ({
 				})}
 			</ul>
 
-			{missing.length > 0 && (
+			{(missing.length > 0 && !onAllPage) &&  (
 				<h4 className="px-2 pt-1 text-left">
 					<span className="font-bold text-xl text-slate-800">
 						You're missing:

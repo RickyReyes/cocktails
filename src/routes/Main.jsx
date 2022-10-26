@@ -82,7 +82,7 @@ const Main = ({
           />
           <div className="flex md:hidden lg:flex flex-col">
             <h2 className="text-3xl py-3 text-slate-800 font-medium">
-              Filter by drink type.
+              Or filter by drink type.
             </h2>
             <Tags
               allTags={allTags}
@@ -123,6 +123,7 @@ const Main = ({
             <ViewPill view={mainView} setView={setMainView} />
             {mainView === "gallery" ? (
               <CocktailCards
+                onAllPage={false}
                 possibleCocktails={possibleCocktails}
                 selectedItems={selectedItems}
                 selectedTags={selectedTags}

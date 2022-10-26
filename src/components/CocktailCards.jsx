@@ -1,5 +1,7 @@
 import React from "react";
 import CocktailCard from "../components/CocktailCard";
+import {v4 as uuid} from 'uuid';
+
 
 const CocktailCards = ({
   possibleCocktails,
@@ -23,8 +25,10 @@ const CocktailCards = ({
             }
           })
           .filter((item) => !!item);
+        const uniqueId = uuid();
         return (
           <CocktailCard
+          key={uniqueId}
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
             handleSelectTag={handleSelectTag}

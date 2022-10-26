@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Cocktail from "../components/Cocktail";
+import CocktailCard from "../components/CocktailCard";
+import CocktailCards from "../components/CocktailCard";
 import { Link, useNavigate } from "react-router-dom";
 import ViewPill from "../components/ViewPill";
 
@@ -46,7 +48,7 @@ const All = ({ cocktails, selectedTags }) => {
 			) : (
 				<ul className="sm:w-full p-4 w-screen grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 content-center">
 					{cocktails.map((cocktail) => (
-						<Cocktail
+						<CocktailCard
 							key={cocktail.name}
 							tags={cocktail.tags ?? []}
 							name={cocktail.name}
