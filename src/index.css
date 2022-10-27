@@ -50,6 +50,19 @@
 	color: white;
 }
 
+.bg-corpse-reviver-2 {
+	filter: brightness(200%)
+}
+
+.bg-caipirinha, .bg-tequila-sunrise {
+	background-position: bottom 0px right 0px;
+}
+
+.bg-paper-plane {
+	background-position: top 20% right 0px;
+}
+
+
 @media (min-width: 1024px) {
 	.selected-item::after {
 		height: 30px;

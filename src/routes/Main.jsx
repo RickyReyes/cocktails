@@ -51,9 +51,9 @@ const Main = ({
         Select ingredients and/or apply filters based on drink type, then scroll
         down to see suggested cocktails.
       </h2>
-      <div className="flex mx-auto flex-col md:flex-row gap-4">
+      <div className="flex mx-auto flex-col md:flex-row gap-4 mt-2 md:mt-4">
         <div>
-          <h2 className="text-3xl pb-3 font-medium text-slate-800">
+          <h2 className="text-2xl md:text-3xl pb-3 font-medium text-slate-800">
             Select ingredients.
           </h2>
           <div className="relative flex justify-center items-start mx-auto gap-2">
@@ -81,7 +81,7 @@ const Main = ({
             searchItems={searchItems}
           />
           <div className="flex md:hidden lg:flex flex-col">
-            <h2 className="text-3xl py-3 text-slate-800 font-medium">
+            <h2 className="text-2xl md:text-3xl py-3 text-slate-800 font-medium">
               Or filter by drink type.
             </h2>
             <Tags

@@ -41,7 +41,7 @@ export const cocktails = [
 		garnish: "None",
 		glassware: "Double Old-Fashioned Glass",
 		amounts: ["2 oz", "1 oz", "0.25 oz"],
-		photoString: "bg-coming-soon",
+		photoString: "bg-black-russian",
 		tags: ["Classic", "Coffee"],
 	},
 	{
@@ -68,7 +68,7 @@ export const cocktails = [
 		glassware: "Double Old-Fashioned Glass",
 		amounts: ["2 oz", "8", "2 tsp"],
 		tags: ["Refreshing"],
-		photoString: "bg-coming-soon",
+		photoString: "bg-caipirinha",
 		facts: [
 			"The Caipirinha is Brazil's national drink, and cachaça is the country's national spirit.",
 		],
@@ -78,7 +78,7 @@ export const cocktails = [
 		ingredients: ["Espresso", "Licor 43"],
 		amounts: ["1.5 oz", "1.5 oz"],
 		garnish: ["Orange Twist", "Coffee Beans", "Cinnamon Powder"],
-		glassware: "Small Coupe",
+		glassware: ["Small Coupe", "Double Old-Fashioned Glass"],
 		tags: ["Low ABV", "Simple"],
 		photoString: "bg-carajillo",
 		facts: [
@@ -109,7 +109,7 @@ export const cocktails = [
 		garnish: "Orange Twist",
 		glassware: "Old-Fashioned Glass",
 		tags: ["Bitter", "Classic", "Coffee"],
-		photoString: "bg-coming-soon",
+		photoString: "bg-coffee-negroni",
 	},
 	{
 		name: "Corpse Reviver #2",
@@ -124,7 +124,7 @@ export const cocktails = [
 		glassware: "Small Coupe",
 		amounts: ["0.75 oz", "0.75 oz", "0.75 oz", "0.75 oz", "Rinse with"],
 		tags: ["Tart"],
-		photoString: "bg-coming-soon",
+		photoString: "bg-corpse-reviver-2",
 	},
 	{
 		name: "Cosmopolitan",
@@ -260,7 +260,7 @@ export const cocktails = [
 		garnish: "Lime Wheel",
 		glassware: "Large Coupe",
 		tags: ["Classic"],
-		photoString: "bg-coming-soon",
+		photoString: "bg-hemingway-daiquiri",
 	},
 	{
 		name: "Irish Coffee",
@@ -298,7 +298,7 @@ export const cocktails = [
 		garnish: "Orange Twist",
 		glassware: "Old Fashioned-Glass",
 		tags: ["Bitter", "Spirit-Forward"],
-		photoString: "bg-coming-soon",
+		photoString: "bg-kingston-negroni",
 	},
 	{
 		name: "Last Word",
@@ -313,6 +313,19 @@ export const cocktails = [
 		glassware: "Small Coupe",
 		tags: ["Tart", "Personal Favorite"],
 		photoString: "bg-last-word",
+	},
+	{
+		name: "Lemon Drop",
+		ingredients: [
+			"Vodka",
+			"Lemon Juice",
+			"Simple Syrup"
+		],
+		amounts: ["2 oz", "0.75 oz", "1 oz"],
+		garnish: ["Sugar Rim", "Lemon Twist", "Lemon Wheel"],
+		glassware: "Large Coupe",
+		tags: ["Sour", "Tart"],
+		photoString: "bg-lemon-drop",
 	},
 	{
 		name: "Mai Tai",
@@ -374,7 +387,7 @@ export const cocktails = [
 		tags: ["Classic", "Spirit-Forward"],
 		garnish: "Luxardo Cherry",
 		glassware: "Small Coupe",
-		photoString: "bg-coming-soon",
+		photoString: "bg-martinez",
 		facts: ["This cocktail is the predecessor of the Martini."]
 	},
 	{
@@ -385,7 +398,7 @@ export const cocktails = [
 			"Orange Bitters",
 		],
 		amounts: ["3 oz", "0 oz", "0 dashes"],
-		garnish: ["Lemon twist", "Olive"],
+		garnish: ["Lemon twist", "Olives"],
 		glassware: "Small Coupe",
 		tags: ["Classic", "Spirit-Forward"],
 		photoString: "bg-martini",
@@ -461,7 +474,7 @@ export const cocktails = [
 		garnish: "Orange Wedge",
 		glassware: "Wine Glass",
 		tags: ["Aperitif", "Bubbly"],
-		photoString: "bg-coming-soon",
+		photoString: "bg-negroni-sbagliato",
 		facts: [
 			"A classic negroni contains equal parts gin, Vermouth, and Campari, while a sbagliato, which translates to “mistake” in Italian, swaps prosecco for gin. Supposedly, a bartender grabbed sparkling wine instead of the spirit as he was making a negroni, and the drink stuck.",
 		],
@@ -527,7 +540,7 @@ export const cocktails = [
 		amounts: ["0.75 oz", "0.75 oz", "0.75 oz", "0.75 oz"],
 		garnish: "Lemon Twist",
 		glassware: "Small Coupe",
-		photoString: "bg-coming-soon",
+		photoString: "bg-paper-plane",
 		tags: ["Tart", "Modern Classic"],
 	},
 	{
@@ -547,7 +560,7 @@ export const cocktails = [
 		amounts: ["2 oz", "0.75 oz", "1 oz"],
 		garnish: "Bitters Design",
 		glassware: "Large Coupe",
-		photoString: "bg-coming-soon",
+		photoString: "bg-pisco-sour",
 		tags: ["Sour"],
 	},
 	{
@@ -588,8 +601,8 @@ export const cocktails = [
 		ingredients: ["Tequila", "Orange Juice", "Grenadine"],
 		amounts: ["2 oz", "4 oz", "0.25 oz"],
 		garnish: "Luxardo Cherry",
-		glassware: "Collins Glass",
-		photoString: "bg-coming-soon",
+		glassware: ["Collins Glass"],
+		photoString: "bg-tequila-sunrise",
 		tags: ["Citrusy", "Refreshing"],
 	},
 	{
@@ -614,7 +627,7 @@ export const cocktails = [
 		name: "Vesper",
 		ingredients: ["Gin", "Vodka", "Lillet Blanc"],
 		amounts: ["3 oz", "1 oz", "0.5 oz"],
-		photoString: "bg-coming-soon",
+		photoString: "bg-vesper",
 		garnish: "Lemon Twist",
 		glassware: "Large Coupe",
 		tags: ["Classic", "Spirit-Forward"],
