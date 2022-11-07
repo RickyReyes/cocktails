@@ -23,12 +23,12 @@ const CocktailPage = ({ cocktail }) => {
   }
 
   return (
-    <div className="mt-8 w-screen">
+    <div className="mt-8 w-full">
       <i
         onClick={() => navigate(-1)}
         className="text-black fa-solid fa-circle-left absolute top-4 left-4 text-3xl cursor-pointer"
       ></i>
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 max-w-lg mx-auto">
         <div
           className={`rounded-sm bg-cover bg-no-repeat bg-center h-60 w-96 "
 					${cocktail.photoString}`}
