@@ -61,6 +61,7 @@ const Main = ({
               categories={categories}
               currentCategory={currentCategory}
               setCurrentCategory={setCurrentCategory}
+              selectedItems={selectedItems}
             />
             <div>
               <Items
@@ -111,6 +112,7 @@ const Main = ({
             <Selections
               categories={categories}
               selectedItems={selectedItems}
+              selectedTags={selectedTags}
               handleSelectItem={handleSelectItem}
             />
           </div>

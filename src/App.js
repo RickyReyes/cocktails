@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 
 import All from "./routes/All";
-import About from "./routes/About";
 import Main from "./routes/Main";
 import CocktailPage from "./routes/CocktailPage";
 
@@ -16,18 +15,6 @@ export default function App() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [possibleCocktails, setPossibleCocktails] = useState([]);
-  const [quantitySelected, setQuantitySelected] = useState({
-    Spirits: 0,
-    Vermouth: 0,
-    Amari: 0,
-    Liqueurs: 0,
-    Juices: 0,
-    Bubbles: 0,
-    Syrups: 0,
-    Bitters: 0,
-    Produce: 0,
-    Miscellaneous: 0,
-  });
 
   function handleSelectItem(itemName) {
     /* remove if already selected */
@@ -40,18 +27,6 @@ export default function App() {
     }
     /* add to list otherwise */
     setSelectedItems((prevItems) => [...prevItems, itemName]);
-
-    /* update quantitySelected state object */
-    const category = categories.filter((category) =>
-      category.items.includes(itemName)
-    )[0];
-    const name = category.name;
-    setQuantitySelected((prev) => {
-      return {
-        ...prev,
-        [name]: prev[name] + 1,
-      };
-    });
   }
 
   function handleSelectTag(tag) {
@@ -170,20 +145,11 @@ export default function App() {
 
   const location = useLocation();
   const onAllPage = location.pathname.includes("all");
-  const onAboutPage = location.pathname.includes("about");
-
   return (
     <div className="App min-w-screen flex relative flex-col items-center justify-center py-16 lg:py-16 px-4">
       <div className="flex-1 flex flex-col max-w-6xl">
         <div className="w-full px-4 gap-4 flex flex-col items-center">
           <div className="flex absolute right-4 top-4 gap-4">
-            {!onAboutPage && (
-              <small className="underline text-md lg:text-2xl cursor-pointer">
-                <Link to="/about" className="font-medium text-slate-800">
-                  About
-                </Link>
-              </small>
-            )}
             {!onAllPage && (
               <small
                 className={`${
@@ -225,7 +191,6 @@ export default function App() {
               />
             }
           ></Route>
-          <Route path="/about" element={<About />}></Route>
           {cocktails.map((cocktail) => (
             <Route
               key={Math.random()}
