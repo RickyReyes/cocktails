@@ -1,7 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
-
 import All from "./routes/All";
 import Main from "./routes/Main";
 import CocktailPage from "./routes/CocktailPage";
@@ -145,6 +144,7 @@ export default function App() {
 
   const location = useLocation();
   const onAllPage = location.pathname.includes("all");
+
   return (
     <div className="App min-w-screen flex relative flex-col items-center justify-center py-16 lg:py-16 px-4">
       <div className="flex-1 flex flex-col max-w-6xl">

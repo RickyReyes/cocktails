@@ -37,7 +37,13 @@ const CocktailPage = ({ cocktail }) => {
       </div>
 
       <div className="flex flex-col items-start py-2 mx-4">
-        <h2 className="text-2xl font-bold">Ingredients</h2>
+        {cocktail.createdBy && (
+          <>
+            <h2 className="text-2xl font-bold">Created By</h2>
+            <p className="text-lg">{cocktail.createdBy}</p>
+          </>
+        )}
+        <h2 className="text-2xl mt-4 font-bold">Ingredients</h2>
         <ul className="text-left text-sm list-disc ml-4">
           {amountsAndIngredients}
         </ul>

@@ -57,7 +57,9 @@ const All = ({ cocktails, selectedTags }) => {
           onClick={() => navigate(-1)}
           className="text-black fa-solid fa-circle-left text-3xl absolute top-4 left-4 cursor-pointer"
         ></i>
-        <h1 className="text-3xl py-3 mx-auto">All Cocktails</h1>
+        <h1 className="text-3xl py-3 mx-auto">
+          All Cocktails ({cocktails.length})
+        </h1>
       </div>
       <ViewPill view={allView} setView={setAllView} />
       {allView === "list" ? { ...list } : { ...cards }}
