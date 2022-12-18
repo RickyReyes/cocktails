@@ -148,7 +148,7 @@ export const cocktails = [
     amounts: ["2 oz", "0.75 oz", "1 oz"],
     garnish: "Lime Wheel",
     glassware: "Small Coupe",
-    tags: ["Tart", "Classic"],
+    tags: ["Tart", "Tiki", "Classic"],
     photoString: "bg-daiquiri",
   },
   {
@@ -310,6 +310,15 @@ export const cocktails = [
     photoString: "bg-kingston-negroni",
   },
   {
+    name: "Kir Royale",
+    ingredients: ["Champagne", "Creme de Cassis"],
+    amounts: ["4.5 oz", "0.5 oz"],
+    garnish: "Lemon Twist",
+    glassware: ["Champagne Flute", "Wine Glass"],
+    tags: ["Bubbly", "Low ABV"],
+    photoString: "bg-coming-soon",
+  },
+  {
     name: "Last Word",
     ingredients: [
       "Gin",
@@ -452,6 +461,7 @@ export const cocktails = [
 
   {
     name: "Negroni",
+    createdBy: "Count Camillo Negroni",
     ingredients: ["Gin", "Sweet Vermouth", "Campari"],
     amounts: ["1 oz", "1 oz", "1 oz"],
     garnish: "Orange Twist",
@@ -482,6 +492,7 @@ export const cocktails = [
   },
   {
     name: "New York Sour",
+    createdBy: "Allen Katz",
     ingredients: [
       ["Bourbon", "Rye Whiskey"],
       "Lemon Juice",
@@ -493,7 +504,7 @@ export const cocktails = [
     garnish: "None",
     glassware: "Large Coupe",
     tags: ["Classic", "Sour"],
-    photoString: "bg-coming-soon",
+    photoString: "bg-new-york-sour",
     facts: [
       "Reports trace the New York Sour back to the 1870s or 1880s, although it operated under other names during this time, including the Continental Sour.",
       "It’s possible that the New York Sour was created in Chicago, but in time, the New York label grabbed on and never let go.",
@@ -537,6 +548,7 @@ export const cocktails = [
   },
   {
     name: "Paper Plane",
+    createdBy: "Sam Ross",
     ingredients: ["Bourbon", "Aperol", "Amaro Nonino", "Lemon Juice"],
     amounts: ["0.75 oz", "0.75 oz", "0.75 oz", "0.75 oz"],
     garnish: "Lemon Twist",
@@ -617,6 +629,7 @@ export const cocktails = [
   },
   {
     name: "Trinidad Sour",
+    createdBy: "Giuseppe González",
     ingredients: ["Angostura Bitters", "Rye Whiskey", "Lemon Juice", "Orgeat"],
     amounts: ["1.5 oz", "0.5 oz", "0.75 oz", "1 oz"],
     garnish: "Lemon Twist",
