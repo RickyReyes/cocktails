@@ -36,6 +36,22 @@ export const cocktails = [
     photoString: "bg-coming-soon",
   },
   {
+    name: "Bijou",
+    createdBy: "Harry Johnson",
+    ingredients: [
+      "Gin",
+      "Sweet Vermouth",
+      "Green Chartreuse",
+      "Orange Bitters",
+    ],
+    garnish: ["Cherry", "None"],
+    glassware: "Small Coupe",
+    amounts: ["1 oz", "1 oz", "1 oz", "2 dashes"],
+    tags: ["Classic", "Simple"],
+    photoString: "bg-coming-soon",
+    facts: ["Bijou is French for jewel."],
+  },
+  {
     name: "Black Manhattan",
     createdBy: "Todd Smith",
     ingredients: [
@@ -219,6 +235,7 @@ export const cocktails = [
     glassware: ["Double Old-Fashioned Glass", "Wine Glass"],
     tags: ["Bubbly", "Refreshing", "Classic", "Simple", "Personal Favorite"],
     photoString: "bg-gin-and-tonic",
+    facts: ["The gin & tonic is the national cocktail of Spain."],
   },
   {
     name: "Gin Fizz",
@@ -807,7 +824,13 @@ export const categories = [
   },
   {
     name: "Bitters",
-    items: ["Angostura Bitters", "Mole Bitters", "Peychaud's Bitters"],
+    items: [
+      "Angostura Bitters",
+      "Chocolate Bitters",
+      "Mole Bitters",
+      "Orange Bitters",
+      "Peychaud's Bitters",
+    ],
     tailwindBG: "bg-red-400",
     tailwindBorder: "border-red-400",
     hoverBorder: "hover:border-red-400",
