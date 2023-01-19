@@ -1,6 +1,6 @@
-import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
+
 import All from "./routes/All";
 import Main from "./routes/Main";
 import CocktailPage from "./routes/CocktailPage";
@@ -9,23 +9,28 @@ import { cocktails } from "./data";
 import { categories } from "./data";
 import { allTags } from "./data";
 
+/* Key Terms
+  Categories: Refers to a type of ingredient, i.e. Spirits, Juices, Bitters, Syrups, etc.
+  Items: Refers to an actual ingredient, i.e. Tequila, Lime Juice, Angostura bitters, Vanilla Syrup, etc.
+  Tags: Refers to a style of cocktail, used to filter cocktails. i.e. Bubbly, Aperitif, Spirit-forward, etc.
+*/
+
 export default function App() {
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  const [currentCategory, setCurrentCategory] = useState(categories[0]); // eg. Spirits, Vermouth, Amari
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [possibleCocktails, setPossibleCocktails] = useState([]);
+  const location = useLocation();
+  const onAllPage = location.pathname.includes("all");
 
   function handleSelectItem(itemName) {
-    /* remove if already selected */
-    for (let i = 0; i < selectedItems.length; i++) {
-      if (selectedItems[i] === itemName) {
-        let filteredItems = selectedItems.filter((item) => item !== itemName);
-        setSelectedItems(filteredItems);
-        return;
-      }
-    }
-    /* add to list otherwise */
-    setSelectedItems((prevItems) => [...prevItems, itemName]);
+    if (selectedItems.includes(itemName)) {
+      setSelectedItems((prevItems) =>
+        prevItems.filter((prevItem) => {
+          return prevItem !== itemName;
+        })
+      );
+    } else setSelectedItems((prevItems) => [...prevItems, itemName]);
   }
 
   function handleSelectTag(tag) {
@@ -38,7 +43,7 @@ export default function App() {
     } else setSelectedTags((prevTags) => [...prevTags, tag]);
   }
 
-  /* Takes an array of Cocktails and sorts them in descending order based on highest ratio of  selected ingredients to non-selected ingredients */
+  /* Takes an array of Cocktails and sorts them in descending order based on highest ratio of selected ingredients to non-selected ingredients */
   function sortingFunction(arr) {
     return arr.sort((a, b) => {
       let [numOfIngredientsA, numOfIngredientsB] = [
@@ -142,71 +147,62 @@ export default function App() {
     }
   }, [selectedItems, selectedTags]);
 
-  const location = useLocation();
-  const onAllPage = location.pathname.includes("all");
-
   return (
-    <div className="App min-w-screen flex relative flex-col items-center justify-center py-16 lg:py-16 px-4">
+    <div className="App  relative flex-col items-center justify-center py-16 lg:py-16 px-4">
       <div className="flex-1 flex flex-col max-w-6xl">
-        <div className="w-full px-4 gap-4 flex flex-col items-center">
-          <div className="flex absolute right-4 top-4 gap-4">
-            {!onAllPage && (
-              <small
-                className={`${
-                  onAllPage ? "hidden" : ""
-                } underline text-md lg:text-2xl cursor-pointer`}
-              >
-                <Link to="/all" className="font-medium text-slate-800">
-                  View All
-                </Link>
-              </small>
-            )}
-          </div>
+        <div className="flex absolute right-4 top-4 gap-4">
+          {!onAllPage && (
+            <small
+              className={`${
+                onAllPage ? "hidden" : ""
+              } underline text-md lg:text-2xl cursor-pointer`}
+            >
+              <Link to="/all" className="font-medium text-slate-800">
+                View All
+              </Link>
+            </small>
+          )}
         </div>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Main
-                allTags={allTags}
-                categories={categories}
-                selectedItems={selectedItems}
-                selectedTags={selectedTags}
-                setSelectedTags={setSelectedTags}
-                handleSelectItem={handleSelectItem}
-                handleSelectTag={handleSelectTag}
-                possibleCocktails={possibleCocktails}
-                currentCategory={currentCategory}
-                setCurrentCategory={setCurrentCategory}
-              />
-            }
-          ></Route>
-          <Route
-            path="/all"
-            element={
-              <All
-                onAllPage={onAllPage}
-                cocktails={cocktails}
-                selectedTags={selectedTags}
-              />
-            }
-          ></Route>
-          {cocktails.map((cocktail) => (
-            <Route
-              key={Math.random()}
-              path={
-                "/" +
-                cocktail.name
-                  .toLowerCase()
-                  .replace("#", "")
-                  .split(" ")
-                  .join("-")
-              }
-              element={<CocktailPage cocktail={cocktail} />}
-            />
-          ))}
-        </Routes>
       </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Main
+              allTags={allTags}
+              categories={categories}
+              selectedItems={selectedItems}
+              selectedTags={selectedTags}
+              setSelectedTags={setSelectedTags}
+              handleSelectItem={handleSelectItem}
+              handleSelectTag={handleSelectTag}
+              possibleCocktails={possibleCocktails}
+              currentCategory={currentCategory}
+              setCurrentCategory={setCurrentCategory}
+            />
+          }
+        ></Route>
+        <Route
+          path="/all"
+          element={
+            <All
+              onAllPage={onAllPage}
+              cocktails={cocktails}
+              selectedTags={selectedTags}
+            />
+          }
+        ></Route>
+        {cocktails.map((cocktail) => (
+          <Route
+            key={Math.random()}
+            path={
+              "/" +
+              cocktail.name.toLowerCase().replace("#", "").split(" ").join("-")
+            }
+            element={<CocktailPage cocktail={cocktail} />}
+          />
+        ))}
+      </Routes>
     </div>
   );
 }

@@ -1,35 +1,36 @@
-import React from 'react'
+import React from "react";
 
-const Items = ({categories, currentCategory, handleSelectItem, selectedItems}) => {
+const Items = ({
+  categories,
+  currentCategory,
+  handleSelectItem,
+  selectedItems,
+}) => {
   return (
-    <ul className="flex flex-wrap items-start gap-1 justify-start items-start w-full sm:96 md:w-112 ">
-        {categories
-            .filter((category) => category.name === currentCategory.name)[0]
-            .items.map((item, idx) => {
-                let {
-                    tailwindBG,
-                    tailwindTextColor,
-                    tailwindBorder,
-                } = currentCategory;
+    <ul className="flex flex-wrap items-start gap-1 justify-start items-start">
+      {categories
+        .find((category) => category.name === currentCategory.name)
+        .items.map((item, idx) => {
+          let { tailwindBG, tailwindTextColor, tailwindBorder } =
+            currentCategory;
 
-                return (
-                    <li className="h-min" key={idx}>
-                        <button
-                            onClick={() => handleSelectItem(item)}
-                            className={
-                                selectedItems.includes(item)
-                                    ? ` selected-item selected-category-item leading-4  cursor-pointer font-normal rounded-full py-2 px-4 lg:py-2 lg:px-4 lg:text-xl bg-white border-2 ${tailwindBorder} ${tailwindTextColor}`
-                                    : ` leading-4 cursor-pointer font-normal rounded-full py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl border-white border-2 ${tailwindBG}`
-                            }
-                        >
-                            {item}
-                    </button>
-                </li>
-            )
+          return (
+            <li key={item}>
+              <button
+                onClick={() => handleSelectItem(item)}
+                className={
+                  selectedItems.includes(item)
+                    ? ` selected-item selected-category-item leading-4  cursor-pointer font-normal rounded-md py-2 px-4 lg:py-2 lg:px-4 lg:text-xl bg-white border-2 ${tailwindBorder} ${tailwindTextColor}`
+                    : ` leading-4 cursor-pointer font-normal rounded-md py-2 px-4 text-white lg:py-2 lg:px-4 lg:text-xl border-white border-2 ${tailwindBG}`
+                }
+              >
+                {item}
+              </button>
+            </li>
+          );
         })}
-  </ul>
-  )
-  
-}
+    </ul>
+  );
+};
 
-export default Items
+export default Items;

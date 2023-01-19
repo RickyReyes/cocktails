@@ -1,7 +1,6 @@
 import React from "react";
 import CocktailCard from "../components/CocktailCard";
-import {v4 as uuid} from 'uuid';
-
+import { v4 as uuid } from "uuid";
 
 const CocktailCards = ({
   possibleCocktails,
@@ -11,7 +10,7 @@ const CocktailCards = ({
   handleSelectTag,
 }) => {
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 pt-2">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 pt-2 max-w-7xl mx-auto">
       {possibleCocktails.map((cocktail, idx) => {
         let missing = cocktail.ingredients
           .map((ingredient) => {
@@ -28,7 +27,7 @@ const CocktailCards = ({
         const uniqueId = uuid();
         return (
           <CocktailCard
-          key={uniqueId}
+            key={uniqueId}
             selectedTags={selectedTags}
             setSelectedTags={setSelectedTags}
             handleSelectTag={handleSelectTag}

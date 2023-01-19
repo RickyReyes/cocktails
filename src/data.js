@@ -4,7 +4,7 @@ export const cocktails = [
     ingredients: ["Sweet Vermouth", "Campari", "Club Soda"],
     garnish: "Orange Twist",
     glassware: "Collins Glass",
-    amounts: ["1.5 oz", "1.5 oz", "Top with", ""],
+    amounts: ["1.5 oz", "1.5 oz", "Top with"],
     tags: ["Bitter", "Bubbly", "Classic", "Low ABV"],
     photoString: "bg-americano",
     facts: [

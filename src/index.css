@@ -15,25 +15,13 @@
 }
 
 .selected-item,
+.selected-tag,
 .selected-category-item {
   position: relative;
 }
 
-.selected-item::after {
-  position: absolute;
-  content: "⁠—";
-  padding-bottom: 2px;
-  top: -5px;
-  right: -5px;
-  height: 20px;
-  width: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: red;
-  border-radius: 50%;
-}
-
+.selected-item::after,
+.selected-tag::after,
 .selected-category-item::after {
   position: absolute;
   content: "⁠—";
@@ -48,6 +36,14 @@
   background-color: red;
   border-radius: 50%;
   color: white;
+}
+
+.selected-tag::after {
+  font-size: 0.75rem;
+  top: -4px;
+  right: -4px;
+  height: 1rem;
+  width: 1rem;
 }
 
 .bg-caipirinha,
@@ -65,9 +61,21 @@
 
 @media (min-width: 1024px) {
   .selected-item::after {
-    height: 30px;
-    width: 30px;
-    padding-bottom: 4px;
+    height: 20px;
+    width: 20px;
+    font-size: 1rem;
+  }
+
+  .selected-tag::after {
+    height: 20px;
+    width: 20px;
+    font-size: 1rem;
+  }
+
+  .selected-tag-sm::after {
+    font-size: 0.75rem;
+    height: 16px;
+    width: 16px;
   }
 
   .selected-category-item::after {

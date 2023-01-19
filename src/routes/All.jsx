@@ -59,27 +59,32 @@ const All = ({ cocktails, selectedTags }) => {
   );
 
   return (
-    <div>
+    <main className="max-w-7xl mx-auto">
       <div className="flex items-center w-full px-4">
-        <i
+        <small
           onClick={() => navigate(-1)}
-          className="text-black fa-solid fa-circle-left text-3xl absolute top-4 left-4 cursor-pointer"
-        ></i>
+          className="flex absolute left-4 top-4 gap-4 underline text-md lg:text-2xl cursor-pointer"
+        >
+          Go Back
+        </small>
         <h1 className="text-3xl py-3 mx-auto">
           All Cocktails ({cocktails.length})
         </h1>
       </div>
-      <ViewPill view={allView} setView={setAllView} />
-      <label className="block">
-        Search:
-        <input
-          className="border border-black rounded p-1 mt-2 ml-2 focus:outline-none"
-          type="text"
-          name="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value.toLowerCase())}
-        />
-      </label>
+      <div className="flex flex-col items-center justify-center">
+        <ViewPill view={allView} setView={setAllView} />
+        <label className="block">
+          Search:
+          <input
+            className="border border-black rounded p-1 mt-2 ml-2 focus:outline-none"
+            type="text"
+            name="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+          />
+        </label>
+      </div>
+
       {cocktails.filter((cocktail) =>
         cocktail.name.toLowerCase().includes(search)
       ).length === 0 && (
@@ -91,7 +96,7 @@ const All = ({ cocktails, selectedTags }) => {
         </div>
       )}
       {allView === "list" ? { ...list } : { ...cards }}
-    </div>
+    </main>
   );
 };
 

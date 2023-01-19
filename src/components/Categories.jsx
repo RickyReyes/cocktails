@@ -12,7 +12,7 @@ const Categories = ({
         ).length;
 
         const styles =
-          "cursor-pointer rounded-full py-1 px-3 lg:text-md font-normal mb-1 hover:bg-white border-2 " +
+          "cursor-pointer rounded-md py-1 px-3 lg:text-md font-normal mb-1 hover:bg-white border-2 " +
           category.tailwindBorder +
           " " +
           (currentCategory.name === category.name
@@ -30,7 +30,7 @@ const Categories = ({
             key={idx}
           >
             {amount > 0 && (
-              <small className="absolute bg-black absolute text-white w-5 h-5 rounded-full -top-2 -right-2">
+              <small className="absolute bg-black text-white w-5 h-5 rounded-full -top-2 -right-2 flex items-center justify-center">
                 {amount}
               </small>
             )}
