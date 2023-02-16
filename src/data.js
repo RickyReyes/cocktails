@@ -78,10 +78,10 @@ export const cocktails = [
   {
     name: "Boulevardier",
     ingredients: [["Bourbon", "Rye Whiskey"], "Sweet Vermouth", "Campari"],
-    garnish: "Orange Twist",
-    glassware: "Old-Fashioned Glass",
-    amounts: ["1 oz", "1 oz", "1 oz"],
-    tags: ["Bitter", "Spirit-Forward"],
+    garnish: "Cherry",
+    glassware: "Small Coupe",
+    amounts: ["1.5 oz", "0.75 oz", "0.75 oz"],
+    tags: ["Bitter", "Classic", "Spirit-Forward"],
     photoString: "bg-boulevardier",
     facts: [
       "The Boulevardier is simply a variation on the classic Negroni that is adored for its deft Balance of Bitters, boozy and sweet.",
@@ -315,6 +315,15 @@ export const cocktails = [
     garnish: "Pineapple Wedge",
     glassware: "Double Old Fashioned-Glass",
     tags: ["Tiki", "Refreshing", "Fruity"],
+    photoString: "bg-coming-soon",
+  },
+  {
+    name: "Kalimotxo",
+    ingredients: ["Red Wine", "Cola"],
+    amounts: ["3 oz", "3 oz"],
+    garnish: "Lemon Wedge",
+    glassware: "Collins Glass",
+    tags: ["Simple", "Fruity", "Low ABV"],
     photoString: "bg-coming-soon",
   },
   {
@@ -686,9 +695,9 @@ export const cocktails = [
   {
     name: "White Negroni",
     createdBy: "Wayne Collins",
-    ingredients: ["Gin", "Lillet Blanc", "Suze"],
-    amounts: ["1.5 oz", "1 oz", "0.5 oz"],
-    garnish: "Lemon Twist",
+    ingredients: ["Gin", "Blanc Vermouth", "Suze"],
+    amounts: ["1.5 oz", "1 oz", "0.75 oz"],
+    garnish: "Orange Twist",
     glassware: "Old-Fashioned Glass",
     photoString: "bg-coming-soon",
     tags: ["Bitter", "Floral"],
@@ -731,7 +740,7 @@ export const categories = [
   },
   {
     name: "Vermouth",
-    items: ["Dry Vermouth", "Sweet Vermouth", "Lillet Blanc"],
+    items: ["Dry Vermouth", "Sweet Vermouth"],
     tailwindBG: "bg-red-700",
     tailwindBorder: "border-red-700",
     hoverBorder: "hover:border-red-700",

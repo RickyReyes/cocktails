@@ -86,7 +86,7 @@ const Main = ({
       <div className="w-full">
         {(selectedItems.length > 0 || selectedTags.length > 0) && (
           <div className="flex-1 p-2">
-            <h2 className="text-xl md:text-2xl py-3 text-slate-800 font-medium text-center">
+            <h2 className="text-xl md:text-2xl py-1 md:py-3 text-slate-800 font-medium text-center">
               You've selected:
             </h2>
             <Selections

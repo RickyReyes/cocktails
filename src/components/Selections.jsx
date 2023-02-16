@@ -8,7 +8,7 @@ const Selections = ({
   handleSelectTag,
 }) => {
   return (
-    <section className="max-w-7xl flex flex-col md:flex-row justify-center items-center mx-auto gap-4">
+    <section className="max-w-7xl flex flex-col md:flex-row justify-center items-center mx-auto gap-2 md:gap-4">
       <ul className="flex flex-wrap items-start gap-2 justify-start items-start h-min">
         {selectedItems.map((item, idx) => {
           let bgColor = categories.find((category) =>

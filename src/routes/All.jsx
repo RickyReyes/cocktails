@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import CocktailCard from "../components/CocktailCard";
 import { Link, useNavigate } from "react-router-dom";
 import ViewPill from "../components/ViewPill";
@@ -8,53 +8,55 @@ const All = ({ cocktails, selectedTags }) => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
+  // Filter cocktails depending on search term
+  const renderedCocktails = useMemo(
+    () =>
+      cocktails.filter((cocktail) =>
+        cocktail.name.toLowerCase().includes(search)
+      ),
+    cocktails
+  );
+
   const list = (
     <ul
       className="flex flex-col items-center
 			w-full my-4 mx-auto text-left"
     >
-      {cocktails
-        .filter((cocktail) => cocktail.name.toLowerCase().includes(search))
-        .map((cocktail) => {
-          return (
-            <li
-              key={Math.random()}
-              className="text-3xl underline cursor-pointer"
+      {renderedCocktails.map((cocktail) => {
+        return (
+          <li key={Math.random()} className="text-3xl underline cursor-pointer">
+            <Link
+              to={
+                "/" +
+                cocktail.name
+                  .replace("#", "")
+                  .toLowerCase()
+                  .split(" ")
+                  .join("-")
+              }
             >
-              <Link
-                to={
-                  "/" +
-                  cocktail.name
-                    .replace("#", "")
-                    .toLowerCase()
-                    .split(" ")
-                    .join("-")
-                }
-              >
-                {cocktail.name}
-              </Link>
-            </li>
-          );
-        })}
+              {cocktail.name}
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 
   const cards = (
-    <ul className="sm:w-full p-4 w-screen grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 content-center">
-      {cocktails
-        .filter((cocktail) => cocktail.name.toLowerCase().includes(search))
-        .map((cocktail) => (
-          <CocktailCard
-            key={cocktail.name}
-            tags={cocktail.tags ?? []}
-            name={cocktail.name}
-            missing={[]}
-            onAllPage={true}
-            selectedTags={selectedTags}
-            ingredients={cocktail.ingredients}
-            photoString={cocktail.photoString}
-          />
-        ))}
+    <ul className="p-4 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {renderedCocktails.map((cocktail) => (
+        <CocktailCard
+          key={cocktail.name}
+          tags={cocktail.tags ?? []}
+          name={cocktail.name}
+          missing={[]}
+          onAllPage={true}
+          selectedTags={selectedTags}
+          ingredients={cocktail.ingredients}
+          photoString={cocktail.photoString}
+        />
+      ))}
     </ul>
   );
 

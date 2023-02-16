@@ -148,9 +148,9 @@ export default function App() {
   }, [selectedItems, selectedTags]);
 
   return (
-    <div className="App  relative flex-col items-center justify-center py-16 lg:py-16 px-4">
+    <div className="App relative flex-col items-center justify-center my-16 px-4 lg:m-16  lg:py-16">
       <div className="flex-1 flex flex-col max-w-6xl">
-        <div className="flex absolute right-4 top-4 gap-4">
+        <div className="flex absolute top-0 right-4 gap-4">
           {!onAllPage && (
             <small
               className={`${

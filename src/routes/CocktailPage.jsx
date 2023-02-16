@@ -33,7 +33,7 @@ const CocktailPage = ({ cocktail }) => {
         Go Back
       </small>
 
-      <section className="mt-8 w-full flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto">
+      <section className="mt-8 w-full flex flex-col md:flex-row md:gap-8 items-center justify-center max-w-6xl mx-auto md:px-8">
         {/* PHOTO AND NAME */}
         <div className="flex flex-col items-center gap-4 max-w-lg">
           <div
