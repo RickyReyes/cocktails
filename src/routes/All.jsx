@@ -14,8 +14,10 @@ const All = ({ cocktails, selectedTags }) => {
       cocktails.filter((cocktail) =>
         cocktail.name.toLowerCase().includes(search)
       ),
-    cocktails
+    [search, cocktails]
   );
+
+  console.log(renderedCocktails);
 
   const list = (
     <ul
