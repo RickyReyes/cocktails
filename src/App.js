@@ -5,18 +5,19 @@ import All from "./routes/All";
 import Main from "./routes/Main";
 import CocktailPage from "./routes/CocktailPage";
 
-import { cocktails } from "./data";
-import { categories } from "./data";
-import { allTags } from "./data";
+import { cocktails, categories, allTags } from "./data";
 
 /* Key Terms
   Categories: Refers to a type of ingredient, i.e. Spirits, Juices, Bitters, Syrups, etc.
-  Items: Refers to an actual ingredient, i.e. Tequila, Lime Juice, Angostura bitters, Vanilla Syrup, etc.
+
+  Items: Refers to ingredients, i.e. Tequila, Lime Juice, Angostura bitters, Vanilla Syrup, etc.
+
   Tags: Refers to a style of cocktail, used to filter cocktails. i.e. Bubbly, Aperitif, Spirit-forward, etc.
 */
 
 export default function App() {
-  const [currentCategory, setCurrentCategory] = useState(categories[0]); // eg. Spirits, Vermouth, Amari
+  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [possibleCocktails, setPossibleCocktails] = useState([]);
@@ -148,7 +149,7 @@ export default function App() {
   }, [selectedItems, selectedTags]);
 
   return (
-    <div className="App relative flex-col items-center justify-center my-16 px-4 lg:m-16  lg:py-16">
+    <div className="App relative flex-col items-center justify-center my-6 px-4">
       <div className="flex-1 flex flex-col max-w-6xl">
         <div className="flex absolute top-0 right-4 gap-4">
           {!onAllPage && (
@@ -158,7 +159,7 @@ export default function App() {
               } underline text-md lg:text-2xl cursor-pointer`}
             >
               <Link to="/all" className="font-medium text-slate-800">
-                View All
+                All Cocktails
               </Link>
             </small>
           )}

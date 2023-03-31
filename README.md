@@ -1,4 +1,4 @@
-# cocktails - Cocktail app by Ricky Reyes
+# Thirsty - An app about cocktails
 
 ## Table of contents
 
@@ -30,31 +30,35 @@ Users should be able to:
 ### What I learned
 
 - Sorting algorithm to sort cocktails shown based on highest ratio of selected ingredients to total ingredients
+
 ```js
 ARRAY.sort((a, b) => {
-    let [numOfIngredientsA, numOfIngredientsB] = [a.ingredients.length, b.ingredients.length]
-    let numOfAvailableA = 0
-    let numOfAvailableB = 0
-    selectedItems.forEach(item => {
-      if (a.ingredients.includes(item)) {
-        numOfAvailableA += 1
-      }
-    })
-    selectedItems.forEach(item => {
-      if (b.ingredients.includes(item)) {
-        numOfAvailableB += 1
-      }
-    })
-    let ratioA = numOfAvailableA/numOfIngredientsA
-    let ratioB = numOfAvailableB/numOfIngredientsB
-    if (ratioA < ratioB) {
-      return 1;
+  let [numOfIngredientsA, numOfIngredientsB] = [
+    a.ingredients.length,
+    b.ingredients.length,
+  ];
+  let numOfAvailableA = 0;
+  let numOfAvailableB = 0;
+  selectedItems.forEach((item) => {
+    if (a.ingredients.includes(item)) {
+      numOfAvailableA += 1;
     }
-    if (ratioB < ratioA) {
-      return -1;
+  });
+  selectedItems.forEach((item) => {
+    if (b.ingredients.includes(item)) {
+      numOfAvailableB += 1;
     }
-    return 0;
-})
+  });
+  let ratioA = numOfAvailableA / numOfIngredientsA;
+  let ratioB = numOfAvailableB / numOfIngredientsB;
+  if (ratioA < ratioB) {
+    return 1;
+  }
+  if (ratioB < ratioA) {
+    return -1;
+  }
+  return 0;
+});
 ```
 
 ### Continued development

@@ -9,15 +9,9 @@ const All = ({ cocktails, selectedTags }) => {
   const navigate = useNavigate();
 
   // Filter cocktails depending on search term
-  const renderedCocktails = useMemo(
-    () =>
-      cocktails.filter((cocktail) =>
-        cocktail.name.toLowerCase().includes(search)
-      ),
-    [search, cocktails]
+  const renderedCocktails = cocktails.filter((cocktail) =>
+    cocktail.name.toLowerCase().includes(search)
   );
-
-  console.log(renderedCocktails);
 
   const list = (
     <ul

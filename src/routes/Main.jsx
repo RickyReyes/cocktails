@@ -24,16 +24,9 @@ const Main = ({
   const [mainView, setMainView] = useState("gallery");
   return (
     <main>
-      <h1 className="text-2xl md:text-3xl lg:text-4xl pb-2 font-bold text-slate-800 text-center">
-        Welcome to <br className="md:hidden" />
-        Create Cocktail App.
+      <h1 className="text-5xl pb-2 font-extrabold italic text-slate-800 text-center">
+        thirsty.
       </h1>
-      <div className="w-full text-center">
-        <h2 className="text-slate-800 md:text-xl max-w-lg mx-auto">
-          Select ingredients and/or apply filters based on drink type, then
-          scroll down to see suggested cocktails.
-        </h2>
-      </div>
       <div className="flex mx-auto flex-col md:flex-row gap-4 mt-2 md:mt-4 max-w-7xl">
         <div>
           <h2 className="text-xl md:text-2xl pb-3 font-medium text-slate-800 text-center">
