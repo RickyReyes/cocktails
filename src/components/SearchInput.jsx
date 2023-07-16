@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
-const SearchComponent = ({ selectedItems, handleSelectItem, categories }) => {
-  const [search, setSearch] = useState("");
-  const [searchItems, setSearchItems] = useState([]);
+const SearchInput = ({ selectedItems, handleSelectItem, categories }) => {
+  const [value, setValue] = useState("");
+  const [suggestedItems, setSuggestedItems] = useState([]);
 
   function handleSearchInput(searchString) {
-    setSearch(searchString);
+    setValue(searchString);
     if (searchString === "") {
-      setSearchItems([]);
+      setSuggestedItems([]);
       return;
     }
     let newItems = [];
@@ -19,29 +20,30 @@ const SearchComponent = ({ selectedItems, handleSelectItem, categories }) => {
       }
     }
     /* render no more than 10 search items. */
-    setSearchItems(newItems.slice(0, 9));
+    setSuggestedItems(newItems.slice(0, 9));
   }
   return (
-    <div className="flex flex-col align-left md:align-center">
-      <h2 className="text-slate-800 text-xl md:text-2xl pb-2 font-medium text-center">
-        Search ingredients.
-      </h2>
-      <input
-        type="text"
-        onChange={(e) => handleSearchInput(e.target.value.toLowerCase())}
-        value={search}
-        className="border border-black focus:outline-0 rounded-sm text-lg p-1 mb-4 max-w-sm mx-auto"
-      />
-      {search.length > 0 && searchItems.length === 0 && (
+    <div className="flex flex-col align-left">
+      <div className="relative w-full">
+        <input
+          type="text"
+          onChange={(e) => handleSearchInput(e.target.value.toLowerCase())}
+          value={value}
+          placeholder="Search for recipes or ingredients"
+          className="w-full pl-12 pr-4 py-2 rounded-xl outline-none"
+        />
+        <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600" />
+      </div>
+      {value.length > 0 && suggestedItems.length === 0 && (
         <div className="rounded-lg shadow-lg p-4 mt-4 mx-auto max-w-xs">
           <h2 className="text-xl">
-            Sorry, we couldn't find any matches for <b>{search}</b>...
+            Sorry, we couldn't find any matches for <b>{value}</b>...
           </h2>
           <p>Please try searching for another term</p>
         </div>
       )}
       <ul className="flex flex-wrap items-start gap-1 justify-start items-start mb-4">
-        {searchItems.map((item) => {
+        {suggestedItems.map((item) => {
           let category = categories.filter((category) =>
             category.items.includes(item)
           )[0];
@@ -72,4 +74,4 @@ const SearchComponent = ({ selectedItems, handleSelectItem, categories }) => {
   );
 };
 
-export default SearchComponent;
+export default SearchInput;

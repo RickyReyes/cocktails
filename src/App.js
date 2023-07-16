@@ -16,8 +16,6 @@ import { cocktails, categories, allTags } from "./data";
 */
 
 export default function App() {
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
-
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [possibleCocktails, setPossibleCocktails] = useState([]);
@@ -149,37 +147,20 @@ export default function App() {
   }, [selectedItems, selectedTags]);
 
   return (
-    <div className="App relative flex-col items-center justify-center my-6 px-4">
-      <div className="flex-1 flex flex-col max-w-6xl">
-        <div className="flex absolute top-0 right-4 gap-4">
-          {!onAllPage && (
-            <small
-              className={`${
-                onAllPage ? "hidden" : ""
-              } underline text-md lg:text-2xl cursor-pointer`}
-            >
-              <Link to="/all" className="font-medium text-slate-800">
-                All Cocktails
-              </Link>
-            </small>
-          )}
-        </div>
-      </div>
+    <div className="App relative flex-col items-center justify-center py-6 px-4 bg-gray-100 min-h-screen">
       <Routes>
         <Route
           path="/"
           element={
             <Main
+              cocktails={cocktails}
               allTags={allTags}
               categories={categories}
               selectedItems={selectedItems}
               selectedTags={selectedTags}
               setSelectedTags={setSelectedTags}
               handleSelectItem={handleSelectItem}
-              handleSelectTag={handleSelectTag}
               possibleCocktails={possibleCocktails}
-              currentCategory={currentCategory}
-              setCurrentCategory={setCurrentCategory}
             />
           }
         ></Route>
